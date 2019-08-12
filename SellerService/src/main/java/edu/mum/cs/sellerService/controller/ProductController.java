@@ -21,7 +21,7 @@ public class ProductController {
 
     // Linux: /home/{user}/test
     // Windows: C:/Users/{user}/test
-    private static String UPLOAD_DIR = System.getProperty("user.home") + "/Repos/WAAProject/E-Commerce-WAAProject/SellerService/productPictures";
+    private static String UPLOAD_DIR = "/home/wule/Repos/WAAProject/E-Commerce-WAAProject/SellerService/src/main/resources/templates/productPictures";
 
     @Autowired
     private ProductService productService;
