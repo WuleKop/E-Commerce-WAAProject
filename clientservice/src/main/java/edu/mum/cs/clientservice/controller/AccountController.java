@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AccountController {
 
-    @GetMapping("/account/register")
+    @GetMapping("/register")
     public String register(){
-        return "customer-account";
+        return "register";
     }
 
     @GetMapping("/account/profile")
     public String getProfile(){
         return "user_profile";
     }
+
 }
