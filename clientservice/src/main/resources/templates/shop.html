@@ -10,7 +10,7 @@
         <link rel="icon" href="img/favicon.png" />
         <!-- Place favicon.ico in the root directory -->
 		<!-- google-font -->
-		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 		<!-- all css here -->
 		<!-- bootstrap v3.3.6 css -->
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
@@ -51,7 +51,7 @@
 							<div class="header-top-right header-top-left-4">
 								<p></p>
 							</div>
-						</div>					
+						</div>
 						<div class="col-lg-9 col-md-8 col-sm-7 header-top-right-4">
 							<div class="header-top-left">
 								<ul>
@@ -88,9 +88,9 @@
 						<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
 							<div class="header-bottom-right-4-inner">
 								<a href="#"><span class="lnr lnr-heart"></span></a>
-							</div>					
+							</div>
 							<div class="header-bottom-right header-bottom-right-4">
-								<div class="shop-cart shop-cart-4">									
+								<div class="shop-cart shop-cart-4">
 									<a href="#"><span class="lnr lnr-cart"></span></a>
 								</div>
 								<div class="shop-cart-hover shop-cart-hover-4 fix">
@@ -106,7 +106,7 @@
 											</div>
 											<div class="cart-del">
 												<i class="fa fa-times-circle"></i>
-											</div>											
+											</div>
 										</li>
 										<li>
 											<div class="cart-img">
@@ -119,7 +119,7 @@
 											</div>
 											<div class="cart-del">
 												<i class="fa fa-times-circle"></i>
-											</div>											
+											</div>
 										</li>
 										<li class="total-price"><span> Total Rs 48.04 </span></li>
 										<li class="checkout-bg">
@@ -146,7 +146,7 @@
 						</div>
 						<!-- price-slider-area-start -->
 						<div class="price-slider-area">
-							<h3 class="bedroom-side-title">price</h3>						
+							<h3 class="bedroom-side-title">price</h3>
 							<div id="slider-range"></div>
 							<p>
 								<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
@@ -224,7 +224,7 @@
 									<ul class="tab_menu">
 										<li class="active"><a href="#viewed" data-toggle="tab"><i class="fa fa-th"></i></a></li>
 										<!--<li><a href="#random " data-toggle="tab"><i class="fa fa-list"></i></a></li>-->
-									</ul>					
+									</ul>
 								</div>
 								<div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
 									<div class="product-option">
@@ -249,7 +249,7 @@
 												   <option>23</option>
 												   <option>24</option>
 												   <option>25</option>
-											   </select>												
+											   </select>
 											</div>
 										</div>
 									</div>
@@ -258,12 +258,12 @@
 							<div class="tab-content">
 								<div class="tab-pane active" id="viewed">
 									<div class="row">
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" th:each="product : ${products}">
 											<div class="single-new-product mt-40 category-new-product">
 												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
+													<a th:href="${'shop/'+product.id}">
 														<img src="img/product/1.jpg" class="first_img" alt="" />
-														
+
 													</a>
 													<div class="new-product-action">
 														<!-- <a href="#"><span class="lnr lnr-sync"></span></a> -->
@@ -272,7 +272,7 @@
 													</div>
 												</div>
 												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
+													<a th:href="@{/product/prod_details}"><h3 th:text="${product.name}"></h3></a>
 													<div class="product-price-star">
 														<i class="fa fa-star"></i>
 														<i class="fa fa-star"></i>
@@ -281,590 +281,19 @@
 														<i class="fa fa-star-o"></i>
 													</div>
 													<div class="price">
-														<h4>Rs21.00</h4> 
+                                                        <h4>Rs<span th:text="${product.price}"></span></h4>
 													</div>
 												</div>
 											</div>
 										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="single-new-product mt-40 category-new-product">
-												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
-														<img src="img/product/3.jpg" class="first_img" alt="" />
-														
-													</a>
-													<div class="new-product-action">
-														<!-- <a href="#"><span class="lnr lnr-sync"></span></a> -->
-														<a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-														<a href="#"><span class="lnr lnr-heart"></span></a>
-													</div>
-													<span class="new">18.4%</span>
-												</div>
-												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
-													<div class="product-price-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-													<div class="price">
-														<h4>Rs33.00</h4> 
-														<h3 class="del-price"><del>Rs45.00</del></h3>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="single-new-product mt-40 category-new-product">
-												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
-														<img src="img/product/5.jpg" class="first_img" alt="" />
-														
-													</a>
-													<div class="new-product-action">
-														<!-- <a href="#"><span class="lnr lnr-sync"></span></a> -->
-														<a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-														<a href="#"><span class="lnr lnr-heart"></span></a>
-													</div>
-													<span class="new">18.4%</span>
-												</div>
-												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
-													<div class="product-price-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-													<div class="price">
-														<h4>Rs106.00</h4> 
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 hidden-md col-sm-6 col-xs-12">
-											<div class="single-new-product mt-40 category-new-product">
-												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
-														<img src="img/product/7.jpg" class="first_img" alt="" />
-														
-													</a>
-													<div class="new-product-action">
-														<!--<a href="#"><span class="lnr lnr-sync"></span></a>-->
-														<a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-														<a href="#"><span class="lnr lnr-heart"></span></a>
-													</div>
-												</div>
-												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
-													<div class="product-price-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-													<div class="price">
-														<h4>Rs19.00</h4> 
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="single-new-product category-new-product">
-												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
-														<img src="img/product/9.jpg" class="first_img" alt="" />
-														
-													</a>
-													<div class="new-product-action">
-														<!-- <a href="#"><span class="lnr lnr-sync"></span></a> -->
-														<a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-														<a href="#"><span class="lnr lnr-heart"></span></a>
-													</div>
-													<span class="new">18.4%</span>
-												</div>
-												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
-													<div class="product-price-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-													<div class="price">
-														<h4>Rs23.00</h4> 
-														<h3 class="del-price"><del>Rs45.00</del></h3>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="single-new-product category-new-product">
-												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
-														<img src="img/product/9.jpg" class="first_img" alt="" />
-														
-													</a>
-													<div class="new-product-action">
-														<!--<a href="#"><span class="lnr lnr-sync"></span></a>-->
-														<a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-														<a href="#"><span class="lnr lnr-heart"></span></a>
-													</div>
-												</div>
-												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
-													<div class="product-price-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-													<div class="price">
-														<h4>Rs99.00</h4> 
-														<h3 class="del-price"><del>Rs45.00</del></h3>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="single-new-product category-new-product">
-												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
-														<img src="img/product/13.jpg" class="first_img" alt="" />
-														
-													</a>
-													<div class="new-product-action">
-														<!-- <a href="#"><span class="lnr lnr-sync"></span></a> -->
-														<a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-														<a href="#"><span class="lnr lnr-heart"></span></a>
-													</div>
-													<span class="new">18.4%</span>
-												</div>
-												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
-													<div class="product-price-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-													<div class="price">
-														<h4>Rs43.00</h4> 
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="single-new-product category-new-product">
-												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
-														<img src="img/product/14.jpg" class="first_img" alt="" />
-														
-													</a>
-													<div class="new-product-action">
-														<!--<a href="#"><span class="lnr lnr-sync"></span></a>-->
-														<a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-														<a href="#"><span class="lnr lnr-heart"></span></a>
-													</div>
-												</div>
-												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
-													<div class="product-price-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-													<div class="price">
-														<h4>Rs33.00</h4> 
-														<h3 class="del-price"><del>Rs45.00</del></h3>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6col-xs-12">
-											<div class="single-new-product category-new-product">
-												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
-														<img src="img/product/12.jpg" class="first_img" alt="" />
-														
-													</a>
-													<div class="new-product-action">
-													<!--	<a href="#"><span class="lnr lnr-sync"></span></a>-->
-														<a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-														<a href="#"><span class="lnr lnr-heart"></span></a>
-													</div>
-													<span class="new">14.4%</span>
-												</div>
-												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
-													<div class="product-price-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-													<div class="price">
-														<h4>Rs33.00</h4> 
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 hidden-xs">
-											<div class="single-new-product category-new-product">
-												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
-														<img src="img/product/10.jpg" class="first_img" alt="" />
-														
-													</a>
-													<div class="new-product-action">
-														<!--<a href="#"><span class="lnr lnr-sync"></span></a>-->
-														<a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-														<a href="#"><span class="lnr lnr-heart"></span></a>
-													</div>
-												</div>
-												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
-													<div class="product-price-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-													<div class="price">
-														<h4>Rs73.00</h4> 
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 hidden-xs">
-											<div class="single-new-product category-new-product">
-												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
-														<img src="img/product/8.jpg" class="first_img" alt="" />
-														
-													</a>
-													<div class="new-product-action">
-														<!--<a href="#"><span class="lnr lnr-sync"></span></a>-->
-														<a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-														<a href="#"><span class="lnr lnr-heart"></span></a>
-													</div>
-													<span class="new">5.4%</span>
-												</div>
-												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
-													<div class="product-price-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-													<div class="price">
-														<h4>Rs43.00</h4> 
-														<h3 class="del-price"><del>Rs65.00</del></h3>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 hidden-xs">
-											<div class="single-new-product category-new-product">
-												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
-														<img src="img/product/6.jpg" class="first_img" alt="" />
-														
-													</a>
-													<div class="new-product-action">
-														<!--<a href="#"><span class="lnr lnr-sync"></span></a>-->
-														<a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-														<a href="#"><span class="lnr lnr-heart"></span></a>
-													</div>
-													<span class="new">99.4%</span>
-												</div>
-												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
-													<div class="product-price-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-													<div class="price">
-														<h4>Rs43.00</h4> 
-														<h3 class="del-price"><del>Rs45.00</del></h3>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 hidden-xs">
-											<div class="single-new-product category-new-product">
-												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
-														<img src="img/product/4.jpg" class="first_img" alt="" />
-														
-													</a>
-													<div class="new-product-action">
-														<!--<a href="#"><span class="lnr lnr-sync"></span></a>-->
-														<a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-														<a href="#"><span class="lnr lnr-heart"></span></a>
-													</div>
-													<span class="new">18.4%</span>
-												</div>
-												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
-													<div class="product-price-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-													<div class="price">
-														<h4>Rs33.00</h4> 
-														<h3 class="del-price"><del>Rs45.00</del></h3>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 hidden-xs">
-											<div class="single-new-product category-new-product">
-												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
-														<img src="img/product/2.jpg" class="first_img" alt="" />
-														
-													</a>
-													<div class="new-product-action">
-													<!--	<a href="#"><span class="lnr lnr-sync"></span></a>-->
-														<a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-														<a href="#"><span class="lnr lnr-heart"></span></a>
-													</div>
-													<span class="new">18.4%</span>
-												</div>
-												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
-													<div class="product-price-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-													<div class="price">
-														<h4>Rs33.00</h4> 
-														<h3 class="del-price"><del>Rs45.00</del></h3>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 hidden-xs">
-											<div class="single-new-product category-new-product">
-												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
-														<img src="img/product/7.jpg" class="first_img" alt="" />
-														
-													</a>
-													<div class="new-product-action">
-													<!--	<a href="#"><span class="lnr lnr-sync"></span></a>-->
-														<a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-														<a href="#"><span class="lnr lnr-heart"></span></a>
-													</div>
-													<span class="new">18.4%</span>
-												</div>
-												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
-													<div class="product-price-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-													<div class="price">
-														<h4>Rs33.00</h4> 
-														<h3 class="del-price"><del>Rs45.00</del></h3>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 hidden-xs">
-											<div class="single-new-product category-new-product">
-												<div class="product-img">
-													<a th:href="@{/product/prod_details}">
-														<img src="img/product/4.jpg" class="first_img" alt="" />
-														
-													</a>
-													<div class="new-product-action">
-														<!--<a href="#"><span class="lnr lnr-sync"></span></a>-->
-														<a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-														<a href="#"><span class="lnr lnr-heart"></span></a>
-													</div>
-													<span class="new">18.4%</span>
-												</div>
-												<div class="product-content text-center">
-													<a th:href="@{/product/prod_details}"><h3>Beaumont Summit</h3></a>
-													<div class="product-price-star">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-													<div class="price">
-														<h4>Rs33.00</h4> 
-														<h3 class="del-price"><del>Rs45.00</del></h3>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
+
+
 								</div>
-								<div class="tab-pane" id="random">
-									<div class="single-category-product mt-40">
-										<div class="single-category-product-img">
-											<a th:href="@{/product/prod_details}"><img src="img/product/1.jpg" alt="" /></a>
-										</div>
-										<div class="single-category-product-info">
-											<a th:href="@{/product/prod_details}"><h2>Hero Hoodie</h2></a>
-											<div class="product-price-star">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star-o"></i>
-												<i class="fa fa-star-o"></i>
-											</div>
-											<div class="price category-price">
-												<h4>Rs33.00</h4> 
-												<h3 class="del-price"><del>Rs45.00</del></h3>
-											</div>
-											<p>
-												Gray and black color blocking sets you apart as the Hero Hoodie keeps you warm on 		the 	bus, campus or cold mean streets. Slanted outsize front pockets keep 	your style real . . . convenient.... Learn More 
-											</p>
-											<div class="new-product-action2 category-cart">
-												<a href="#" class="bg-black"><span class="lnr lnr-cart"></span>Add to Cart</a>
-												<!-- <a href="#"><span class="lnr lnr-sync"></span></a> -->
-												<a href="#"><span class="lnr lnr-heart"></span></a>
-											</div>									
-										</div>
-									</div>
-									<div class="single-category-product mt-40">
-										<div class="single-category-product-img">
-											<a th:href="@{/product/prod_details}"><img src="img/product/2.jpg" alt="" /></a>
-										</div>
-										<div class="single-category-product-info">
-											<a th:href="@{/product/prod_details}"><h2>Hero Hoodie</h2></a>
-											<div class="product-price-star">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star-o"></i>
-												<i class="fa fa-star-o"></i>
-											</div>
-											<div class="price category-price">
-												<h4>Rs33.00</h4> 
-												<h3 class="del-price"><del>Rs45.00</del></h3>
-											</div>
-											<p>
-												Gray and black color blocking sets you apart as the Hero Hoodie keeps you warm on 		the 	bus, campus or cold mean streets. Slanted outsize front pockets keep 	your style real . . . convenient.... Learn More 
-											</p>
-											<div class="new-product-action2 category-cart">
-												<a href="#" class="bg-black"><span class="lnr lnr-cart"></span>Add to Cart</a>
-												<!-- <a href="#"><span class="lnr lnr-sync"></span></a> -->
-												<a href="#"><span class="lnr lnr-heart"></span></a>
-											</div>									
-										</div>
-									</div>
-									<div class="single-category-product mt-40">
-										<div class="single-category-product-img">
-											<a th:href="@{/product/prod_details}"><img src="img/product/3.jpg" alt="" /></a>
-										</div>
-										<div class="single-category-product-info">
-											<a th:href="@{/product/prod_details}"><h2>Hero Hoodie</h2></a>
-											<div class="product-price-star">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star-o"></i>
-												<i class="fa fa-star-o"></i>
-											</div>
-											<div class="price category-price">
-												<h4>Rs33.00</h4> 
-												<h3 class="del-price"><del>Rs45.00</del></h3>
-											</div>
-											<p>
-												Gray and black color blocking sets you apart as the Hero Hoodie keeps you warm on 		the 	bus, campus or cold mean streets. Slanted outsize front pockets keep 	your style real . . . convenient.... Learn More 
-											</p>
-											<div class="new-product-action2 category-cart">
-												<a href="#" class="bg-black"><span class="lnr lnr-cart"></span>Add to Cart</a>
-												<!-- <a href="#"><span class="lnr lnr-sync"></span></a> -->
-												<a href="#"><span class="lnr lnr-heart"></span></a>
-											</div>									
-										</div>
-									</div>
-									<div class="single-category-product mt-40">
-										<div class="single-category-product-img">
-											<a th:href="@{/product/prod_details}"><img src="img/product/4.jpg" alt="" /></a>
-										</div>
-										<div class="single-category-product-info">
-											<a th:href="@{/product/prod_details}"><h2>Hero Hoodie</h2></a>
-											<div class="product-price-star">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star-o"></i>
-												<i class="fa fa-star-o"></i>
-											</div>
-											<div class="price category-price">
-												<h4>Rs33.00</h4> 
-												<h3 class="del-price"><del>Rs45.00</del></h3>
-											</div>
-											<p>
-												Gray and black color blocking sets you apart as the Hero Hoodie keeps you warm on 		the 	bus, campus or cold mean streets. Slanted outsize front pockets keep 	your style real . . . convenient.... Learn More 
-											</p>
-											<div class="new-product-action2 category-cart">
-												<a href="#" class="bg-black"><span class="lnr lnr-cart"></span>Add to Cart</a>
-												<!-- <a href="#"><span class="lnr lnr-sync"></span></a> -->
-												<a href="#"><span class="lnr lnr-heart"></span></a>
-											</div>									
-										</div>
-									</div>
-									<div class="single-category-product mt-40">
-										<div class="single-category-product-img">
-											<a th:href="@{/product/prod_details}"><img src="img/product/5.jpg" alt="" /></a>
-										</div>
-										<div class="single-category-product-info">
-											<a th:href="@{/product/prod_details}"><h2>Hero Hoodie</h2></a>
-											<div class="product-price-star">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star-o"></i>
-												<i class="fa fa-star-o"></i>
-											</div>
-											<div class="price category-price">
-												<h4>Rs33.00</h4> 
-												<h3 class="del-price"><del>Rs45.00</del></h3>
-											</div>
-											<p>
-												Gray and black color blocking sets you apart as the Hero Hoodie keeps you warm on 		the 	bus, campus or cold mean streets. Slanted outsize front pockets keep 	your style real . . . convenient.... Learn More 
-											</p>
-											<div class="new-product-action2 category-cart">
-												<a href="#" class="bg-black"><span class="lnr lnr-cart"></span>Add to Cart</a>
-												<!-- <a href="#"><span class="lnr lnr-sync"></span></a> -->
-												<a href="#"><span class="lnr lnr-heart"></span></a>
-											</div>									
-										</div>
-									</div>								
+
+
+
+
+
 								</div>
 							</div>
 						</div>
@@ -887,7 +316,7 @@
 											</a>
 										</li>
 									</ul>
-								</nav>							
+								</nav>
 							</div>
 						</div>
 						<!-- pagination-area-end -->

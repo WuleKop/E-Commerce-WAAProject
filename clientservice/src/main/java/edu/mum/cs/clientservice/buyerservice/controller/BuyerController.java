@@ -22,9 +22,16 @@ public class BuyerController {
 
 
 
-    @GetMapping("products/{id}")
-    public @ResponseBody Product getOne(@PathVariable("id") Long id){
-        return buyerService.findOne(id);
+    @GetMapping("/shop")
+    public String getProductList(Model model){
+        model.addAttribute("products",buyerService.allProducts());
+        return "shop";
+    }
+
+    @GetMapping("shop/{productId}")
+    public String productDetails(@PathVariable("productId")Long id,Model model){
+        model.addAttribute("product",buyerService.findOne(id));
+        return "product-details";
     }
 
 
