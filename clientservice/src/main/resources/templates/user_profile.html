@@ -1,0 +1,378 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Customer Account</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" th:href="@{/img/favicon.png}"/>
+    <!-- Place favicon.ico in the root directory -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <!-- all css here -->
+    <!-- bootstrap v3.3.6 css -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" type="text/css">
+    <!-- animate css -->
+    <link rel="stylesheet" th:href="@{/css/animate.css}" href="../css/animate.css" type="text/css">
+    <!-- jquery-ui.min css -->
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" href="../css/jquery-ui.min.css" type="text/css">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" th:href="@{/css/meanmenu.min.css}" href="../css/meanmenu.min.css" type="text/css">
+    <!-- nivo-slider css -->
+    <link rel="stylesheet" th:href="@{/css/nivo-slider.css}" href="../css/nivo-slider.css}" type="text/css">
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.css}" href="../css/owl.carousel.css" type="text/css">
+    <!--linearicons css -->
+    <link rel="stylesheet" th:href="@{/css/linearicons-icon-font.min.css}" href="../css/linearicons-icon-font.min.css"
+          type="text/css">
+    <!-- font-awesome css -->
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" href="../css/font-awesome.min.css" type="text/css">
+    <!-- style css -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../css/style.css" type="text/css">
+    <!-- responsive css -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}" href="../css/responsive.css" type="text/css"/>
+</head>
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<!-- header-start -->
+<header>
+    <div class="header-top-area ptb-10 hidden-xs header-top-area-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-5">
+                    <div class="header-top-right header-top-left-4">
+                        <p>FREE SHIPPING ON ORDERS OVER $200</p>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-8 col-sm-7 header-top-right-4">
+                    <div class="header-top-left">
+                        <ul>
+                            <li><a th:href="@{/login}">Sign In</a></li>
+                            <li class="click_menu"><a href="#">My Account <i class="fa fa-angle-down"></i></a>
+                                <ul class="click_menu_show">
+                                    <li><a href="customer-login.html">Profile</a></li>
+                                    <!--											<li><a href="customer-login.html">My Account</a></li>-->
+                                    <li><a href="wishlist.html">My Wish List</a></li>
+                                    <li><a href="customer-login.html">Log out</a></li>
+                                </ul>
+                            </li>
+                            <li><a th:href="@{/account/register}">Create an Account</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header-end -->
+<!-- mainmenu-area-start -->
+<div class="mainmenu-area home-page-2 mainmenu-area-4" id="main_h">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="mainmenu hidden-xs">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="login-area ptb-80">
+    <div class="container">
+        <div class="container">
+            <div class="col-sm-12">
+                <h3>Edit Profile</h3>
+                <hr/>
+                <div class="col-sm-3"> <!-- required for floating -->
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs tabs-left">
+                        <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+                        <li><a href="#chnage_passwrd" data-toggle="tab">Change Password</a></li>
+                        <li><a href="#deliveryaddress" data-toggle="tab">Delivery Address</a></li>
+                        <li><a href="#reentorders" data-toggle="tab">Recent Orders</a></li>
+                        <li><a href="#returnorders" data-toggle="tab">Return Orders</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-9">
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="profile">
+                            <div class="login-form">
+                                <form>
+                                    <div class="form-group login-page">
+                                        <label for="">First Name <span>*</span></label>
+                                        <input type="text" class="form-control" id="">
+                                    </div>
+                                    <div class="form-group login-page">
+                                        <label for="">Last Name <span>*</span></label>
+                                        <input type="email" class="form-control" id="">
+                                    </div>
+
+                                    <div class="form-group login-page">
+                                        <label for="">Email <span>*</span></label>
+                                        <input type="text" class="form-control" id="">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-default login-btn">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="chnage_passwrd">
+                            <form>
+                                <div class="form-group login-page">
+                                    <label for="">Old Password<span>*</span></label>
+                                    <input type="password" class="form-control" id="">
+                                </div>
+                                <div class="form-group login-page">
+                                    <label for="">New Password<span>*</span></label>
+                                    <input type="password" class="form-control" id="">
+                                </div>
+
+                                <div class="form-group login-page">
+                                    <label for="">Confirm Password<span>*</span></label>
+                                    <input type="password" class="form-control" id="">
+                                </div>
+
+                                <button type="submit" class="btn btn-default login-btn">Submit</button>
+                            </form>
+
+                        </div>
+
+
+                        <div class="tab-pane" id="deliveryaddress">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                                <h4 class="profile_addresstab">Choose Address</h4>
+
+                                <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions"  value="option1">
+                                        E-199 kalka ji New Delhi infront of Sanatan Dharam Mandir New Delhi 110019
+                                    </label>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions"  value="option1">
+                                        E-199 kalka ji New Delhi infront of Sanatan Dharam Mandir New Delhi 110019
+                                    </label>
+                                </div>
+
+
+                                <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                        E-199 kalka ji New Delhi infront of Sanatan Dharam Mandir New Delhi 110019 E-199
+                                        kalka ji New Delhi infront of Sanatan Dharam Mandir New Delhi 110019
+                                    </label>
+                                </div>
+
+
+                                <div class="col-md-6 col-sm-6 col-xs-12 multiple_address">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                        E-199 kalka ji New Delhi infront of Sanatan Dharam Mandir New Delhi 110019
+                                    </label>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-12 col-sm-12">
+
+                                <h4 class="profile_addresstab">Enter New Address Here</h4>
+
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>First Name <span class="required">*</span></label>
+                                        <input type="text" placeholder=""/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Last Name <span class="required">*</span></label>
+                                        <input type="text" placeholder=""/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Address <span class="required">*</span></label>
+                                        <input type="text" placeholder="Street address"/>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="tab-pane" id="reentorders">
+                            <div class="wishlist-table table-responsive">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th class="product-remove"><span class="nobr">Remove</span></th>
+                                        <th class="product-thumbnail">Image</th>
+                                        <th class="product-name"><span class="nobr">Product Name</span></th>
+                                        <th class="product-name"><span class="nobr">Order No.</span></th>
+                                        <th class="product-price"><span class="nobr"> Unit Price </span></th>
+                                        <!--<th class="product-stock-stauts"><span class="nobr"> Stock Status </span></th>
+                                        <th class="product-add-to-cart"><span class="nobr">Buy It Again </span></th>-->
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="product-remove"><a href="#">x</a></td>
+                                        <td class="product-thumbnail"><a href="#"><img src="img/wishlist/1.jpg" alt=""/></a>
+                                        </td>
+                                        <td class="product-name"><a href="#">Vestibulum suscipit</a></td>
+                                        <td class="product-name"><a href="#">GHJGHJGJHGHJHJHJ</a></td>
+                                        <td class="product-price"><span class="amount">Rs35.00</span></td>
+                                        <!--<td class="product-stock-status"><span class="wishlist-in-stock">In Stock</span></td>
+                                        <td class="product-add-to-cart"><a href="#"> Buy It Again</a></td>-->
+                                    </tr>
+                                    <tr>
+                                        <td class="product-remove"><a href="#">x</a></td>
+                                        <td class="product-thumbnail"><a href="#"><img src="img/wishlist/2.jpg" alt=""/></a>
+                                        </td>
+                                        <td class="product-name"><a href="#">Vestibulum dictum magna</a></td>
+                                        <td class="product-name"><a href="#">GHJGHJGJHGHJHJHJ</a></td>
+                                        <td class="product-price"><span class="amount">Rs50.00</span></td>
+                                        <!--<td class="product-stock-status"><span class="wishlist-in-stock">In Stock</span></td>
+                                        <td class="product-add-to-cart"><a href="#"> Buy It Again</a></td>-->
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane" id="returnorders">
+                            <div class="wishlist-table table-responsive">
+                                <table>
+                                    <thead>
+                                    <tr>
+
+
+                                        <th class="product-name"><span class="nobr">Product Name</span></th>
+                                        <th class="product-name"><span class="nobr">Order No.</span></th>
+                                        <th class="product-price"><span class="nobr"> Unit Price </span></th>
+                                        <th class="product-remove"><span class="nobr">Check Process</span></th>
+                                        <!--<th class="product-stock-stauts"><span class="nobr"> Stock Status </span></th>
+                                        <th class="product-add-to-cart"><span class="nobr">Buy It Again </span></th>-->
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <!--<td class="product-remove"><a href="#">x</a></td>-->
+
+                                        <td class="product-name"><a href="#">Vestibulum suscipit</a></td>
+                                        <td class="product-name"><a href="#">GHJGHJGJHGHJHJHJ</a></td>
+                                        <td class="product-price"><span class="amount">Rs35.00</span></td>
+                                        <td class="product-name"><a href="#">Check Process</a></td>
+                                        <!--<td class="product-stock-status"><span class="wishlist-in-stock">In Stock</span></td>
+                                        <td class="product-add-to-cart"><a href="#"> Buy It Again</a></td>-->
+                                    </tr>
+                                    <tr>
+                                        <!--<td class="product-remove"><a href="#">x</a></td>-->
+
+                                        <td class="product-name"><a href="#">Vestibulum dictum magna</a></td>
+                                        <td class="product-name"><a href="#">GHJGHJGJHGHJHJHJ</a></td>
+                                        <td class="product-price"><span class="amount">Rs50.00</span></td>
+                                        <td class="product-name"><a href="#">Check Process</a></td>
+                                        <!--<td class="product-stock-status"><span class="wishlist-in-stock">In Stock</span></td>
+                                        <td class="product-add-to-cart"><a href="#"> Buy It Again</a></td>-->
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+            </div>
+        </div><!-- /container -->
+    </div>
+</div>
+<!-- contuct-form-area-end -->
+<!-- contact-area-start -->
+<div class="contact-area ptb-40">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mar_b-30">
+                <div class="contuct-info text-center">
+                    <h4>Sign up for news & offers!</h4>
+                    <p>You may safely unsubscribe at any time</p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-8 col-sm-12 col-lg-offset-1 col-xs-12">
+                <div class="search-box">
+                    <form action="#">
+                        <input type="email" placeholder="Enter your email address"/>
+                        <button><span class="lnr lnr-envelope"></span></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="copyright-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mar_b-30">
+                <div class="copyright text-left">
+                    <p>2016 @ All Rights Reserved - <a href="#"></a></p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="copyright-img text-right">
+                    <a href="#"><img src="img/payment.png" alt=""/></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{js/vendor/jquery-1.12.0.min.js}" src="../js/vendor/jquery-1.12.0.min.js"
+        type="text/javascript"></script>
+<!-- bootstrap js -->
+<script th:src="@{js/bootstrap.min.js}" src="../js/bootstrap.min.js" type="text/javascript"></script>
+<!-- owl.carousel js -->
+<script th:src="@{js/owl.carousel.min.js}" src="../js/owl.carousel.min.js" type="text/javascript"></script>
+<!-- meanmenu js -->
+<script th:src="@{js/jquery.meanmenu.js}" src="../js/jquery.meanmenu.js" type="text/javascript"></script>
+<!-- jquery-ui js -->
+<script th:src="@{js/jquery-ui.min.js}" src="../js/jquery-ui.min.js" type="text/javascript"></script>
+<!-- wow js -->
+<script th:src="@{js/wow.min.js}" src="../js/wow.min.js" type="text/javascript"></script>
+<!-- scrolly js -->
+<script th:src="@{js/jquery.scrolly.js}" src="../js/jquery.scrolly.js" type="text/javascript"></script>
+<!-- magnific-popup js -->
+<script th:src="@{js/jquery.magnific-popup.min.js}" src="../js/jquery.magnific-popup.min.js"
+        type="text/javascript"></script>
+<!--  countdown js -->
+<script th:src="@{js/jquery.countdown.min.js}" src="../js/jquery.countdown.min.js" type="text/javascript"></script>
+<!-- nivo.slider js -->
+<script th:src="@{js/jquery.nivo.slider.js}" src="../js/jquery.nivo.slider.js" type="text/javascript"></script>
+<!-- plugins js -->
+<script th:src="@{js/plugins.js}" src="../js/plugins.js" type="text/javascript"></script>
+<!-- main js -->
+<script th:src="@{js/main.js}" src="../js/main.js" type="text/javascript"></script>
+
+
+</body>
+</html>
