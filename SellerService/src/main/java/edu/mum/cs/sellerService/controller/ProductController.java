@@ -13,16 +13,23 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 @RestController
+@CrossOrigin
 public class ProductController {
 
     // Linux: /home/{user}/test
     // Windows: C:/Users/{user}/test
-    private static String UPLOAD_DIR = System.getProperty("user.home") + "/Desktop/Angular/SpringRestAPI/FileUploadAjax/UploadedFiles";
+    private static String UPLOAD_DIR = System.getProperty("user.home") + "/Repos/WAAProject/E-Commerce-WAAProject/SellerService/productPictures";
 
     @Autowired
     private ProductService productService;
+
+    @GetMapping("/getAllProducts")
+    public List<Product> getAllProducts() {
+      return productService.getAllProducts();
+    }
 
     @PostMapping("/addProduct")
     public ResponseEntity<?> addProduct(@ModelAttribute Product product) {

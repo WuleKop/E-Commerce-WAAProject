@@ -23,6 +23,7 @@ public class Product {
     private Long id;
     private String name;
     private String description;
+    @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "MM-DD-YYYY")
     private Date manufacturedDate;
     private Integer stockQuantity;
