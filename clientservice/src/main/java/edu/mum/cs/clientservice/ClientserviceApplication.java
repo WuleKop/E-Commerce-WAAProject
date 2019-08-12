@@ -7,10 +7,11 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@EnableDiscoveryClient
+@EnableEurekaClient
 public class ClientserviceApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
@@ -20,7 +21,9 @@ public class ClientserviceApplication extends SpringBootServletInitializer {
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate(){
-        return  new RestTemplate();
+        HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory();
+        clientHttpRequestFactory.setConnectTimeout(3000);
+        return  new RestTemplate(clientHttpRequestFactory);
     }
 
 }

@@ -19,12 +19,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value={"/", "/login"})
-    public String login(@RequestParam("user") User user){
+    @GetMapping(value = {"/", "/login"})
+    public String login(@RequestParam("user") User user) {
         return "login";
     }
-    @GetMapping("/registration")
-    public String registration(@RequestParam("user") User user, Model model){
+
+    @PostMapping("/registration")
+    public String registration(@RequestParam("user") User user, Model model) {
         return "registration";
     }
 
@@ -32,36 +33,61 @@ public class UserController {
     public User createNewUser(@Valid User user) {
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
-           return  null;
-        }else{
-           return userService.saveUser(user);
+            return null;
+        } else {
+            return userService.saveUser(user);
         }
 
     }
-    @RequestMapping(value="/admin/adminHome", method = RequestMethod.GET)
-    public User admin(@RequestParam("user") User user){
-        if(user.getRole().equals(Role.ADMIN)) {
+
+    @RequestMapping(value = "/seller", method = RequestMethod.POST)
+    public User createNewUser(Object [] objects) {
+        User userExists = userService.findUserByEmail(((User) objects[0]).getEmail());
+        if (userExists != null) {
+            return null;
+        } else {
+
+            return userService.saveUser((User)objects[0]);
+        }
+
+    }
+
+
+
+    @RequestMapping(value = "/admin/adminHome", method = RequestMethod.GET)
+    public User admin(@RequestParam("user") User user) {
+        if (user.getRole().equals(Role.ADMIN)) {
             return userService.findUserByEmail(user.getEmail());
-        }else{
+        } else {
             return null;
         }
     }
-    @RequestMapping(value="/buyer/buyerHome", method = RequestMethod.GET)
-    public User user(@RequestParam("user") User user){
-        if(user.getRole().equals(Role.BUYER)){
+
+    @RequestMapping(value = "/buyer/buyerHome", method = RequestMethod.GET)
+    public User user(@RequestParam("user") User user) {
+        if (user.getRole().equals(Role.BUYER)) {
             return userService.findUserByEmail(user.getEmail());
-        }
-        else {
+        } else {
             return null;
         }
     }
-    @RequestMapping(value="/seller/sellerHome", method = RequestMethod.GET)
-    public User seller(@RequestParam("user") User user, Model model){
-        if(user.getRole().equals(Role.SELLER)){
+
+    @RequestMapping(value = "/seller/sellerHome", method = RequestMethod.GET)
+    public User seller(@RequestParam("user") User user, Model model) {
+        if (user.getRole().equals(Role.SELLER)) {
             return userService.findUserByEmail(user.getEmail());
-        }
-        else {
+        } else {
             return null;
         }
+    }
+
+
+    @GetMapping("login/{email}")
+    public User publicLogin(@PathVariable("email") String emailAddress) {
+        User user = userService.findUserByEmail(emailAddress);
+        if (user != null) {
+            return user;
+        }
+        return null;
     }
 }
