@@ -36,9 +36,10 @@ public class Product {
     private MultipartFile[] pictures;
     private String status;
 
+    @JsonIgnore
     private List<Review> reviews = new ArrayList<>();
 
-
+    @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 
     public void addOrder(Order order) {
