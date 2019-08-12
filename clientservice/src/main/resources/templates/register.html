@@ -67,74 +67,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="header-bottom-area home-page-2 ptb-10">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-					<!--                    <div class="menu-search-box scnd-fix">-->
-					<!--                        <form action="#">-->
-					<!--                            <input type="text" placeholder="Search here..."/>-->
-					<!--                            <button><span class="lnr lnr-magnifier"></span></button>-->
-					<!--                        </form>-->
-					<!--                    </div>-->
-				</div>
-
-				<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
-					<div class="header-bottom-right-4-inner">
-						<a href="#"><span class="lnr lnr-heart"></span></a>
-					</div>
-					<div class="header-bottom-right header-bottom-right-4">
-						<div class="shop-cart shop-cart-4">
-							<a href="#"><span class="lnr lnr-cart"></span></a>
-						</div>
-						<div class="shop-cart-hover shop-cart-hover-4 fix">
-							<ul>
-								<li>
-									<div class="cart-content">
-										<h4><a href="#">1 x Faded...</a></h4>
-										<span><a href="#">S, Orange</a></span>
-										<span class="cart-price">Rs 16.84</span>
-									</div>
-									<div class="cart-del">
-										<i class="fa fa-times-circle"></i>
-									</div>
-								</li>
-								<li>
-									<div class="cart-img">
-										<a href="#"><img src="img/cart/1.jpg" alt=""/></a>
-									</div>
-									<div class="cart-content">
-										<h4><a href="#">1 x Faded...</a></h4>
-										<span><a href="#">S, Orange</a></span>
-										<span class="cart-price">Rs 16.84</span>
-									</div>
-									<div class="cart-del">
-										<i class="fa fa-times-circle"></i>
-									</div>
-								</li>
-								<li class="total-price"><span> Total Rs 48.04 </span></li>
-								<li class="checkout-bg">
-									<a href="checkout.html">checkout <i class="fa fa-angle-right"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<br>
-		</div>
-	</div>
 </header>
-<!-- header-end -->
-<!-- mainmenu-area-start -->
-<div class="mainmenu-area home-page-2 mainmenu-area-4" id="main_h">
-	<div class="container">
-		<div class="row">
-
-		</div>
-	</div>
-</div>
 <div class="entry-header-area ptb-40">
 	<div class="container">
 		<div class="row">
@@ -158,28 +91,28 @@
 					<div id="checkout-login" class="coupon-content">
 						<div class="coupon-info">
 							<!--<p class="coupon-text">Quisque gravida turpis sit amet nulla posuere lacinia. Cras sed est sit amet ipsum luctus.</p>-->
-							<form action="#">
+							<form id="buyer-form" action="#">
 								<div class="form-group login-page">
-									<label for="exampleInputName1">First Name <span>*</span></label>
-									<input type="text" class="form-control" id="exampleInputName1">
+									<label >First Name <span>*</span></label>
+									<input type="text" class="form-control" id="firstName">
 								</div>
 								<div class="form-group login-page">
-									<label for="exampleInputName2">Last Name <span>*</span></label>
-									<input type="email" class="form-control" id="exampleInputName2">
+									<label >Last Name <span>*</span></label>
+									<input type="email" class="form-control" id="lastName">
 								</div>
 								<div class="form-group login-page">
-									<label for="exampleInputEmail1">Email <span>*</span></label>
-									<input type="text" class="form-control" id="exampleInputEmail1">
+									<label >Email <span>*</span></label>
+									<input type="text" class="form-control" id="email">
 								</div>
 								<div class="form-group login-page">
-									<label for="exampleInputPassword1">Password <span>*</span></label>
-									<input type="Password" class="form-control" id="exampleInputPassword1">
+									<label >Password <span>*</span></label>
+									<input type="Password" class="form-control" id="password">
 								</div>
 								<div class="form-group login-page">
-									<label for="exampleInputPassword2">Confirm Password <span>*</span></label>
-									<input type="Password" class="form-control" id="exampleInputPassword2">
+									<label>Confirm Password <span>*</span></label>
+									<input type="Password" class="form-control" id="confirmPassword2">
 								</div>
-								<button type="submit" id="btnCreateAccnt" class="btn btn-default login-btn">Create an Account</button>
+								<button type="submit" id="btn-buyer" class="btn btn-default login-btn">Create an Account</button>
 							</form>
 						</div>
 					</div>
@@ -188,7 +121,26 @@
 					<h3>Register here if you are a seller <span id="showcoupon">Click here to register</span></h3>
 					<div id="checkout_coupon" class="coupon-checkout-content">
 						<div class="coupon-info">
-							<form action="#">
+							<form id="seller-form">
+								<div class="col-md-6">
+									<div class="checkout-form-list">
+										<label>First Name <span class="required">*</span></label>
+										<input type="text" placeholder=""/>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="checkout-form-list">
+										<label>Last Name <span class="required">*</span></label>
+										<input type="text" placeholder=""/>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group login-page">
+										<label>Image Upload <span>*</span></label>
+										<input type="file" class="form-control" id="profilePic">
+									</div>
+								</div>
+
 								<div class="col-md-12">
 									<div class="country-select">
 										<label>Country <span class="required">*</span></label>
@@ -206,18 +158,6 @@
 									</div>
 								</div>
 								<div class="col-md-6">
-									<div class="checkout-form-list">
-										<label>First Name <span class="required">*</span></label>
-										<input type="text" placeholder=""/>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="checkout-form-list">
-										<label>Last Name <span class="required">*</span></label>
-										<input type="text" placeholder=""/>
-									</div>
-								</div>
-								<div class="col-md-12">
 									<div class="checkout-form-list">
 										<label>Address <span class="required">*</span></label>
 										<input type="text" placeholder="Street address"/>
@@ -255,14 +195,10 @@
 								<div class="col-md-6">
 									<div class="checkout-form-list">
 										<label>Phone <span class="required">*</span></label>
-										<input type="text" placeholder="Postcode / Zip"/>
+										<input type="text" placeholder=""/>
 									</div>
 								</div>
 								<div class="col-md-12">
-									<div class="checkout-form-list create-acc">
-										<input id="cbox" type="checkbox"/>
-										<label>Create an account?</label>
-									</div>
 									<div id="cbox_info" class="checkout-form-list create-account">
 										<p>Create an account by entering the information below. If you are a returning
 											customer please login at the top of the page.</p>
@@ -271,15 +207,10 @@
 									</div>
 								</div>
 								<p class="form-row">
-									<input type="submit" value="Login"/>
-									<label>
-										<input type="checkbox"/>
-										Remember me
-									</label>
+									<input type="submit" id="btn-seller" value="Create Account"/>
+
 								</p>
-								<p class="lost-password">
-									<a href="#">Lost your password?</a>
-								</p>
+
 							</form>
 						</div>
 					</div>
