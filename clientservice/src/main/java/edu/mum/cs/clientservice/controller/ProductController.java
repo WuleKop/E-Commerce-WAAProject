@@ -9,12 +9,14 @@ public class ProductController {
     public String getProductDetail(){
         return "product-details";
     }
-    @GetMapping("/shop")
-    public String getProductList(){
-        return "shop";
-    }
+
     @GetMapping("/checkout")
     public String checkout(){
         return "checkout";
+    }
+
+    @GetMapping("/cart")
+    public String getCart(){
+        return "cart";
     }
 }

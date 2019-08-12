@@ -1,0 +1,38 @@
+package edu.mum.cs.clientservice.buyerservice.controller;
+
+
+import edu.mum.cs.clientservice.buyerservice.BuyerService;
+import edu.mum.cs.clientservice.sellermodel.Product;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+
+@Controller
+public class BuyerController {
+
+    @Autowired
+    private BuyerService buyerService;
+
+
+
+
+    @GetMapping("/shop")
+    public String getProductList(Model model){
+        model.addAttribute("products",buyerService.allProducts());
+        return "shop";
+    }
+
+    @GetMapping("shop/{productId}")
+    public String productDetails(@PathVariable("productId")Long id,Model model){
+        model.addAttribute("product",buyerService.findOne(id));
+        return "product-details";
+    }
+
+
+}
