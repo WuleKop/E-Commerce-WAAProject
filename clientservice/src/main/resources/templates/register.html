@@ -53,7 +53,11 @@
 					<div class="header-top-left">
 						<ul>
 							<li><a th:href="@{/logon}">Sign In</a></li>
+
 							<li class="click_menu "><a class="ln lnr-user" href="#" ><span th:text="${session.user.lastName}">My Account</span><i class="fa fa-angle-down"></i></a>
+
+							<li class="click_menu"><a href="#">My Account <i class="fa fa-angle-down"></i></a>
+
 								<ul class="click_menu_show">
 									<li><a th:href="@{/account/profile}">My Profile</a></li>
 									<li><a th:href="@{/logout}">Sign out</a></li>
@@ -93,23 +97,23 @@
 							<form id="buyer-form" action="#">
 								<div class="form-group login-page">
 									<label >First Name <span>*</span></label>
-									<input type="text" class="form-control" id="firstName">
+									<input type="text" class="form-control" id="firstName" name="firstName">
 								</div>
 								<div class="form-group login-page">
 									<label >Last Name <span>*</span></label>
-									<input type="text" class="form-control" id="lastName">
+									<input type="text" class="form-control" id="lastName" name="lastName">
 								</div>
 								<div class="form-group login-page">
 									<label >Email <span>*</span></label>
-									<input type="text" class="form-control" id="email">
+									<input type="text" class="form-control" id="email" name="email">
 								</div>
 								<div class="form-group login-page">
 									<label >Password <span>*</span></label>
-									<input type="Password" class="form-control" id="password">
+									<input type="Password" class="form-control" id="password" name="password">
 								</div>
 								<div class="form-group login-page">
 									<label>Confirm Password <span>*</span></label>
-									<input type="Password" class="form-control" id="confirmPassword2">
+									<input type="Password" class="form-control" id="confirmPassword2" name="confirm">
 								</div>
 								<button type="submit" id="btn-buyer" class="btn btn-default login-btn">Create an Account</button>
 							</form>

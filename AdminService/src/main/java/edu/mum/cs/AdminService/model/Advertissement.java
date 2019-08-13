@@ -25,10 +25,10 @@ public class Advertissement {
     private String description;
     @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "MM-DD-YYYY")
-    private Date manufacturedDate;
-    private Integer stockQuantity;
+    private Date createdDate;
 
-    //private Double price;
+
+
     @Lob
     @Column( length = 100000 )
     private String pictureUrls;
@@ -37,20 +37,6 @@ public class Advertissement {
     @JsonIgnore
     private MultipartFile[] pictures;
     private String status;
-//    @OneToMany(cascade = CascadeType.ALL)
-//    private List<Review> reviews = new ArrayList<>();
-  //  @ManyToMany
-//    private List<Order> orders = new ArrayList<>();
-//
-//    public void addOrder(Order order) {
-//        if(orders.add(order)) {
-//            order.addProduct(this);
-//        }
-//    }
-//    public void removeOrder (Order order) {
-//        if(orders.remove(order)) {
-//            order.addProduct(null);
-//        }
     }
 
 

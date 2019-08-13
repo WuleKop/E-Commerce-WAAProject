@@ -3,6 +3,7 @@ package edu.mum.cs.clientservice.controller;
 import edu.mum.cs.clientservice.adminmodel.User;
 import edu.mum.cs.clientservice.buyerservice.BuyerService;
 import edu.mum.cs.clientservice.service.ClientService;
+import edu.mum.cs.clientservice.utility.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,15 +38,22 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@RequestParam Map<String, String> map,Model model,HttpSession session) {
         User user = clientService.login(map.get("email"));
-        if (map.get("password").equals(user.getPassword())) {
-            session.setAttribute("user", user);
-            return "redirect:/shop";
+        if(user != null) {
+            if (MessageConverter.getMd5(map.get("password")).equals(user.getPassword())) {
+                session.setAttribute("user", user);
+                if (session.getAttribute("cart") == null) {
+                    return "redirect:/shop";
+                } else {
+                    return "redirect:/checkout";
+                }
 
-        } else {
-            System.out.println("Not equals");
-            session.invalidate();
-            return "Invalid Password";
+            } else {
+                session.invalidate();
+                return "Invalid Password";
 
+            }
+        }else{
+            return  "UNknown user";
         }
 
     }

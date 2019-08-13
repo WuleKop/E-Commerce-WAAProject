@@ -23,8 +23,6 @@ public class AdminRestController {
 
     @PostMapping("/createAccountSeller")
     public User createAccountSeller(@RequestParam Map<String, String> map) {
-        System.out.println("testing" + map.get("password"));
-        System.out.println("testing :"+map.get("confirm"));
         if (map.get("password").equals(map.get("confirm"))) {
             User user = new User();
             user.setEmail(map.get("email"));

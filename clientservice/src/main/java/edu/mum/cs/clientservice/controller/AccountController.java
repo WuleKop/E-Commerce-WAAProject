@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import sun.security.provider.MD5;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -35,23 +36,7 @@ public class AccountController {
         return "user_profile";
     }
 
-//    @GetMapping("/login")
-//    public String login(@RequestParam Map<String, String> map, HttpSession session,Model model) {
-//        System.out.println("Test");
-//        System.out.println(map.get("email"));
-//        User user = clientService.login(map.get("email"));
-//        if (map.get("password").equals(user.getPassword())) {
-//            session.setAttribute("user", user);
-//            model.addAttribute("products",buyerService.allProducts());
-//            return "shop";
-//
-//        } else {
-//            System.out.println("Not equals");
-//            session.invalidate();
-//            return "Invalid Password";
-//        }
-//
-//    }
+
 
     @PostMapping("/registration")
     public @ResponseBody
@@ -64,7 +49,7 @@ public class AccountController {
             user.setName(map.get("name"));
             user.setLastName(map.get("lastName"));
             user.setEmail(map.get("email"));
-            user.setPassword(map.get("password"));
+            user.setPassword(MessageConverter.getMd5(map.get("password")));
             user.setActive(1);
             user.setRole(Role.BUYER);
             user.setAddress(null);
