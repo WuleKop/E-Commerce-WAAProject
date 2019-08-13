@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin()
 public class ProductController {
 
     // Linux: /home/{user}/test

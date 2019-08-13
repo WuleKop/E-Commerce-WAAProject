@@ -26,7 +26,7 @@ function ajaxSubmitForm() {
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
-        url: "http://localhost:8082/addProduct",
+        url: "/testProduct",
         data: data,
 
         // prevent jQuery from automatically transforming the data into a query string

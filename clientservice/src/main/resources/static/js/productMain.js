@@ -39,7 +39,7 @@ function ajaxSubmitForm() {
             let s=productUrl[0];
             console.log(s);
             let product = ('<div class="card mb-3" style="max-width: 540px;"><div class="row no-gutters"><div class="col-md-4">');
-            product +=('<img src="'+s+'" class="card-img" alt="ProductPicture"></div><div class="col-md-8"><div class="card-body">');
+            product +=('<img src="/images/'+s+'" class="card-img" alt="ProductPicture"></div><div class="col-md-8"><div class="card-body">');
             product += ('<h5 class="card-title">'+response.name+"</h5>");
             product +=' <p class="card-text">'+response.description+'</p>';
             product +='<p class="card-text">Manufactured Date: '+response.manufacturedDate.substring(0,10)+'</p>';

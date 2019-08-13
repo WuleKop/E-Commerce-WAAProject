@@ -7,28 +7,27 @@
 
 </head>
 <body>
-<div class="container ">
-    <p th:text="${product.description}"></p>
-<!--    <h3 th:text="'All Jewelleries in store for Seller'"></h3>-->
-<!--    <div th:each="p:${products}" id="products">-->
-<!--        <div class="card mb-3" >-->
-<!--            <div class="row no-gutters">-->
-<!--                <div class="col-md-4">-->
-<!--                    <img src="..." class="card-img" alt="Product">-->
-<!--                </div>-->
-<!--                <div class="col-md-8">-->
-<!--                    <div class="card-body">-->
-<!--                        <h5 class="card-title" th:text="${p.name}">Product Name</h5>-->
-<!--                        &lt;!&ndash;                        <p class="card-text"><small th:text="${p.description}">Product Description</small></p>&ndash;&gt;-->
-<!--                        <p class="card-text"><small th:text="'Manufactured Date: '+ ${p.manufacturedDate.toString().substring(3,9)+', '+p.manufacturedDate.toString().substring(23)}">Manufactured Date</small></p>-->
-<!--                        <p class="card-text"><small th:text="'Quantity: '+${p.stockQuantity}">Stock Quantity</small></p>-->
-<!--                        <p class="card-text"><small class="text-muted" th:text="'Price: $'+${p.price}">Price</small></p>-->
-<!--                        <p><a th:href="@{/getProduct/{pId}(pId=${p.id})}" class="btn btn-outline-info btn-sm">Details</a></p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+    <div class="jumbotron">
+        <h1 class="display-4" th:text="${product.name}">Product Name</h1>
+        <p class="lead" th:text="${product.description}">Product Description</p>
+        <hr class="my-4">
+        <p th:text="'Manufacturd Date: '+ ${product.manufacturedDate.toString().substring(3,9)+', '+product.manufacturedDate.toString().substring(23)}">Manufactured Date</p>
+        <p th:text="'Stock Quantity: '+${product.stockQuantity}">Stock Quantity</p>
+        <p th:text="'Price: $'+${product.price}">Price</p>
+
+        <div class="row">
+            <div class="col-md-4" th:each="image:${images}" style="margin-bottom: 20px">
+                    <a th:href="@{'/images/'+${image}}">
+                        <img th:src="@{'/images/'+${image}}" alt="Lights" style="width:100%">
+                    </a>
+            </div>
+        </div>
+
+        <p><a th:href="@{/getSellerProducts/{sId}(sId=${product.sellerId})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Back</a>
+            <a th:href="@{/update/{pId}(pId=${product.id})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Update</a>
+            <a th:href="@{/delete/{pId}(pId=${product.id})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Delete</a>
+            <a th:href="@{/getReviews/{pId}(pId=${product.id})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Reviews</a>
+        </p>
 
 </div>
 

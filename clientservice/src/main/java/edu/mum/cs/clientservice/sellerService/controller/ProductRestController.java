@@ -16,12 +16,12 @@ public class ProductRestController {
 
 
     @PostMapping("/testProduct")
-    public String addProduct(Product product){
+    public Product addProduct(Product product){
         try {
             String res =UploadingImage.saveUploadedFiles(product.getPictures());
             product.setPictureUrls(res);
-            productService.createProduct(product);
+            return productService.createProduct(product);
         }catch (Exception e){e.printStackTrace();}
-        return  "ok";
+        return  null;
     }
 }
