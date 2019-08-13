@@ -40,6 +40,8 @@ public class BuyerRestController {
         orders = buyerService.removeProduct(orders,id);
         session.setAttribute("cart", orders);
         model.addAttribute("products",orders);
+        model.addAttribute("subtotal", UtilityClass.subTotal(orders));
+        model.addAttribute("total",UtilityClass.subTotal(orders)+7);
         return "Product is successfully removed";
     }
 

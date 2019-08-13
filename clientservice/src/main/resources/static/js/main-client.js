@@ -4,24 +4,26 @@ $(document).ready(function () {
     var seller_data = $('#seller-form').serialize();
 
     $('#login-form').submit(function(){
+
         var login_data=$('#login-form').serialize();
-        alert("this is a final test");
-        alert(login_data);
         $.ajax({
             type:'POST',
-            url:'login',
+            url:'/login',
             data:login_data,
+            dataType:'json',
+            contextType:'application/json',
             success:function (response) {
-                if(response === 'user found') {
-                    alert("okay");
-                    location.reload();
-                }else{
-                    alert("Invalid username or password");
-                }
+                console.log(response);
+                // if(response==="User found "){
+                //     console.log("Testing the returned response")
+                //     window.location.href="http://localhost:8084/shop";
+                // }else{
+                //     console.log("Empty response!!")
+                // }
             },
             error:function (errorObject) {
                // var error=errorObject.response
-                console.log(errorObject);
+
             }
         })
     });

@@ -187,6 +187,7 @@
                             </ul>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                            <h3 class="text-danger" th:if="${Error != null}" th:text="${Error}"></h3>
                             <div class="product-simple-content">
                                 <div class="sinple-c-title">
                                     <h3 th:text="${product.name}"></h3>

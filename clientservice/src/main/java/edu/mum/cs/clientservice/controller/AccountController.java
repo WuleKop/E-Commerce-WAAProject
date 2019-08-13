@@ -5,12 +5,14 @@ import edu.mum.cs.clientservice.adminmodel.Address;
 import edu.mum.cs.clientservice.adminmodel.Role;
 import edu.mum.cs.clientservice.adminmodel.Status;
 import edu.mum.cs.clientservice.adminmodel.User;
+import edu.mum.cs.clientservice.buyerservice.BuyerService;
 import edu.mum.cs.clientservice.service.ClientService;
 import edu.mum.cs.clientservice.utility.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import sun.security.provider.MD5;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -20,6 +22,9 @@ public class AccountController {
 
     @Autowired
     private ClientService clientService;
+
+    @Autowired
+    private BuyerService buyerService;
 
     @GetMapping("/register")
     public String register() {
@@ -36,19 +41,22 @@ public class AccountController {
     @PostMapping("/registration")
     public @ResponseBody
     User createUser(@RequestParam Map<String, String> map) {
+        System.out.println("Test");
+        System.out.println(map.get("confirm"));
+        System.out.println(map.get("password"));
         User user = new User();
         if (map.get("confirm").equals(map.get("password"))) {
             user.setName(map.get("name"));
             user.setLastName(map.get("lastName"));
             user.setEmail(map.get("email"));
-            user.setPassword(map.get("password"));
+            user.setPassword(MessageConverter.getMd5(map.get("password")));
             user.setActive(1);
             user.setRole(Role.BUYER);
             user.setAddress(null);
             user.setStatus(Status.APPROVED);
             clientService.createAccount(user);
         } else {
-            return  null;
+            System.out.println("Unmatched Password!");
         }
         return user;
     }

@@ -156,31 +156,31 @@
                             <div class="col-md-12">
                             <div class="checkout-form-list">
                                 <label>Card Number <span class="required">*</span></label>
-                                <input type="text" placeholder="Card number"/>
+                                <input type="text" placeholder="Card number" required/>
                             </div>
                         </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Name on Card <span class="required">*</span></label>
-                                    <input type="text" placeholder="Name of card holder"/>
+                                    <input type="text" placeholder="Name of card holder" required/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkout-form-list">
                                     <label>Expiration Month <span class="required">*</span></label>
-                                    <input type="text" placeholder="MM"/>
+                                    <input type="text" placeholder="MM" required/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkout-form-list">
                                     <label>Expiration Year <span class="required">*</span></label>
-                                    <input type="text" placeholder="YY"/>
+                                    <input type="text" placeholder="YY" required/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkout-form-list">
                                     <label>CVV <span class="required">*</span></label>
-                                    <input type="text" placeholder=""/>
+                                    <input type="text" placeholder="" required/>
                                 </div>
                             </div>
 
@@ -190,9 +190,9 @@
                             <!-- Address-Coloum end -->
 
                             <div class="col-md-12">
-                                <div class="country-select">
+                                <div class="country-select" >
                                     <label>Country <span class="required">*</span></label>
-                                    <select>
+                                    <select required>
                                         <option value="volvo">bangladesh</option>
                                         <option value="saab">Algeria</option>
                                         <option value="mercedes">Afghanistan</option>
@@ -207,74 +207,58 @@
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>First Name <span class="required">*</span></label>
-                                    <input type="text" placeholder=""/>
+                                    <input type="text" placeholder="" th:value="${session.user.name}" required/>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Last Name <span class="required">*</span></label>
-                                    <input type="text" placeholder=""/>
+                                    <input type="text" placeholder="" th:value="${session.user.lastName}" required/>
                                 </div>
                             </div>
-                            <!--<div class="col-md-12">
-                                <div class="checkout-form-list">
-                                    <label>Company Name</label>
-                                    <input type="text" placeholder="" />
-                                </div>
-                            </div>-->
+
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Address <span class="required">*</span></label>
-                                    <input type="text" placeholder="Street address"/>
+                                    <input type="text" placeholder="Street address" required/>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
-                                    <input type="text" placeholder="Apartment, suite, unit etc. (optional)"/>
+                                    <input type="text" placeholder="Apartment, suite, unit etc. (optional)" required/>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Town / City <span class="required">*</span></label>
-                                    <input type="text" placeholder="Town / City"/>
+                                    <input type="text" placeholder="Town / City" required/>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>State / County <span class="required">*</span></label>
-                                    <input type="text" placeholder=""/>
+                                    <input type="text" placeholder="" name="State" required/>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Postcode / Zip <span class="required">*</span></label>
-                                    <input type="text" placeholder="Postcode / Zip"/>
+                                    <input type="text" placeholder="Postcode / Zip" required/>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Email Address <span class="required">*</span></label>
-                                    <input type="email" placeholder=""/>
+                                    <input type="email" placeholder="" th:value="${session.user.email}" required/>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Phone <span class="required">*</span></label>
-                                    <input type="text" placeholder="Postcode / Zip"/>
+                                    <input type="text" placeholder="PhoneNumber" required />
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="checkout-form-list create-acc">
-                                    <input id="cbox" type="checkbox"/>
-                                    <label>Create an account?</label>
-                                </div>
-                                <div id="cbox_info" class="checkout-form-list create-account">
-                                    <p>Create an account by entering the information below. If you are a returning
-                                        customer please login at the top of the page.</p>
-                                    <label>Account password <span class="required">*</span></label>
-                                    <input type="password" placeholder="password"/>
-                                </div>
-                            </div>
+
                         </div>
 
                     </div>
@@ -291,33 +275,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="cart_item">
+                                <tr class="cart_item" th:each="product : ${cart}">
                                     <td class="product-name">
-                                        Vestibulum suscipit <strong class="product-quantity"> x 1</strong>
+                                        <span th:text="${product.product.name}"></span> <strong class="product-quantity"><span th:text="${' X '+product.quantity}"></span></strong>
                                     </td>
                                     <td class="product-total">
-                                        <span class="amount">Rs165.00</span>
+                                        <span class="amount" th:text="${'$ '+@utilityClass.totalAmount(product.product.price,product.getQuantity())}"></span>
                                     </td>
                                 </tr>
-                                <tr class="cart_item">
-                                    <td class="product-name">
-                                        Vestibulum dictum magna <strong class="product-quantity"> x 1</strong>
-                                    </td>
-                                    <td class="product-total">
-                                        <span class="amount">Rs50.00</span>
-                                    </td>
-                                </tr>
+
                                 </tbody>
                                 <tfoot>
                                 <tr class="cart-subtotal">
                                     <th>Cart Subtotal</th>
-                                    <td><span class="amount">Rs215.00</span></td>
+                                    <td><span class="amount" th:text="${'$ '+subtotal}"></span></td>
                                 </tr>
 
-                                <tr class="cart-subtotal">
-                                    <th>GST IN</th>
-                                    <td><span class="amount">28%</span></td>
-                                </tr>
 
                                 <tr class="shipping">
                                     <th>Shipping</th>
@@ -339,7 +312,7 @@
                                 </tr>
                                 <tr class="order-total">
                                     <th>Order Total</th>
-                                    <td><strong><span class="amount">Rs215.00</span></strong>
+                                    <td><strong><span class="amount" th:text="${'$'+total}"></span></strong>
                                     </td>
                                 </tr>
                                 </tfoot>

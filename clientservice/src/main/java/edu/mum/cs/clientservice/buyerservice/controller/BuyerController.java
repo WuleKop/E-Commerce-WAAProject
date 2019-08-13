@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -48,23 +49,28 @@ public class BuyerController {
 
 
     @PostMapping("/carting")
-    public String accessingeasly(Model model, HttpSession session, @RequestParam Map<String,String> map){
-        List<ProductOrder> productOrders = (List<ProductOrder>) session.getAttribute("cart");
-        if(productOrders == null){
-            productOrders = new ArrayList<>();
+    public String accessingeasly(Model model, HttpSession session, @RequestParam Map<String,String> map, RedirectAttributes redirectAttributes){
+        if(Integer.parseInt(map.get("quantity")) > 0) {
+            List<ProductOrder> productOrders = (List<ProductOrder>) session.getAttribute("cart");
+            if (productOrders == null) {
+                productOrders = new ArrayList<>();
+            }
+            Order order = (Order) session.getAttribute("order");
+            if (order == null) {
+                order = new Order();
+                order.setOrderNumber(UUID.randomUUID().toString().split("-")[0]);
+            }
+            Product product = productService.findOne(Long.parseLong(map.get("productId")));
+            productOrders = buyerService.addProductOrder(product, order, Integer.parseInt(map.get("quantity")), productOrders);
+            session.setAttribute("cart", productOrders);
+            model.addAttribute("cart", productOrders);
+            model.addAttribute("subtotal", UtilityClass.subTotal(productOrders));
+            model.addAttribute("total", UtilityClass.subTotal(productOrders) + 7);
+            return "cart";
         }
-        Order order = (Order) session.getAttribute("order");
-        if(order == null){
-           order= new Order();
-            order.setOrderNumber(UUID.randomUUID().toString().split("-")[0]);
-        }
-        Product product = productService.findOne(Long.parseLong(map.get("productId")));
-        productOrders= buyerService.addProductOrder(product,order,Integer.parseInt(map.get("quantity")),productOrders);
-        session.setAttribute("cart",productOrders);
-        model.addAttribute("cart",productOrders);
-        model.addAttribute("subtotal", UtilityClass.subTotal(productOrders));
-        model.addAttribute("total",UtilityClass.subTotal(productOrders)+7);
-        return  "cart";
+        redirectAttributes.addFlashAttribute("Error" ,"Choose at least one quantity");
+        return "redirect:/shop/"+map.get("productId");
+
     }
 
 
