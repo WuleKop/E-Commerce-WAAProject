@@ -30,6 +30,10 @@ public class ProductController {
     public List<Product> getAllProducts() {
       return productService.getAllProducts();
     }
+    @GetMapping("/getSellerProducts/{sId}")
+    public List<Product> getSellerProducts(@PathVariable Long sId){
+        return productService.getAllProductBySeller(sId);
+    }
 
     @PostMapping("/addProduct")
     public ResponseEntity<?> addProduct(@ModelAttribute Product product) {
@@ -56,7 +60,7 @@ public class ProductController {
     }
 
     @PutMapping("/updateProduct")
-    public Product updateProduct(@RequestBody Product product) {
+    public Product updateProduct(@ModelAttribute Product product) {
         return productService.update(product);
     }
 

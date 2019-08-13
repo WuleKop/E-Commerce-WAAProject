@@ -3,7 +3,7 @@
 <head>
     <title>Add Product</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" th:src="@{/main.js}"></script>
+    <script type="text/javascript" th:src="@{/js/productMain.js}"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -11,8 +11,11 @@
     <h2>Add a New Product</h2>
     <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
         <div class="form-row">
-            <div class="col-md-5 mb-2">
+            <div class="col-md-4 mb-2">
                 <label for="name">Product Name: </label> <input type="text" name="name" id="name" class="form-control" />
+            </div>
+            <div class="col-md-1 mb-1">
+                <label for="price">Seller ID: </label> <input type="text" name="sellerId" id="sellerId" class="form-control">
             </div>
         </div>
         <div class="form-row">
@@ -25,7 +28,7 @@
                 <label for="manufacturedDate">Manufactured Date: </label> <input type="text" name="manufacturedDate" placeholder="MM-DD-YYYY" id="manufacturedDate" class="form-control"></p>
             </div>
 
-            <div class="col-md-2 mb-1">
+            <div class="col-md-2 mb-1"
                 <label for="stockQuantity">Stock Quantity: </label> <input type="text" name="stockQuantity" id="stockQuantity" class="form-control">
             </div>
             <div class="col-md-1 mb-1">
