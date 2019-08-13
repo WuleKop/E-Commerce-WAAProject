@@ -1,11 +1,13 @@
 package edu.mum.cs.clientservice.sellermodel;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
+
 
 
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ public class Product {
 
 
     private Long id;
+    private Long sellerId;
     private String name;
     private String description;
     @DateTimeFormat(pattern = "MM-DD-YYYY")

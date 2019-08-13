@@ -6,6 +6,7 @@ import edu.mum.cs.clientservice.adminmodel.Role;
 import edu.mum.cs.clientservice.adminmodel.Status;
 import edu.mum.cs.clientservice.adminmodel.User;
 import edu.mum.cs.clientservice.service.ClientService;
+import edu.mum.cs.clientservice.utility.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,17 +31,21 @@ public class AccountController {
         return "user_profile";
     }
 
-    @GetMapping("/login")
-    public String login(@RequestParam Map<String,String> map, HttpSession session){
-        if(map.get("email")!=null){
-          User user= clientService.login(map.get("email"));
-          //
+    @GetMapping("/account/login")
+    public String login(@RequestParam Map<String, String> map, HttpSession session) {
+        User user = clientService.login(map.get("email"));
+        String encrypted_password = MessageConverter.getMd5(map.get("password"));
+        if (encrypted_password == user.getPassword()) {
+            return "shop";
+        } else {
+            return "Invalid Password";
         }
-        return"shop";
+
     }
 
     @PostMapping("/registration")
-    public @ResponseBody User createUser(@RequestParam Map<String, String> map) {
+    public @ResponseBody
+    User createUser(@RequestParam Map<String, String> map) {
         System.out.println("Test");
         System.out.println(map.get("confirm"));
         System.out.println(map.get("password"));
@@ -55,9 +60,8 @@ public class AccountController {
             user.setAddress(null);
             user.setStatus(Status.APPROVED);
             clientService.createAccount(user);
-        }
-        else {
-            System.out.println("Password must match!");
+        } else {
+            System.out.println("Unmatched Password!");
         }
         return user;
     }
