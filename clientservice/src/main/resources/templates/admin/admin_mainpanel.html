@@ -30,11 +30,11 @@
           <!-- Navigation options on the left (site related) -->
           <div class="col-md-offset-4">
             <ul class="nav navbar-nav">
-              <li><a href="#Pricing">Pricing</a></li>
+              <li><a th:href="@{/manage_posts}" href="manage_posts.html">Manage sellers</a></li>
               <li><a href="#About">About</a></li>
-              <li><a href="#FAQ">FAQ</a></li>
-              <li><a href="#Blog">Blog</a></li>
-              <li><a href="#Contact">Contact</a></li>
+              <li><a th:href="@{/post_ads.html}" href="post_ads.html">Post an Add</a></li>
+              <li><a th:href="@{/reviews}" href="reviews.html">Reviews</a></li>
+<!--              <li><a href="#Contact">Contact</a></li>-->
             </ul> 
           </div>
 
@@ -57,11 +57,11 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a href="#UserName"><strong>User Name</strong></a></li>
-                <li><a href="#PlanName"><em>Plan Name</em></a></li>
+<!--                <li><a href="#PlanName"><em>Plan Name</em></a></li>-->
                 <li role="separator" class="divider"></li>
                 <li><a href="#UpdateProfile">Update Profile</a></li>
                 <li><a href="#Preferences">Preferences</a></li>
-                <li><a href="#Billing">Billing</a></li>
+<!--                <li><a href="#Billing">Billing</a></li>-->
                 <li role="separator" class="divider"></li>
                 <li><a href="#Logout">Logout</a></li>
               </ul>
@@ -73,109 +73,22 @@
       </div>
     </nav>
 
-    <!-- Main content -->
-    <div class="container-fluid main-content">
-      <!-- Site identity --> 
-      <section class="col-md-4">
-        <div class="row">
-          <img class="center-block id-img" src="img/identity.png">
-        </div>
-        <div class="row row-spacer">
-          <div class="col-md-11 col-sm-11 center-block no-float">
-            <h3>This Is Important</h3>
-            <p>This is our copy to make sure you feel good about paying for our service.</p>
-            <p>We're here to make sure you succeed.</p>
-            <p>Any questions? Just Ask.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Data and data actions --> 
-      <section class="col-md-8 ">
-
-        <!-- Header and actions -->
-        <div class="row">
-          <div class="col-md-4">
-            <h1>Forms</h1>
-          </div>
-          <div role="search" class="col-md-3 col-sm-3">
-            <input type="text" class="form-control" id="txtSearch"/>
-            <i class="material-icons form-control-feedback tool-hint">search</i>
-          </div>
-          <div class="col-md-3 col-sm-3">
-            <button id="add-new-btn" class="btn-flat poptext" type="button">Add New Form</button>
-          </div>
-        </div>
-
-        <!-- Data headings -->
-        <div class="row row-spacer">
-          <div class="col-md-4 col-xs-2">Name</div>
-          <div class="col-xs-2 text-right">Impressions</div>
-          <div class="col-xs-2 text-right">Responses</div>
-          <div class="col-xs-2 text-right">Conversion</div>
-        </div>
-        <div class="row">
-          <div class="col-md-11 col-sm-11 lo-border"></div>
-        </div>
-
-        <!-- Tediosly hand-written data -->
-        <div>
-          <div class="row row-spacer data-row">
-            <div class="col-md-4 col-xs-2">LP Form 1</div>
-            <div class="col-xs-2 text-right">2452</div>
-            <div class="col-xs-2 text-right">899</div>
-            <div class="col-xs-2 text-right">36.7%</div>
-            <div class="col-xs-2 tool-grp">
-              <a href="#report"><i class="material-icons admin-tool">trending_up</i></a>
-              <a href="#report"><i class="material-icons admin-tool">edit</i></a>
-              <a href="#report"><i class="material-icons admin-tool">delete</i></a>
-              <a href="#report"><i class="material-icons tool-hint">more_horiz</i></a>
-            </div>
-          </div>
-          <div class="row row-spacer data-row">
-            <div class="col-md-4 col-xs-2">FAQ Feedback</div>
-            <div class="col-xs-2 text-right">1023</div>
-            <div class="col-xs-2 text-right">112</div>
-            <div class="col-xs-2 text-right">10.9%</div>
-            <div class="col-xs-2 tool-grp">
-              <a href="#report"><i class="material-icons admin-tool">trending_up</i></a>
-              <a href="#report"><i class="material-icons admin-tool">edit</i></a>
-              <a href="#report"><i class="material-icons admin-tool">delete</i></a>
-              <a href="#report"><i class="material-icons tool-hint">more_horiz</i></a>
-            </div>
-          </div>
-          <div class="row row-spacer data-row">
-            <div class="col-md-4 col-xs-2">Satisfied YN</div>
-            <div class="col-xs-2 text-right">20</div>
-            <div class="col-xs-2 text-right">1</div>
-            <div class="col-xs-2 text-right">5.0%</div>
-            <div class="col-xs-2 tool-grp">
-              <a href="#report"><i class="material-icons admin-tool">trending_up</i></a>
-              <a href="#report"><i class="material-icons admin-tool">edit</i></a>
-              <a href="#report"><i class="material-icons admin-tool">delete</i></a>
-              <a href="#report"><i class="material-icons tool-hint">more_horiz</i></a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
     <!-- Footer -->
     <footer>
       <div class="container-fluid">
         <div class="row flexer row-spacer">
-          <div class="center-block">
-            <a href="#Pricing">Pricing</a>
-            <a href="#About">About</a>
-            <a href="#FAQ">FAQ</a>
-            <a href="#Blog">Blog</a>
-            <a href="#Contact">Contact</a>
-          </div>
+<!--          <div class="center-block">-->
+<!--            <a href="#Pricing">Pricing</a>-->
+<!--            <a href="#About">About</a>-->
+<!--            <a href="#FAQ">FAQ</a>-->
+<!--            <a href="#Blog">Blog</a>-->
+<!--            <a href="#Contact">Contact</a>-->
+<!--          </div>-->
         </div>
         <div class="row flexer">
           <div class="center-block">
             <span class="copyright"></span>
-            <span class="brand-text">The Brand </span>&nbsp;2017
+            <span class="brand-text">Fancy Admin Panel </span>&nbsp;2019
           </div>
         </div>
       </div>

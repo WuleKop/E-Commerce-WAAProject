@@ -138,3 +138,9 @@ footer, footer a, footer a:hover {
 .copyright:before {
   content: '©';
 }
+.center-div
+{
+  margin: 0 auto;
+  width: 50%;
+  height: 350px;
+}

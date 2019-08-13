@@ -13,4 +13,16 @@ public class adminController {
     public String adminHome(){
         return "admin/admin_mainpanel";
     }
+    @GetMapping("/admin/mainpanel/post_ads")
+    public String adminads(){
+        return "admin/post_ads";
+    }
+    @GetMapping("/admin/mainpanel/manage_posts")
+    public String managePosts(){
+        return "admin/manage_posts";
+    }
+    @GetMapping("/admin/mainpanel/reviews")
+    public String manageReviews(){
+        return "admin/reviews";
+    }
 }
