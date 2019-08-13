@@ -16,7 +16,7 @@ import java.util.Map;
 
 @Controller
 public class LoginController {
-    HttpSession session;
+
     @Autowired
     private ClientService clientService;
 
@@ -29,13 +29,13 @@ public class LoginController {
     }
 
     @GetMapping("/logout")
-    public String logout(Model model){
+    public String logout(Model model,HttpSession session){
         session.invalidate();
         return "redirect:/shop";
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam Map<String, String> map,Model model) {
+    public String login(@RequestParam Map<String, String> map,Model model,HttpSession session) {
         User user = clientService.login(map.get("email"));
         if (map.get("password").equals(user.getPassword())) {
             session.setAttribute("user", user);
