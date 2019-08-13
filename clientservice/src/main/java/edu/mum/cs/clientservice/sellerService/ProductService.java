@@ -7,6 +7,7 @@ import edu.mum.cs.clientservice.sellermodel.Account;
 import edu.mum.cs.clientservice.sellermodel.Order;
 import edu.mum.cs.clientservice.sellermodel.Product;
 import edu.mum.cs.clientservice.sellermodel.ProductOrder;
+import edu.mum.cs.clientservice.sellermodel.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -62,6 +63,13 @@ public class ProductService {
         HttpEntity<List<ProductOrder>> request = new HttpEntity<>(list);
         String res = restTemplate.postForObject(sellerUrl + "/purchaseOrders", request, String.class);
         return res;
+    }
+    public void deleteProduct(Long id) {
+        restTemplate.delete(sellerUrl+"/deleteProduct/"+id );
+    }
+    public List<Review> getReviews(Long id) {
+        ResponseEntity<List<Review>> allReviews = restTemplate.exchange(sellerUrl + "/getReviews/"+id, HttpMethod.GET, null, new ParameterizedTypeReference<List<Review>>() { });
+        return allReviews.getBody();
     }
 
 }
