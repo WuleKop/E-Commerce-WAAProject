@@ -52,6 +52,7 @@ public class User implements Serializable {
     @JoinColumn(name = "address_id", nullable = true)
     private Address address;
 
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     private Status status;
