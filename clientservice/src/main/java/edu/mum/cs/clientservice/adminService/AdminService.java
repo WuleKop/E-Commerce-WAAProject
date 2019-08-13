@@ -41,9 +41,9 @@ public class AdminService {
 
    }
 
-   public String createAccountForSeller(User user){
+   public User createAccountForSeller(User user){
        HttpEntity<User> request = new HttpEntity<>(user);
        User user1 = restTemplate.postForObject(adminUrl+"/seller", request, User.class);
-       return  "ok";
+       return  user1;
    }
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container ">
+    <p th:text="${product.description}"></p>
+<!--    <h3 th:text="'All Jewelleries in store for Seller'"></h3>-->
+<!--    <div th:each="p:${products}" id="products">-->
+<!--        <div class="card mb-3" >-->
+<!--            <div class="row no-gutters">-->
+<!--                <div class="col-md-4">-->
+<!--                    <img src="..." class="card-img" alt="Product">-->
+<!--                </div>-->
+<!--                <div class="col-md-8">-->
+<!--                    <div class="card-body">-->
+<!--                        <h5 class="card-title" th:text="${p.name}">Product Name</h5>-->
+<!--                        &lt;!&ndash;                        <p class="card-text"><small th:text="${p.description}">Product Description</small></p>&ndash;&gt;-->
+<!--                        <p class="card-text"><small th:text="'Manufactured Date: '+ ${p.manufacturedDate.toString().substring(3,9)+', '+p.manufacturedDate.toString().substring(23)}">Manufactured Date</small></p>-->
+<!--                        <p class="card-text"><small th:text="'Quantity: '+${p.stockQuantity}">Stock Quantity</small></p>-->
+<!--                        <p class="card-text"><small class="text-muted" th:text="'Price: $'+${p.price}">Price</small></p>-->
+<!--                        <p><a th:href="@{/getProduct/{pId}(pId=${p.id})}" class="btn btn-outline-info btn-sm">Details</a></p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+</div>
+
+</body>
+</html>

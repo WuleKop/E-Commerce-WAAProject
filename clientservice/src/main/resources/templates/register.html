@@ -91,26 +91,26 @@
 					<div id="checkout-login" class="coupon-content">
 						<div class="coupon-info">
 							<!--<p class="coupon-text">Quisque gravida turpis sit amet nulla posuere lacinia. Cras sed est sit amet ipsum luctus.</p>-->
-							<form id="buyer-form" >
+							<form id="buyer-form" action="#">
 								<div class="form-group login-page">
 									<label >First Name <span>*</span></label>
-									<input type="text"  class="form-control" name="name">
+									<input type="text" class="form-control" id="firstName">
 								</div>
 								<div class="form-group login-page">
 									<label >Last Name <span>*</span></label>
-									<input type="text" class="form-control" name="lastName">
+									<input type="text" class="form-control" id="lastName">
 								</div>
 								<div class="form-group login-page">
 									<label >Email <span>*</span></label>
-									<input type="email" class="form-control" name="email">
+									<input type="text" class="form-control" id="email">
 								</div>
 								<div class="form-group login-page">
 									<label >Password <span>*</span></label>
-									<input type="Password"  class="form-control" name="password">
+									<input type="Password" class="form-control" id="password">
 								</div>
 								<div class="form-group login-page">
 									<label>Confirm Password <span>*</span></label>
-									<input type="Password" class="form-control" name="confirm">
+									<input type="Password" class="form-control" id="confirmPassword2">
 								</div>
 								<button type="submit" id="btn-buyer" class="btn btn-default login-btn">Create an Account</button>
 							</form>
@@ -248,16 +248,11 @@
 <!-- main js -->
 <script th:src="@{js/main.js}" src="../js/main.js" type="text/javascript"></script>
 <script th:src="@{js/main-client.js}" src="../js/main-client.js" type="text/javascript"></script>
-<script>
-
-</script>
-
 
 <script>
 	(function () {
 		$('#seller-form').submit(function (evt) {
 			evt.preventDefault();
-			alert("Testing application");
 			var data = $('#seller-form').serialize();
 			$.ajax({
 				type: 'post',
@@ -266,7 +261,12 @@
 				dataType: 'json',
 				contextType: 'application/json',
 				success: function (response) {
-					alert(response);
+					if(response != null){
+						alert("You are Successfully registered");
+						location.href="login";
+					}else{
+						alert("Sorry an Error Occured please try again later");
+					}
 				},
 				error: function (errorObject) {
 					alert(errorObject);

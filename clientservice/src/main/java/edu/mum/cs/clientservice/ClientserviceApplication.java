@@ -1,5 +1,6 @@
 package edu.mum.cs.clientservice;
 
+import edu.mum.cs.clientservice.utility.UtilityClass;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -16,6 +17,11 @@ public class ClientserviceApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(ClientserviceApplication.class, args);
+    }
+
+    @Bean
+    public UtilityClass utilityClass(){
+        return  new UtilityClass();
     }
 
     @Bean

@@ -16,13 +16,13 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class AdminController {
+public class AdminRestController {
 
     @Autowired
     private AdminService adminService;
 
     @PostMapping("/createAccountSeller")
-    public String createAccountSeller(@RequestParam Map<String, String> map) {
+    public User createAccountSeller(@RequestParam Map<String, String> map) {
         System.out.println("testing" + map.get("password"));
         System.out.println("testing :"+map.get("confirm"));
         if (map.get("password").equals(map.get("confirm"))) {
@@ -42,11 +42,11 @@ public class AdminController {
             address.setStreet(map.get("street"));
 
             user.setAddress(address);
-            String res = adminService.createAccountForSeller(user);
+            User res = adminService.createAccountForSeller(user);
 
            return  res;
         } else {
-            return "Password mismatches";
+            return null;
         }
     }
 
