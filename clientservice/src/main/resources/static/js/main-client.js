@@ -35,19 +35,22 @@ $(document).read(function () {
         });
 
     });
-    $('#btn-seller').click(function (evt) {
+    $('#seller-form').submit(function (evt) {
         evt.preventDefault();
+        alert("Testing application");
+        var data = $('#seller-form').serialize();
         $.ajax({
             type: 'post',
-            url: '',
-            data: seller_data,
+            url: 'localhost:8084/createAccountSeller',
+            data: data,
             dataType: 'json',
             contextType: 'application/json',
             success: function (response) {
-                alert('Account is registered successful!');
+                alert(response);
             },
             error: function (errorObject) {
-
+                alert(errorObject);
+                console.log(errorObject);
             }
 
         });

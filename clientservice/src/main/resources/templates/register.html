@@ -125,26 +125,21 @@
 								<div class="col-md-6">
 									<div class="checkout-form-list">
 										<label>First Name <span class="required">*</span></label>
-										<input type="text" placeholder=""/>
+										<input type="text" placeholder="" name="firstName"/>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="checkout-form-list">
 										<label>Last Name <span class="required">*</span></label>
-										<input type="text" placeholder=""/>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group login-page">
-										<label>Image Upload <span>*</span></label>
-										<input type="file" class="form-control" id="profilePic">
+										<input type="text" placeholder="" name="lastName"/>
 									</div>
 								</div>
 
+
 								<div class="col-md-12">
-									<div class="country-select">
+									<div class="country-select" >
 										<label>Country <span class="required">*</span></label>
-										<select>
+										<select name="country">
 											<option value="volvo">United States</option>
 											<option value="volvo">Canada</option>
 											<option value="saab">Algeria</option>
@@ -160,7 +155,7 @@
 								<div class="col-md-6">
 									<div class="checkout-form-list">
 										<label>Address <span class="required">*</span></label>
-										<input type="text" placeholder="Street address"/>
+										<input type="text" placeholder="Street address" name="street"/>
 									</div>
 								</div>
 								<div class="col-md-12">
@@ -170,40 +165,34 @@
 								</div>
 								<div class="col-md-12">
 									<div class="checkout-form-list">
-										<label>Town / City <span class="required">*</span></label>
-										<input type="text" placeholder="Town / City"/>
+										<label>Town / City <span class="required" >*</span></label>
+										<input type="text" placeholder="Town / City" name="city"/>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="checkout-form-list">
 										<label>State / County <span class="required">*</span></label>
-										<input type="text" placeholder=""/>
+										<input type="text" placeholder="" name="state"/>
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="checkout-form-list">
+									<label >Email <span>*</span></label>
+									<input type="text" class="form-control" name="email">
+									</div>
+
+								</div>
+								<div class="col-md-6">
+									<div class="checkout-form-list">
+									<label >Password <span>*</span></label>
+									<input type="Password" class="form-control" name="password">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="checkout-form-list">
-										<label>Postcode / Zip <span class="required">*</span></label>
-										<input type="text" placeholder="Postcode / Zip"/>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="checkout-form-list">
-										<label>Email Address <span class="required">*</span></label>
-										<input type="email" placeholder=""/>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="checkout-form-list">
-										<label>Phone <span class="required">*</span></label>
-										<input type="text" placeholder=""/>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div id="cbox_info" class="checkout-form-list create-account">
-										<p>Create an account by entering the information below. If you are a returning
-											customer please login at the top of the page.</p>
-										<label>Account password <span class="required">*</span></label>
-										<input type="password" placeholder="password"/>
+									<label>Confirm Password <span>*</span></label>
+									<input type="Password" class="form-control" name="confirm">
 									</div>
 								</div>
 								<p class="form-row">
@@ -258,5 +247,33 @@
 <script th:src="@{js/plugins.js}" src="../js/plugins.js" type="text/javascript"></script>
 <!-- main js -->
 <script th:src="@{js/main.js}" src="../js/main.js" type="text/javascript"></script>
+<script th:src="@{js/main-client.js}" src="../js/main-client.js" type="text/javascript"></script>
+
+<script>
+	(function () {
+		$('#seller-form').submit(function (evt) {
+			evt.preventDefault();
+			alert("Testing application");
+			var data = $('#seller-form').serialize();
+			$.ajax({
+				type: 'post',
+				url: '/createAccountSeller',
+				data: data,
+				dataType: 'json',
+				contextType: 'application/json',
+				success: function (response) {
+					alert(response);
+				},
+				error: function (errorObject) {
+					alert(errorObject);
+					console.log(errorObject);
+				}
+
+			});
+
+		});
+	})();
+
+	</script>
 </body>
 </html>
