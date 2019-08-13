@@ -1,12 +1,14 @@
 package edu.mum.cs.clientservice.buyerservice.controller;
 
 
+import edu.mum.cs.clientservice.adminmodel.User;
 import edu.mum.cs.clientservice.buyerservice.BuyerService;
 import edu.mum.cs.clientservice.sellerService.ProductService;
 import edu.mum.cs.clientservice.sellermodel.Order;
 import edu.mum.cs.clientservice.sellermodel.Product;
 import edu.mum.cs.clientservice.sellermodel.ProductOrder;
 import edu.mum.cs.clientservice.utility.UtilityClass;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -70,6 +72,29 @@ public class BuyerController {
         }
         redirectAttributes.addFlashAttribute("Error" ,"Choose at least one quantity");
         return "redirect:/shop/"+map.get("productId");
+
+    }
+
+    public String placingOrder(@RequestParam Map<String,String> map,HttpSession session,Model model,RedirectAttributes redirectAttributes){
+        try {
+            User user = (User) session.getAttribute("user");
+            List<ProductOrder> productOrders = (List<ProductOrder>) session.getAttribute("cart");
+            Order oldOrder = productOrders.get(0).getOrder();
+            oldOrder.setAccountId(user.getId());
+            Order order = productService.postOrder(oldOrder);
+            for (ProductOrder productOrder : productOrders) {
+                productOrder.setOrder(order);
+            }
+
+            String result = productService.peristedProductorder(productOrders);
+            redirectAttributes.addFlashAttribute("result","Order is successfully placed,please print the receipt info");
+            session.removeAttribute("cart");
+            return  "redirect:/shop";
+        }catch (Exception e){
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("sorry", "we are sorry we can't place your order now,try again later");
+            return  "redirect:/checkout";
+        }
 
     }
 

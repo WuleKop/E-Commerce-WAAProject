@@ -4,7 +4,9 @@ package edu.mum.cs.clientservice.sellerService;
 
 import edu.mum.cs.clientservice.buyermodel.Cart;
 import edu.mum.cs.clientservice.sellermodel.Account;
+import edu.mum.cs.clientservice.sellermodel.Order;
 import edu.mum.cs.clientservice.sellermodel.Product;
+import edu.mum.cs.clientservice.sellermodel.ProductOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -48,10 +50,18 @@ public class ProductService {
         Product product1= restTemplate.postForObject(sellerUrl+"/newProduct", request, Product.class);
         return  product1;
     }
-//    public Product updateProduct(Product product) {
-//        HttpEntity<Product> request = new HttpEntity<>(product);
-//        ResponseEntity<Product> response = restTemplate.exchange(sellerUrl+"/updateProduct",HttpMethod.PUT, request, Product.class);
-//        return response.getBody();
-//    }
+
+    public Order postOrder(Order order){
+        HttpEntity<Order> orderHttpEntity = new HttpEntity<>(order);
+        Order peristedOrder = restTemplate.postForObject(sellerUrl+"/addOrder",orderHttpEntity,Order.class);
+        return peristedOrder;
+
+    }
+
+    public String peristedProductorder(List<ProductOrder> list) {
+        HttpEntity<List<ProductOrder>> request = new HttpEntity<>(list);
+        String res = restTemplate.postForObject(sellerUrl + "/purchaseOrders", request, String.class);
+        return res;
+    }
 
 }
