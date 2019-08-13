@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Post an Add</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/mockup.css}" href="../css/mockup.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default poptext">
+    <div class="container-fluid">
+
+        <!-- Header and button for mobile view -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNav">
+                <!-- Make a hamburger: -->
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- The actual navigation menu -->
+        <div class="collapse navbar-collapse" id="mainNav">
+            <!-- Navigation options on the left (site related) -->
+            <div class="col-md-offset-4">
+                <ul class="nav navbar-nav">
+                    <li><a href="#Pricing">Manage sellers</a></li>
+                    <li><a href="#About">About</a></li>
+                    <li><a href="">Post an Add</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <!--              <li><a href="#Contact">Contact</a></li>-->
+                </ul>
+            </div>
+
+            <!-- Navigation options on the right (user related) -->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#Upgrade">Upgrade</a></li>
+                <li><a href="#Alerts"><i class="material-icons">notifications</i></a></li>
+                <li><a href="#Help"><i class="material-icons">help</i></a></li>
+
+                <li class="dropdown">
+                    <a
+                            href="#UserMenu"
+                            class="dropdown-toggle"
+                            data-toggle="dropdown"
+                            role="button"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                    >
+                        <i class="material-icons user-icon">person</i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#UserName"><strong>User Name</strong></a></li>
+                        <!--                <li><a href="#PlanName"><em>Plan Name</em></a></li>-->
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#UpdateProfile">Update Profile</a></li>
+                        <li><a href="#Preferences">Preferences</a></li>
+                        <!--                <li><a href="#Billing">Billing</a></li>-->
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#Logout">Logout</a></li>
+                    </ul>
+                </li> <!-- dropdown -->
+
+            </ul> <!-- navbar-right -->
+
+        </div> <!-- #mainNav -->
+    </div>
+</nav>
+<div class="center-div">
+<form>
+    <div class="form-group">
+        <label for="adName">Add name</label>
+        <input type="text" class="form-control" id="adName" placeholder="Enter the name of the ad">
+    </div>
+    <div class="form-group">
+        <label for="adDescription">Describe your ad</label>
+        <textarea class="form-control" id="adDescription" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="addAnImage">Add an Image</label>
+        <input type="file" class="form-control-file" id="addAnImage">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary mb-2">Post ad</button>
+    </div>
+</form>
+</div>
+</body>
+
+</html>

@@ -1,17 +1,19 @@
 package edu.mum.cs.AdminService.controller;
 
+import edu.mum.cs.AdminService.iservice.AddressService;
+import edu.mum.cs.AdminService.model.Address;
 import edu.mum.cs.AdminService.model.Role;
 import edu.mum.cs.AdminService.model.User;
 import edu.mum.cs.AdminService.iservice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
@@ -19,18 +21,16 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = {"/", "/login"})
-    public String login(@RequestParam("user") User user) {
-        return "login";
-    }
+    @Autowired
+    private AddressService addressService;
 
-    @PostMapping("/registration")
-    public String registration(@RequestParam("user") User user, Model model) {
-        return "registration";
-    }
+
+
+
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public User createNewUser(@Valid User user) {
+    public User createNewUser( @RequestBody  User user) {
+        System.out.println(user);
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
             return null;
@@ -40,17 +40,22 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "/seller", method = RequestMethod.POST)
-    public User createNewUser(Object [] objects) {
-        User userExists = userService.findUserByEmail(((User) objects[0]).getEmail());
+    @PostMapping("/seller")
+    public User createSellerAccount(@RequestBody  User user) {
+        System.out.println(user);
+        User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
             return null;
         } else {
-
-            return userService.saveUser((User)objects[0]);
+           Address address = user.getAddress();
+             address = addressService.saveAddress(address);
+             user.setAddress(address);
+            return userService.saveUser(user);
         }
 
     }
+
+
 
 
 

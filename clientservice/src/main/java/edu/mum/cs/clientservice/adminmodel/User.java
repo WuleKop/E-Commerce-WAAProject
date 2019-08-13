@@ -1,18 +1,17 @@
 package edu.mum.cs.clientservice.adminmodel;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-
+import java.io.Serializable;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+@Setter
+@Getter
+public class User implements Serializable {
 
 
     private Long id;
@@ -41,4 +40,6 @@ public class User {
     private Role role;
 
     private Status status;
+
+
 }
