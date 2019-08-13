@@ -21,10 +21,6 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-
-
-
-
     @PostMapping("/createAccountSeller")
     public String createAccountSeller(@RequestParam Map<String, String> map) {
         System.out.println("testing" + map.get("password"));

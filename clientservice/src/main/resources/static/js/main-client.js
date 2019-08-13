@@ -2,12 +2,12 @@ var contextRoot = "/" + window.location.pathname.split( '/' )[1];
 $(document).ready(function () {
     var buyer_data = $("#buyer-form").serialize();
     var seller_data = $('#seller-form').serialize();
-    var login_data=$('#login-form').serialize();
-    $('#btn-login').click(function(evt){
-        evt.preventDefault();
+
+    $('#login-form').submit(function(evt){
+        var login_data=$('#login-form').serialize();
         $.ajax({
             type:'GET',
-            url:'',
+            url:'/account/login',
             data:login_data,
             dataType:'json',
             contextType:'application/json',
