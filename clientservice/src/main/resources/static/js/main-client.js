@@ -1,4 +1,5 @@
-$(document).read(function () {
+var contextRoot = "/" + window.location.pathname.split( '/' )[1];
+$(document).ready(function () {
     var buyer_data = $("#buyer-form").serialize();
     var seller_data = $('#seller-form').serialize();
     var login_data=$('#login-form').serialize();
@@ -18,13 +19,13 @@ $(document).read(function () {
             }
         })
     });
-    $('#btn-buyer').click(function (evt) {
-        evt.preventDefault();
+    $("#buyer-form").submit(function () {
+        var data=$("#buyer-form").serialize();
         $.ajax({
             type: 'post',
             dataType: 'json',
-            url: '',
-            data: buyer_data,
+            url: '/registration',
+            data: data,
             contextType: 'application/json',
             success: function (response) {
                 alert('Account is registered successful!');
@@ -33,8 +34,24 @@ $(document).read(function () {
 
             }
         });
-
-    });
+    })
+    // $('#btn-buyer').click(function (evt) {
+    //     evt.preventDefault();
+    //     $.ajax({
+    //         type: 'post',
+    //         dataType: 'json',
+    //         url: '/registration',
+    //         data: buyer_data,
+    //         contextType: 'application/json',
+    //         success: function (response) {
+    //             alert('Account is registered successful!');
+    //         },
+    //         error: function (errorObject) {
+    //
+    //         }
+    //     });
+    //
+    // });
     $('#btn-seller').click(function (evt) {
         evt.preventDefault();
         $.ajax({
@@ -55,4 +72,4 @@ $(document).read(function () {
     });
 
 
-})
+});
