@@ -19,75 +19,32 @@ import java.util.List;
 @RestController
 @CrossOrigin
 public class AdsController {
-    private static String UPLOAD_DIR = "/Documents/WAAProject/E-Commerce-WAAProject/AdminService/src/main/resources/templates/AddsPictures";
-
 
     @Autowired
     private AdvertissementService advertissementService;
-
-    @GetMapping("/getAllAds")
-    public List<Advertissement> getAllAdvertissements() {
+    @PostMapping("/newAdvertissement")
+    public Advertissement savingAdvertissement(@RequestBody  Advertissement advertissement){
+        return  advertissementService.save(advertissement);
+    }
+    @GetMapping("/getAllAdds")
+    public List<Advertissement> getAllAds() {
         return advertissementService.getAllAdvertissements();
     }
 
-    @PostMapping("/addAdvertissement")
-    public ResponseEntity<?> addAdvertissement(@ModelAttribute Advertissement advertissement) {
-
-        String result = null;
-        try {
-
-            result = this.saveUploadedFiles(advertissement.getPictures());
-            System.out.println(result);
-
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>( e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-        advertissement.setPictureUrls(result);
-        Advertissement a = advertissementService.save(advertissement);
-        return new ResponseEntity<Advertissement>(a, HttpStatus.OK);
-    }
-
-    @GetMapping("/getAdds/{id}")
-    public Advertissement getAddAdvertissement(@PathVariable Long id) {
+    @GetMapping("/getAdvertissement/{id}")
+    public Advertissement getAd(@PathVariable Long id) {
         return advertissementService.findById(id);
     }
 
-    @PutMapping("/updateAdds")
-    public Advertissement updateAdvertissement(@RequestBody Advertissement advertissement) {
-        return advertissementService.update(advertissement);
+    @PutMapping("/updateAdvertissement")
+    public Advertissement updateAd(@ModelAttribute Advertissement ad) {
+        return advertissementService.update(ad);
     }
 
-    @DeleteMapping("/deleteAdds/{id}")
-    public void deleteAdvertissement (@PathVariable Long id) {
+    @DeleteMapping("/deleteAd/{id}")
+    public void deleteAd (@PathVariable Long id) {
         advertissementService.delete(id);
     }
-
-
-    // Save Files
-    private String saveUploadedFiles(MultipartFile[] files) throws IOException {
-
-        // Make sure directory exists!
-        File uploadDir = new File(UPLOAD_DIR);
-        uploadDir.mkdirs();
-
-        StringBuilder sb = new StringBuilder();
-
-        for (MultipartFile file : files) {
-
-            if (file.isEmpty()) {
-                continue;
-            }
-            String uploadFilePath = UPLOAD_DIR + "/" + file.getOriginalFilename();
-
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(uploadFilePath);
-            Files.write(path, bytes);
-
-            sb.append(uploadFilePath).append("\n");
-        }
-        return sb.toString();
-    }
 }
+
 

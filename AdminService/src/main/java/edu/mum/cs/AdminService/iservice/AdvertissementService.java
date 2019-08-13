@@ -10,4 +10,5 @@ public interface AdvertissementService {
     Advertissement update(Advertissement advertissement);
     void delete(Long id);
     List<Advertissement> getAllAdvertissements();
+
 }
