@@ -11,6 +11,6 @@ public class adminController {
     }
     @GetMapping("/admin/mainpanel")
     public String adminHome(){
-        return "admin/admin_mainpage";
+        return "admin/admin_mainpanel";
     }
 }
