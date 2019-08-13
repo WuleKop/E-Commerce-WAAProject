@@ -3,19 +3,27 @@ $(document).ready(function () {
     var buyer_data = $("#buyer-form").serialize();
     var seller_data = $('#seller-form').serialize();
 
-    $('#login-form').submit(function(evt){
+    $('#login-form').submit(function(){
+
         var login_data=$('#login-form').serialize();
         $.ajax({
-            type:'GET',
-            url:'/account/login',
+            type:'POST',
+            url:'/login',
             data:login_data,
             dataType:'json',
             contextType:'application/json',
             success:function (response) {
-                
+                console.log(response);
+                // if(response==="User found "){
+                //     console.log("Testing the returned response")
+                //     window.location.href="http://localhost:8084/shop";
+                // }else{
+                //     console.log("Empty response!!")
+                // }
             },
             error:function (errorObject) {
-                
+               // var error=errorObject.response
+
             }
         })
     });

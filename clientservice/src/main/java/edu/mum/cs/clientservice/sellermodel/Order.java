@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @NoArgsConstructor
 @Data
@@ -30,4 +31,16 @@ public class Order {
         products.add(product);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(orderNumber, order.orderNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderNumber);
+    }
 }
