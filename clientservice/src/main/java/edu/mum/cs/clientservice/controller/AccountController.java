@@ -31,28 +31,11 @@ public class AccountController {
         return "user_profile";
     }
 
-    @GetMapping("/login")
-    public String login(@RequestParam Map<String, String> map, HttpSession session) {
-        System.out.println("Test");
-        System.out.println(map.get("email"));
-        User user = clientService.login(map.get("email"));
-        //String encrypted_password = MessageConverter.getMd5(map.get("password"));
-        if (map.get("password").equals(user.getPassword())) {
-            session.setAttribute("user", user);
-            return "shop";
-        } else {
-            session.invalidate();
-            return "Invalid Password";
-        }
 
-    }
 
     @PostMapping("/registration")
     public @ResponseBody
     User createUser(@RequestParam Map<String, String> map) {
-        System.out.println("Test");
-        System.out.println(map.get("confirm"));
-        System.out.println(map.get("password"));
         User user = new User();
         if (map.get("confirm").equals(map.get("password"))) {
             user.setName(map.get("name"));
@@ -65,7 +48,7 @@ public class AccountController {
             user.setStatus(Status.APPROVED);
             clientService.createAccount(user);
         } else {
-            System.out.println("Unmatched Password!");
+            return  null;
         }
         return user;
     }

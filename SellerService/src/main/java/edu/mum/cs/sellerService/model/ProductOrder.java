@@ -3,10 +3,7 @@ package edu.mum.cs.sellerService.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Setter
@@ -20,8 +17,12 @@ public class ProductOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
     private Product product;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
     private Order order;
 
     private Integer quantity;

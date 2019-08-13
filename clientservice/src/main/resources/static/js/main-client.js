@@ -4,19 +4,24 @@ $(document).ready(function () {
     var seller_data = $('#seller-form').serialize();
 
     $('#login-form').submit(function(){
-        alert("Test!!!!!!!!!!!");
         var login_data=$('#login-form').serialize();
+        alert("this is a final test");
+        alert(login_data);
         $.ajax({
-            type:'GET',
-            url:'/login',
+            type:'POST',
+            url:'login',
             data:login_data,
-            dataType:'json',
-            contextType:'application/json',
             success:function (response) {
+                if(response === 'user found') {
+                    alert("okay");
+                    location.reload();
+                }else{
+                    alert("Invalid username or password");
+                }
             },
             error:function (errorObject) {
                // var error=errorObject.response
-
+                console.log(errorObject);
             }
         })
     });
