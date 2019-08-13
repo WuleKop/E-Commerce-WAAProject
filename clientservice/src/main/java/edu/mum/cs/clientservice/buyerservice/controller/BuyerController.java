@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -32,6 +33,14 @@ public class BuyerController {
     public String productDetails(@PathVariable("productId")Long id,Model model){
         model.addAttribute("product",buyerService.findOne(id));
         return "product-details";
+    }
+
+
+    @GetMapping("/carting")
+    public String accessingeasly(Model model, HttpSession session){
+        List<Product> products = (List<Product>) session.getAttribute("cart");
+        model.addAttribute("cart",products);
+        return  "cart";
     }
 
 

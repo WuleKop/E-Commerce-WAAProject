@@ -102,22 +102,15 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
+										<tr th:each="product : ${cart}">
 											<td class="product-thumbnail"><a href="#"><img src="img/wishlist/1.jpg" alt="" /></a></td>
-											<td class="product-name"><a href="#">Vestibulum suscipit</a></td>
-											<td class="product-price"><span class="amount">$165.00</span></td>
-											<td class="product-quantity"><input type="number" value="1" /></td>
-											<td class="product-subtotal">$165.00</td>
+											<td class="product-name"><a href="#"><span th:text="${product.name}"></span></a></td>
+											<td class="product-price"><span class="amount"></span></td>
+											<td class="product-quantity"><input type="number" value="" /></td>
+											<td class="product-subtotal"><span th:text="${product.name}"></span></td>
 											<td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
 										</tr>
-										<tr>
-											<td class="product-thumbnail"><a href="#"><img src="img/wishlist/2.jpg" alt="" /></a></td>
-											<td class="product-name"><a href="#">Vestibulum dictum magna</a></td>
-											<td class="product-price"><span class="amount">$50.00</span></td>
-											<td class="product-quantity"><input type="number" value="1" /></td>
-											<td class="product-subtotal">$50.00</td>
-											<td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-										</tr>
+
 									</tbody>
 								</table>
 							</div>
