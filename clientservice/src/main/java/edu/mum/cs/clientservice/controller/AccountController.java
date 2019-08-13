@@ -31,13 +31,17 @@ public class AccountController {
         return "user_profile";
     }
 
-    @GetMapping("/account/login")
+    @GetMapping("/login")
     public String login(@RequestParam Map<String, String> map, HttpSession session) {
+        System.out.println("Test");
+        System.out.println(map.get("email"));
         User user = clientService.login(map.get("email"));
-        String encrypted_password = MessageConverter.getMd5(map.get("password"));
-        if (encrypted_password == user.getPassword()) {
+        //String encrypted_password = MessageConverter.getMd5(map.get("password"));
+        if (map.get("password").equals(user.getPassword())) {
+            session.setAttribute("user", user);
             return "shop";
         } else {
+            session.invalidate();
             return "Invalid Password";
         }
 

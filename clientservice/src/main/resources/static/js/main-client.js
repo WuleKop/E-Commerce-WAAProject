@@ -3,16 +3,16 @@ $(document).ready(function () {
     var buyer_data = $("#buyer-form").serialize();
     var seller_data = $('#seller-form').serialize();
 
-    $('#login-form').submit(function(evt){
+    $('#login-form').submit(function(){
+        alert("Test!!!!!!!!!!!");
         var login_data=$('#login-form').serialize();
         $.ajax({
             type:'GET',
-            url:'/account/login',
+            url:'/login',
             data:login_data,
             dataType:'json',
             contextType:'application/json',
             success:function (response) {
-                
             },
             error:function (errorObject) {
                 

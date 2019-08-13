@@ -12,7 +12,7 @@ import java.util.Map;
 public class LoginController {
     @Autowired
     private ClientService clientService;
-    @GetMapping("/login")
+    @GetMapping("/logon")
     public String login(@RequestParam Map<String,String> map){
         return "customer-login";
     }
