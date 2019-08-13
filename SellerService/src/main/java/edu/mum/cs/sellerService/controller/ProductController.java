@@ -21,7 +21,7 @@ public class ProductController {
 
     // Linux: /home/{user}/test
     // Windows: C:/Users/{user}/test
-    private static String UPLOAD_DIR = "/home/wule/Repos/WAAProject/E-Commerce-WAAProject/SellerService/src/main/resources/templates/productPictures";
+   // private static String UPLOAD_DIR = "/home/wule/Repos/WAAProject/E-Commerce-WAAProject/SellerService/src/main/resources/templates/productPictures";
 
     @Autowired
     private ProductService productService;
@@ -30,8 +30,12 @@ public class ProductController {
     public List<Product> getAllProducts() {
       return productService.getAllProducts();
     }
+    @GetMapping("/getSellerProducts/{sId}")
+    public List<Product> getSellerProducts(@PathVariable Long sId){
+        return productService.getAllProductBySeller(sId);
+    }
 
-    @PostMapping("/addProduct")
+  /*  @PostMapping("/addProduct")
     public ResponseEntity<?> addProduct(@ModelAttribute Product product) {
 
         String result = null;
@@ -48,6 +52,11 @@ public class ProductController {
         product.setPictureUrls(result);
         Product p = productService.save(product);
         return new ResponseEntity<Product>(p, HttpStatus.OK);
+    }*/
+
+    @PostMapping("/newProduct")
+    public Product savingProduct(@RequestBody  Product product){
+        return  productService.save(product);
     }
 
     @GetMapping("/getProduct/{id}")
@@ -56,7 +65,7 @@ public class ProductController {
     }
 
     @PutMapping("/updateProduct")
-    public Product updateProduct(@RequestBody Product product) {
+    public Product updateProduct(@ModelAttribute Product product) {
         return productService.update(product);
     }
 
@@ -67,7 +76,7 @@ public class ProductController {
 
 
     // Save Files
-    private String saveUploadedFiles(MultipartFile[] files) throws IOException {
+   /* private String saveUploadedFiles(MultipartFile[] files) throws IOException {
 
         // Make sure directory exists!
         File uploadDir = new File(UPLOAD_DIR);
@@ -89,5 +98,5 @@ public class ProductController {
             sb.append(uploadFilePath).append("\n");
         }
         return sb.toString();
-    }
+    }*/
 }

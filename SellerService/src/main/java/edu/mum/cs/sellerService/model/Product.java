@@ -21,6 +21,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long sellerId;
     private String name;
     private String description;
     @Temporal(value = TemporalType.DATE)

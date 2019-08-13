@@ -1,12 +1,13 @@
-$(document).read(function () {
+var contextRoot = "/" + window.location.pathname.split( '/' )[1];
+$(document).ready(function () {
     var buyer_data = $("#buyer-form").serialize();
     var seller_data = $('#seller-form').serialize();
-    var login_data=$('#login-form').serialize();
-    $('#btn-login').click(function(evt){
-        evt.preventDefault();
+
+    $('#login-form').submit(function(evt){
+        var login_data=$('#login-form').serialize();
         $.ajax({
             type:'GET',
-            url:'',
+            url:'/account/login',
             data:login_data,
             dataType:'json',
             contextType:'application/json',
@@ -18,13 +19,13 @@ $(document).read(function () {
             }
         })
     });
-    $('#btn-buyer').click(function (evt) {
-        evt.preventDefault();
+    $("#buyer-form").submit(function () {
+        var data=$("#buyer-form").serialize();
         $.ajax({
             type: 'post',
             dataType: 'json',
-            url: '',
-            data: buyer_data,
+            url: '/registration',
+            data: data,
             contextType: 'application/json',
             success: function (response) {
                 alert('Account is registered successful!');
@@ -33,24 +34,37 @@ $(document).read(function () {
 
             }
         });
-
-    });
-    $('#seller-form').submit(function (evt) {
+    })
+    // $('#btn-buyer').click(function (evt) {
+    //     evt.preventDefault();
+    //     $.ajax({
+    //         type: 'post',
+    //         dataType: 'json',
+    //         url: '/registration',
+    //         data: buyer_data,
+    //         contextType: 'application/json',
+    //         success: function (response) {
+    //             alert('Account is registered successful!');
+    //         },
+    //         error: function (errorObject) {
+    //
+    //         }
+    //     });
+    //
+    // });
+    $('#btn-seller').click(function (evt) {
         evt.preventDefault();
-        alert("Testing application");
-        var data = $('#seller-form').serialize();
         $.ajax({
             type: 'post',
-            url: 'localhost:8084/createAccountSeller',
-            data: data,
+            url: '',
+            data: seller_data,
             dataType: 'json',
             contextType: 'application/json',
             success: function (response) {
-                alert(response);
+                alert('Account is registered successful!');
             },
             error: function (errorObject) {
-                alert(errorObject);
-                console.log(errorObject);
+
             }
 
         });
@@ -58,4 +72,4 @@ $(document).read(function () {
     });
 
 
-})
+});

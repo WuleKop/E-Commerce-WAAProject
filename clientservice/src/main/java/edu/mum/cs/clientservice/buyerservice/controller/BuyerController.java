@@ -31,7 +31,10 @@ public class BuyerController {
 
     @GetMapping("shop/{productId}")
     public String productDetails(@PathVariable("productId")Long id,Model model){
-        model.addAttribute("product",buyerService.findOne(id));
+        Product product =  buyerService.findOne(id);
+        String [] images = product.getPictureUrls().split("\n");
+        model.addAttribute("product",product);
+        model.addAttribute("images",images);
         return "product-details";
     }
 

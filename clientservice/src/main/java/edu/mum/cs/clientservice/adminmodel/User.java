@@ -5,13 +5,12 @@ import lombok.*;
 
 import java.io.Serializable;
 
-
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-@Data
 public class User implements Serializable {
 
 
