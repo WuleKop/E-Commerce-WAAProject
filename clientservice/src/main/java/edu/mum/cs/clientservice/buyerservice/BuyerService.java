@@ -3,7 +3,9 @@ package edu.mum.cs.clientservice.buyerservice;
 
 import edu.mum.cs.clientservice.buyermodel.Cart;
 import edu.mum.cs.clientservice.sellermodel.Account;
+import edu.mum.cs.clientservice.sellermodel.Order;
 import edu.mum.cs.clientservice.sellermodel.Product;
+import edu.mum.cs.clientservice.sellermodel.ProductOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -14,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class BuyerService {
@@ -46,6 +49,37 @@ public class BuyerService {
     public Product findOne(Long id){
          ResponseEntity<Product> product = restTemplate.exchange(sellerUrl+"/getProduct/"+id,HttpMethod.GET,null,Product.class);
          return  product.getBody();
+    }
+
+
+    public List<ProductOrder> addProductOrder(Product product,Order order,Integer quantity,List<ProductOrder> productOrders){
+        ProductOrder productOrder = new ProductOrder();
+        ProductOrder toRemove = null;
+        for(ProductOrder orderIng: productOrders){
+            if(orderIng.getProduct().equals(product)){
+                toRemove = orderIng;
+                break;
+            }
+        }
+        if(toRemove != null){productOrders.remove(toRemove);};
+        productOrder.setProduct(product);
+        productOrder.setOrder(order);
+        productOrder.setQuantity(quantity);
+        productOrders.add(productOrder);
+        return  productOrders;
+    }
+
+
+    public List<ProductOrder> removeProduct(List<ProductOrder> productOrders,Long productId){
+        ProductOrder orderToRemove = null;
+        for(ProductOrder productOrder:productOrders){
+            if(productOrder.getProduct().getId() == productId){
+                orderToRemove =productOrder;
+                break;
+            }
+        }
+        if(orderToRemove != null){productOrders.remove(orderToRemove);}
+        return productOrders;
     }
 
 
