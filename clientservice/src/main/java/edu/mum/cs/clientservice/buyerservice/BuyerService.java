@@ -12,10 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 1dae97f136b8206af7b5228e0042cb12763b92fa
 import java.util.List;
 
 @Service
