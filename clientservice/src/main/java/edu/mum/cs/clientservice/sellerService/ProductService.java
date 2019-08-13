@@ -1,6 +1,7 @@
 package edu.mum.cs.clientservice.sellerService;
 
 
+
 import edu.mum.cs.clientservice.buyermodel.Cart;
 import edu.mum.cs.clientservice.sellermodel.Account;
 import edu.mum.cs.clientservice.sellermodel.Product;
@@ -40,6 +41,12 @@ public class ProductService {
     public Product findOne(Long id){
          ResponseEntity<Product> product = restTemplate.exchange(sellerUrl+"/getProduct/"+id,HttpMethod.GET,null,Product.class);
          return  product.getBody();
+    }
+
+    public Product createProduct(Product product){
+        HttpEntity<Product> request = new HttpEntity<>(product);
+        Product product1= restTemplate.postForObject(sellerUrl+"/newProduct", request, Product.class);
+        return  product1;
     }
 //    public Product updateProduct(Product product) {
 //        HttpEntity<Product> request = new HttpEntity<>(product);

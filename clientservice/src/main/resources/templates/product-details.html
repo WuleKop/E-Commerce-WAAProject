@@ -162,7 +162,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="view1">
                                     <a class="image-link" th:href="@{/img/product/15.jpg}"><img
-                                            style="width:800px; height:800px " th:src="@{/img/product/15.jpg}" alt=""></a>
+                                            style="width:800px; height:800px " img th:src="@{'/images/'+${images[0]}}" alt=""></a>
                                 </div>
                                 <div class="tab-pane" id="view2">
                                     <a class="image-link" th:href="@{/img/product/2.jpg}"><img th:src="@{/img/product/2.jpg}" alt=""></a>
@@ -175,21 +175,15 @@
                                                                                          alt=""></a>
                                 </div>
                                 <div class="tab-pane" id="view5">
-                                    <a class="image-link" th:href="@{/img/product/6.jpg}"><img th:src="@{/img/product/6.jpg}" alt=""></a>
+                                    <a class="image-link" th:href="@{/img/product/6.jpg}">< alt=""></a>
                                 </div>
                             </div>
                             <!-- Nav tabs -->
                             <ul class="sinple-tab-menu" role="tablist">
-                                <li class=" active"><a href="#view1" data-toggle="tab"><img
-                                        style="width:79px; height:99px;" th:src="@{/img/product/15.jpg}" alt=""/></a></li>
-                                <li><a href="#view2" data-toggle="tab"><img th:src="@{/img/product/tab/2.jpg}" alt=""/></a>
+
+                                <li th:each="image:${images}"><a href="#view2" data-toggle="tab"><img th:src="@{'/images/'+${image}}" alt=""/></a>
                                 </li>
-                                <li><a href="#view3" data-toggle="tab"><img th:src="@{/img/product/tab/1.jpg}" alt=""/></a>
-                                </li>
-                                <li><a href="#view4" data-toggle="tab"><img th:src="@{/img/product/tab/4.jpg}" alt=""/></a>
-                                </li>
-                                <li><a href="#view5" data-toggle="tab"><img th:src="@{/img/product/tab/5.jpg}" alt=""/></a>
-                                </li>
+
                             </ul>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
