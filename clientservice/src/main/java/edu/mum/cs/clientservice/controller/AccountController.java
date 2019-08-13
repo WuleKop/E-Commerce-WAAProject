@@ -5,6 +5,7 @@ import edu.mum.cs.clientservice.adminmodel.Address;
 import edu.mum.cs.clientservice.adminmodel.Role;
 import edu.mum.cs.clientservice.adminmodel.Status;
 import edu.mum.cs.clientservice.adminmodel.User;
+import edu.mum.cs.clientservice.buyerservice.BuyerService;
 import edu.mum.cs.clientservice.service.ClientService;
 import edu.mum.cs.clientservice.utility.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class AccountController {
     @Autowired
     private ClientService clientService;
 
+    @Autowired
+    private BuyerService buyerService;
+
     @GetMapping("/register")
     public String register() {
         return "register";
@@ -31,21 +35,23 @@ public class AccountController {
         return "user_profile";
     }
 
-    @GetMapping("/login")
-    public String login(@RequestParam Map<String, String> map, HttpSession session) {
-        System.out.println("Test");
-        System.out.println(map.get("email"));
-        User user = clientService.login(map.get("email"));
-        //String encrypted_password = MessageConverter.getMd5(map.get("password"));
-        if (map.get("password").equals(user.getPassword())) {
-            session.setAttribute("user", user);
-            return "shop";
-        } else {
-            session.invalidate();
-            return "Invalid Password";
-        }
-
-    }
+//    @GetMapping("/login")
+//    public String login(@RequestParam Map<String, String> map, HttpSession session,Model model) {
+//        System.out.println("Test");
+//        System.out.println(map.get("email"));
+//        User user = clientService.login(map.get("email"));
+//        if (map.get("password").equals(user.getPassword())) {
+//            session.setAttribute("user", user);
+//            model.addAttribute("products",buyerService.allProducts());
+//            return "shop";
+//
+//        } else {
+//            System.out.println("Not equals");
+//            session.invalidate();
+//            return "Invalid Password";
+//        }
+//
+//    }
 
     @PostMapping("/registration")
     public @ResponseBody
