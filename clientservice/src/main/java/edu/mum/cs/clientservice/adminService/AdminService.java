@@ -55,4 +55,19 @@ public class AdminService {
         });
         return  response.getBody();
     }
+    public List<User> AllUsers() {
+        ResponseEntity<List<User>> response = restTemplate.exchange(adminUrl + "/all", HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {
+        });
+        return  response.getBody();
+    }
+    public User getSellerAccount(User user){
+        ResponseEntity<User> responseEntity = restTemplate.postForEntity(sellerUrl+"/getSellerProducts/{sId}",user,User.class);
+        return  responseEntity.getBody();
+
+    }
+    public User getAuthenticatedSellerAccount(User user){
+        ResponseEntity<User> responseEntity = restTemplate.postForEntity(adminUrl+"/loggedSeller",user,User.class);
+        return  responseEntity.getBody();
+
+    }
 }

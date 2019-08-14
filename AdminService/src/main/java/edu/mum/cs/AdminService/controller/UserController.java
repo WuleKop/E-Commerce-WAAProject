@@ -3,6 +3,7 @@ package edu.mum.cs.AdminService.controller;
 import edu.mum.cs.AdminService.iservice.AddressService;
 import edu.mum.cs.AdminService.model.Address;
 import edu.mum.cs.AdminService.model.Role;
+import edu.mum.cs.AdminService.model.Status;
 import edu.mum.cs.AdminService.model.User;
 import edu.mum.cs.AdminService.iservice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,20 +85,56 @@ public class UserController {
     public User publicLogin(@PathVariable("email") String emailAddress) {
         User user = userService.findUserByEmail(emailAddress);
         if (user != null) {
-            return user;
+            if(user.getRole().toString().equals(Role.BUYER)) {
+                return user;
+            }
         }
         return null;
     }
-    @PostMapping("/sellers")
-    public List<User> sendUserToEveryOne(){
-        List<User> allUsers = userService.findAll();
-        List<User> someSellers = new ArrayList<User>();
-        for(User myUser : allUsers){
-            if(myUser.getRole().equals(Role.SELLER) && (myUser.getActive()==1)){
-               someSellers.add(myUser);
+
+
+    @GetMapping("/sellers")
+    public List<User> sendUserToEveryOne() {
+        try {
+            System.out.println("reaching to the admin server");
+
+            List<User> allUsers = userService.findAll();
+            List<User> someSellers = new ArrayList<User>();
+            for (User myUser : allUsers) {
+                if (myUser.getRole().equals(Role.SELLER) && (myUser.getActive() == 1)) {
+                    someSellers.add(myUser);
+                }
             }
+            return someSellers;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        return someSellers;
+    }
+    @GetMapping("/all")
+    public List<User> allUsers(){
+        return userService.findAll();
+    }
+    @GetMapping("/loggedSeller")
+    public User loggedSeller(String userEmail){
+        User loggedUser = userService.findUserByEmail(userEmail);
+        if(loggedUser.getRole().equals(Role.SELLER)){
+            return loggedUser;
+        }
+        else return null;
+    }
+
+    @GetMapping("/approve/sellers")
+    public Boolean approveSeller(User user){
+        if(user.getRole().toString().equals(Role.SELLER)){
+            if(user.getStatus().toString().equals(Status.PENDING)){
+                user.setStatus(Status.APPROVED);
+                return true;
+            }
+        }else{
+            return false;
+        }
+        return false;
     }
 
 }

@@ -1,5 +1,6 @@
 package edu.mum.cs.clientservice.controller;
 
+import edu.mum.cs.clientservice.adminmodel.Role;
 import edu.mum.cs.clientservice.adminmodel.User;
 import edu.mum.cs.clientservice.buyerservice.BuyerService;
 import edu.mum.cs.clientservice.service.ClientService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -36,27 +38,33 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam Map<String, String> map,Model model,HttpSession session) {
+    public String login(@RequestParam Map<String, String> map, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
        User user = clientService.login(map.get("email"));
       // User user=new User();
 
         if(user != null) {
-            if (MessageConverter.getMd5(map.get("password")).equals(user.getPassword())) {
-                session.setAttribute("user", user);
-                if (session.getAttribute("cart") == null) {
-                    return "redirect:/shop";
-                } else {
-                    return "redirect:/checkout";
-                }
+            if (MessageConverter.getMd5(map.get("password")).equals(user.getPassword())) { session.setAttribute("user", user);
+               if(user.getRole().toString().equals(Role.BUYER)) {
+                   if (session.getAttribute("cart") == null) {
+                       return "redirect:/shop";
+                   } else {
+                       return "redirect:/checkout";
+                   }
+               }else if(user.getRole().toString().equals(Role.SELLER)){
+                   return "redirect:/getSellerProducts/"+user.getId();
+               }else{
+                   redirectAttributes.addFlashAttribute("error","Unkown user role");
+                   return "redirect:/logon";
+               }
 
             } else {
                 session.invalidate();
-                model.addAttribute("error","Invalid Password");
+                redirectAttributes.addFlashAttribute("error","Invalid username or pasword");
                 return "redirect:/logon";
 
             }
         }else{
-            model.addAttribute("error","Unknown User");
+            redirectAttributes.addFlashAttribute("error","Invalid username or password");
             return  "redirect:/logon";
         }
 

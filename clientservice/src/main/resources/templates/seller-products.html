@@ -140,48 +140,41 @@
     </div>
     <br>
 </header>
-
 <div class="bedroom-all-product-area ptb-80">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                 <div class="bedroom-sideber">
-                    <div class="bedroom-title text-uppercase">
-                        <h4>Follow Sellers</h4>
-                    </div>
                     <div class="category-area-start">
                         <div class="caregory">
                             <div class="your-order">
-                                <div class="your-order-table table-responsive">
-                                    <form>
-                                    <table>
-                                        <thead>
-                                        <tr>
-                                            <th class="product-name">Suggestions</th>
-                                            <th class="product-total"></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr class="cart_item" th:each="seller: ${sellers}">
-                                            <td class="product-name" th:text="${seller.lastName}">
+                                <div>
+                                    <div class="bedroom-title text-uppercase">
+                                        <h6>Seller Information</h6>
+                                    </div>
+                                    <ul class="list-group">
+                                        <li class="list-group-item">First Name: <span th:text="${seller.name}"></span> </li>
+                                        <li class="list-group-item">Last Name: <span th:text="${seller.lastName}"></span></li>
+                                        <li class="list-group-item">Email :<span th:text="${seller.email}"></span></li>
+                                        <li class="list-group-item">Country :<span th:text="${seller.address.country}"></span></li>
+                                        <li class="list-group-item">State :<span th:text="${seller.address.state}"></span></li>
+                                        <li class="list-group-item">City :<span th:text="${seller.address.city}"></span></li>
+                                        <li class="list-group-item">Street :<span th:text="${seller.address.street}"></span></li>
 
-                                            </td>
-                                            <td class="product-total">
-                                                <button type="button" class="btn btn-outline-primary">Follow</button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    </form>
+                                    </ul>
+                                </div>
+                                <div class="your-order-table table-responsive">
+                                    <button type="submit" id="btn-login" class="btn btn-default login-btn">Follow</button>
                                 </div>
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
             </div>
-            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-
-                <!-- category-products-area-start -->
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <div class="caregory-products-area">
                     <div class="row">
                         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
