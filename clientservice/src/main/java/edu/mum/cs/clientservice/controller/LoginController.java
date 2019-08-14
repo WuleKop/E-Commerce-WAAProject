@@ -44,26 +44,30 @@ public class LoginController {
 
         if(user != null) {
             if (MessageConverter.getMd5(map.get("password")).equals(user.getPassword())) { session.setAttribute("user", user);
-               if(user.getRole().toString().equals(Role.BUYER)) {
+               if(user.getRole().toString().equals(Role.BUYER.toString())) {
                    if (session.getAttribute("cart") == null) {
                        return "redirect:/shop";
                    } else {
                        return "redirect:/checkout";
                    }
-               }else if(user.getRole().toString().equals(Role.SELLER)){
+               }else if(user.getRole().toString().equals(Role.SELLER.toString())){
+
                    return "redirect:/getSellerProducts/"+user.getId();
                }else{
+                   System.out.println("first");
                    redirectAttributes.addFlashAttribute("error","Unkown user role");
                    return "redirect:/logon";
                }
 
             } else {
+                System.out.println("third");
                 session.invalidate();
                 redirectAttributes.addFlashAttribute("error","Invalid username or pasword");
                 return "redirect:/logon";
 
             }
         }else{
+            System.out.println("fourth"+map.get("email")+" user name :");
             redirectAttributes.addFlashAttribute("error","Invalid username or password");
             return  "redirect:/logon";
         }
