@@ -51,5 +51,15 @@ public class ProductServiceController {
        model.addAttribute("reviews", productService.getReviews(pId));
        return "seller/productReviews";
     }
+    @GetMapping("/getProductOrders/{pId}")
+    public String getProductOrders(@PathVariable Long pId, Model model) {
+        model.addAttribute("orders", productService.getProductOrders(pId));
+        return "seller/productOrders";
+    }
+    @GetMapping("/updateOrder/{oId}")
+    private String updateOrder(@PathVariable Long oId, Model model) {
+        model.addAttribute("order", productService.getOrderById(oId));
+        return "seller/updateOrder";
+    }
 
 }

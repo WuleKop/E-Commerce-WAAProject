@@ -5,8 +5,6 @@ import edu.mum.cs.sellerService.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 public class OrderController {
 
@@ -15,22 +13,16 @@ public class OrderController {
 
     @PostMapping("/addOrder")
     public Order addOrder(@RequestBody Order order) {
-         return orderService.saveOrder(order);
+        return orderService.saveOrder(order);
     }
 
-    @PostMapping("/addProductOrder/{pId}")
-    public Order addProductOrder(@RequestBody Order order, @PathVariable Long pId ) {
-        return orderService.save(order, pId);
+    @GetMapping("/getOrder/{oId}")
+    public Order getOrder(@PathVariable Long oId) {
+       return orderService.getOrder(oId);
     }
 
-    @GetMapping("/getOrders/{pId}")
-    public List<Order> getOrder(@PathVariable Long pId) {
-
-        return orderService.getOrderByProductId(pId);
-    }
-
-    @DeleteMapping("/deleteOrder/{id}/{pId}")
-    public void deleteOrder (@PathVariable Long id, @PathVariable Long pId) {
-        orderService.delete(id, pId);
+    @DeleteMapping("/deleteOrder/{oId}")
+    public void deleteOrder (@PathVariable Long oId) {
+        orderService.delete(oId);
     }
 }

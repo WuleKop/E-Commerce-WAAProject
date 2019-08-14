@@ -53,4 +53,10 @@ public class ProductOrderImpl implements IProductorderService {
         }
         return null;
     }
+
+    @Override
+    public List<ProductOrder> getProductOrderOfProduct(Long pId) {
+        Product product = productService.findById(pId);
+        return productOrderRepository.findAllProductOrdersOfProduct(product);
+    }
 }
