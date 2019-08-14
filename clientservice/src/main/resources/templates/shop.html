@@ -147,10 +147,33 @@
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <div class="bedroom-sideber">
                     <div class="bedroom-title text-uppercase">
-                        <h4>Advertissement</h4>
+                        <h4>Follow Sellers</h4>
                     </div>
-                    <div>
-                        <img th:src="@{/img/Maharshi-logo.jpg}" src="/img/Maharshi-logo.jpg" alt="an iamge">
+                    <div class="category-area-start">
+                        <div class="caregory">
+                            <div class="your-order">
+                                <div class="your-order-table table-responsive">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th class="product-name">Suggestions</th>
+                                            <th class="product-total"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr class="cart_item" th:each="seller: ${sellers}">
+                                            <td class="product-name" th:text="${seller.lastName}">
+
+                                            </td>
+                                            <td class="product-total">
+                                                <button type="button" class="btn btn-outline-primary">Follow</button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -159,16 +182,9 @@
                 <!-- category-products-area-start -->
                 <div class="caregory-products-area">
                     <div class="row">
-                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                            <ul class="tab_menu">
-                                <li class="active"><a href="#viewed" data-toggle="tab"><i class="fa fa-th"></i></a></li>
-                                <!--<li><a href="#random " data-toggle="tab"><i class="fa fa-list"></i></a></li>-->
-                            </ul>
-                        </div>
                         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
                             <div class="product-option">
                                 <div class="porduct-option-left floatleft">
-                                    <span> Items 1-16 of 17</span>
                                 </div>
                                 <div class="product-option-right floatright">
                                     <div class="sort-by">

@@ -47,11 +47,14 @@ public class BuyerController {
     @Autowired
     private BuyerService buyerService;
 
+
+
     @Autowired
     private ProductService productService;
     @GetMapping("/shop")
     public String getProductList(Model model){
         model.addAttribute("products",buyerService.allProducts());
+        model.addAttribute("sellers",buyerService.peristedSellers());
         return "shop";
     }
 
