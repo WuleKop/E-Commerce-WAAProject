@@ -56,14 +56,10 @@
                 <i class="material-icons user-icon">person</i>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="#UserName"><strong>User Name</strong></a></li>
-<!--                <li><a href="#PlanName"><em>Plan Name</em></a></li>-->
-                <li role="separator" class="divider"></li>
-                <li><a href="#UpdateProfile">Update Profile</a></li>
-                <li><a href="#Preferences">Preferences</a></li>
-<!--                <li><a href="#Billing">Billing</a></li>-->
-                <li role="separator" class="divider"></li>
-                <li><a href="#Logout">Logout</a></li>
+                <li th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</li>
+                <form th:action="@{/logout}" method="post">
+                  <input type="submit" value="Sign Out"/>
+                </form>
               </ul>
             </li> <!-- dropdown -->
 
