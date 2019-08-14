@@ -1,17 +1,16 @@
 
-
 $('.approveBtn').click(function(event){
     event.preventDefault();
     var accountId = $(this).attr("data");
     $.ajax({
-        url: '/admin/account/approve/' + accountId,
-        type: 'PUT',
+        url: '/approve/sellers' + accountId,
+        type: 'POST',
         dataType: "json",
         success: function(response){
             alert("Account Approved");
         },
         error: function(){
-            alert('Error while request..');
+            alert('Cannot Approve account at this moment');
         }
     });
 });
