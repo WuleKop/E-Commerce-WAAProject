@@ -53,7 +53,17 @@ public class BuyerService {
     }
 
 
-    public List<ProductOrder> addProductOrder(Product product, Order order, Integer quantity, List<ProductOrder> productOrders) {
+    public List<Order> buyerOrders(Long id){
+        ResponseEntity<List<Order>> responseEntity = restTemplate.exchange(sellerUrl + "/buyerOrders/" + id, HttpMethod.GET, null, new ParameterizedTypeReference<List<Order>>() {
+        });
+        return  responseEntity.getBody();
+    }
+
+
+
+
+    //functionality
+    public List<ProductOrder> addProductOrder(Product product,Order order,Integer quantity,List<ProductOrder> productOrders){
         ProductOrder productOrder = new ProductOrder();
         ProductOrder toRemove = null;
         for (ProductOrder orderIng : productOrders) {
@@ -75,7 +85,10 @@ public class BuyerService {
     }
 
 
-    public List<ProductOrder> removeProduct(List<ProductOrder> productOrders, Long productId) {
+
+    //functionality
+    public List<ProductOrder> removeProduct(List<ProductOrder> productOrders,Long productId){
+
         ProductOrder orderToRemove = null;
         for (ProductOrder productOrder : productOrders) {
             if (productOrder.getProduct().getId() == productId) {

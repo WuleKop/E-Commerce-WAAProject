@@ -48,5 +48,10 @@ public class AdminRestController {
         }
     }
 
+    @PostMapping("/approveSellers")
+    public User approveSeller(){
+        return null;
+    }
+
 
 }

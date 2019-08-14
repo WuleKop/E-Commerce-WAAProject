@@ -65,4 +65,14 @@ public class AdminService {
         return  responseEntity.getBody();
 
     }
+    public User getAuthenticatedSellerAccount(User user){
+        ResponseEntity<User> responseEntity = restTemplate.postForEntity(adminUrl+"/loggedSeller",user,User.class);
+        return  responseEntity.getBody();
+
+    }
+    public User approveSellerAccount(User user){
+        ResponseEntity<User> responseEntity = restTemplate.postForEntity(adminUrl+"/approve/sellers",user,User.class);
+        return  responseEntity.getBody();
+
+    }
 }

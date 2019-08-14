@@ -4,6 +4,7 @@ import edu.mum.cs.sellerService.model.Order;
 import edu.mum.cs.sellerService.model.Product;
 import edu.mum.cs.sellerService.model.ProductOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,7 @@ public interface ProductOrderRepository extends JpaRepository<ProductOrder,Long>
     List<ProductOrder> findAllProductOrdersOfProduct(Product product);
     @Query("select p from ProductOrder p where p.order = ?1 ")
     List<ProductOrder> getProductByOrderId(Order order);
+    @Modifying
+    @Query("delete from ProductOrder po where po.product = ?1 and po.order = ?2")
+    void deleteOrderFromProduct(Product p, Order o);
 }

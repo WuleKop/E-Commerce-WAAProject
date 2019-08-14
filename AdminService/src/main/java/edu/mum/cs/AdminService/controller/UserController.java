@@ -3,6 +3,7 @@ package edu.mum.cs.AdminService.controller;
 import edu.mum.cs.AdminService.iservice.AddressService;
 import edu.mum.cs.AdminService.model.Address;
 import edu.mum.cs.AdminService.model.Role;
+import edu.mum.cs.AdminService.model.Status;
 import edu.mum.cs.AdminService.model.User;
 import edu.mum.cs.AdminService.iservice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class UserController {
     private AddressService addressService;
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public User createNewUser( @RequestBody  User user) {
-        System.out.println(user);
+    public User createNewUser(@RequestBody  User user) {
+        System.out.println("provided user to added in the database system"+user);
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
             return null;
@@ -84,10 +85,12 @@ public class UserController {
     public User publicLogin(@PathVariable("email") String emailAddress) {
         User user = userService.findUserByEmail(emailAddress);
         if (user != null) {
-            return user;
+            return  user;
         }
         return null;
     }
+
+
     @GetMapping("/sellers")
     public List<User> sendUserToEveryOne() {
         try {
@@ -109,6 +112,27 @@ public class UserController {
     @GetMapping("/all")
     public List<User> allUsers(){
         return userService.findAll();
+    }
+    @GetMapping("/loggedSeller")
+    public User loggedSeller(String userEmail){
+        User loggedUser = userService.findUserByEmail(userEmail);
+        if(loggedUser.getRole().equals(Role.SELLER)){
+            return loggedUser;
+        }
+        else return null;
+    }
+
+    @GetMapping("/approve/sellers")
+    public Boolean approveSeller(User user){
+        if(user.getRole().toString().equals(Role.SELLER)){
+            if(user.getStatus().toString().equals(Status.PENDING)){
+                user.setStatus(Status.APPROVED);
+                return true;
+            }
+        }else{
+            return false;
+        }
+        return false;
     }
 
 }

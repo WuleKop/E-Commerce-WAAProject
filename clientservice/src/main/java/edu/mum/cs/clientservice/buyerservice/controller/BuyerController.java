@@ -4,10 +4,7 @@ package edu.mum.cs.clientservice.buyerservice.controller;
 import edu.mum.cs.clientservice.adminmodel.User;
 import edu.mum.cs.clientservice.buyerservice.BuyerService;
 import edu.mum.cs.clientservice.sellerService.ProductService;
-import edu.mum.cs.clientservice.sellermodel.Order;
-import edu.mum.cs.clientservice.sellermodel.Product;
-import edu.mum.cs.clientservice.sellermodel.ProductOrder;
-import edu.mum.cs.clientservice.sellermodel.ShippingStatus;
+import edu.mum.cs.clientservice.sellermodel.*;
 import edu.mum.cs.clientservice.utility.ReportGenerating;
 import edu.mum.cs.clientservice.utility.UtilityClass;
 import org.aspectj.weaver.ast.Or;
@@ -59,12 +56,23 @@ public class BuyerController {
     }
 
     @GetMapping("shop/{productId}")
-    public String productDetails(@PathVariable("productId")Long id,Model model){
+    public String productDetails(@PathVariable("productId")Long id,Model model,HttpSession session){
         Product product =  buyerService.findOne(id);
+        List<Review> reviews = productService.getReviews(product.getId());
         String [] images = product.getPictureUrls().split("\n");
         model.addAttribute("product",product);
         model.addAttribute("images",images);
+        model.addAttribute("reviews",reviews);
         return "product-details";
+    }
+
+    @GetMapping("shop/{productId}/reviews")
+    public String productReviews(@PathVariable("productId") Long productId,Model model,HttpSession session){
+        Product product =  buyerService.findOne(productId);
+        List<Review> reviews = productService.getReviews(product.getId());
+        model.addAttribute("product",product);
+        model.addAttribute("reviews",reviews);
+        return "productreviews";
     }
 
 

@@ -76,5 +76,14 @@ public class ProductServiceController {
         model.addAttribute("pId", Long.parseLong(map.get("pId")));
         return "seller/orderStatusUpdated";
     }
+    @GetMapping("/deleteOrderFromProduct/{pId}/{oId}")
+    public String deleteOrder(@PathVariable Long oId, @PathVariable Long pId) {
+        productService.deleteOrder(pId, oId);
+        return "redirect:/getProductOrders/"+pId;
+    }
+    @PostMapping("/addReview/{pId}")
+    public void addReview(Review review, @PathVariable Long pId) {
+        productService.addReview(review, pId);
+    }
 
 }
