@@ -80,4 +80,11 @@ $(document).ready(function () {
     });
 
 
+    function showAndHide(toHide, toShow) {
+        $(toHide).addClass('hidden');
+        $(toShow).fadeIn(1000);
+        $(toShow).removeClass('hidden');
+    }
+
+
 });
