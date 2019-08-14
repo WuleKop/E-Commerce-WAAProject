@@ -52,17 +52,17 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-5">
                     <div class="header-top-right header-top-left-4">
-                        <p></p>
+
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-8 col-sm-7 header-top-right-4">
                     <div class="header-top-left">
                         <ul>
-                            <li><a th:href="@{/login}">Sign In</a></li>
+                            <li><a th:href="@{/logon}">Sign In</a></li>
                             <li class="click_menu"><a href="#">My Account <i class="fa fa-angle-down"></i></a>
                                 <ul class="click_menu_show">
                                     <li><a th:href="@{/account/profile}">My Profile</a></li>
-                                    <li><a th:href="@{/login}">Sign out</a></li>
+                                    <li><a th:href="@{/logout}">Log out</a></li>
                                 </ul>
                             </li>
                             <li><a th:href="@{/register}">Create an Account</a></li>
@@ -78,7 +78,7 @@
 
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                     <div class="order-button-payment">
-                        <button class="btn btn-lg btn-success"><a th:href="@{/shop}">Back To Products</a></button>
+                        <button class="btn  btn-success"><a th:href="@{/shop}">Back To Products</a></button>
                     </div>
                 </div>
 
@@ -105,7 +105,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="view1">
                                     <a class="image-link" th:href="@{/img/product/15.jpg}"><img
-                                            style="width:800px; height:800px " img th:src="@{'/images/'+${images[0]}}"
+                                             img th:src="@{'/images/'+${images[0]}}"
                                             alt=""></a>
                                 </div>
                                 <div class="tab-pane" id="view2">
@@ -124,6 +124,12 @@
                                 <div class="tab-pane" id="view5">
                                     <a class="image-link" th:href="@{/img/product/6.jpg}">< alt=""></a>
                                 </div>
+                                <ul class="sinple-tab-menu" role="tablist">
+
+                                    <li th:each="image:${images}"><a href="#view2" data-toggle="tab"><img
+                                            th:src="@{'/images/'+${image}}" alt=""/></a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
@@ -193,15 +199,6 @@
             </div>
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                 <div class="product-simple-area ptb-80">
-                    <div class="row">
-                        <ul class="sinple-tab-menu" role="tablist">
-
-                            <li th:each="image:${images}"><a href="#view2" data-toggle="tab"><img
-                                    th:src="@{'/images/'+${image}}" alt=""/></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <br>
                     <div class="your-order">
                         <h3>Riews</h3>
                         <div class="your-order-table table-responsive">
