@@ -7,6 +7,7 @@ import edu.mum.cs.clientservice.sellerService.ProductService;
 import edu.mum.cs.clientservice.sellermodel.Order;
 import edu.mum.cs.clientservice.sellermodel.Product;
 import edu.mum.cs.clientservice.sellermodel.ProductOrder;
+import edu.mum.cs.clientservice.sellermodel.ShippingStatus;
 import edu.mum.cs.clientservice.utility.UtilityClass;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class BuyerController {
@@ -83,6 +81,9 @@ public class BuyerController {
             Order oldOrder = productOrders.get(0).getOrder();
             oldOrder.setAccountId(user.getId());
             oldOrder.setQuantity(UtilityClass.totalQuantity(productOrders));
+            oldOrder.setShippingStatus(ShippingStatus.New);
+            oldOrder.setOrderDate(new Date());
+            oldOrder.setTax(0.3);
             Order order = productService.postOrder(oldOrder);
             for (ProductOrder productOrder : productOrders) {
                 productOrder.setOrder(order);
