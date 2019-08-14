@@ -81,5 +81,9 @@ public class ProductServiceController {
         productService.deleteOrder(pId, oId);
         return "redirect:/getProductOrders/"+pId;
     }
+    @PostMapping("/addReview/{pId}")
+    public void addReview(Review review, @PathVariable Long pId) {
+        productService.addReview(review, pId);
+    }
 
 }

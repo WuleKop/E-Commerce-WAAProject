@@ -27,7 +27,8 @@ public class LoginController {
     private BuyerService buyerService;
 
     @GetMapping("/logon")
-    public String login(){
+    public String login(HttpSession session){
+        session.invalidate();
         return "customer-login";
     }
 

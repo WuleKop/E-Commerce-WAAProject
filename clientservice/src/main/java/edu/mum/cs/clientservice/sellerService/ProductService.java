@@ -89,6 +89,12 @@ public class ProductService {
     public void deleteOrder(Long pId, Long oId) {
         restTemplate.delete(sellerUrl+"/deleteOrderFromProduct/"+pId+"/"+oId );
     }
+    public void addReview(Review review, Long pId) {
+
+        HttpEntity<Review> orderHttpEntity = new HttpEntity<>(review);
+        Review review1 = restTemplate.postForObject(sellerUrl+"/addReview/"+pId,orderHttpEntity,Review.class);
+
+    }
 
 
 }
