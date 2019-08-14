@@ -88,16 +88,27 @@ public class UserController {
         }
         return null;
     }
-    @PostMapping("/sellers")
-    public List<User> sendUserToEveryOne(){
-        List<User> allUsers = userService.findAll();
-        List<User> someSellers = new ArrayList<User>();
-        for(User myUser : allUsers){
-            if(myUser.getRole().equals(Role.SELLER) && (myUser.getActive()==1)){
-               someSellers.add(myUser);
+    @GetMapping("/sellers")
+    public List<User> sendUserToEveryOne() {
+        try {
+            System.out.println("reaching to the admin server");
+
+            List<User> allUsers = userService.findAll();
+            List<User> someSellers = new ArrayList<User>();
+            for (User myUser : allUsers) {
+                if (myUser.getRole().equals(Role.SELLER) && (myUser.getActive() == 1)) {
+                    someSellers.add(myUser);
+                }
             }
+            return someSellers;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        return someSellers;
+    }
+    @GetMapping("/all")
+    public List<User> allUsers(){
+        return userService.findAll();
     }
 
 }
