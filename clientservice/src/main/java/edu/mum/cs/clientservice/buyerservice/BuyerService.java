@@ -62,6 +62,7 @@ public class BuyerService {
             }
         }
         if(toRemove != null){productOrders.remove(toRemove);};
+        product.setStockQuantity(product.getStockQuantity() - quantity);
         productOrder.setProduct(product);
         productOrder.setOrder(order);
         productOrder.setQuantity(quantity);
