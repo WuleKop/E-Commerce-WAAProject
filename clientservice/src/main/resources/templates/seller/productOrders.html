@@ -17,7 +17,8 @@
             <small class="text-muted" th:text="'Order Status: '+${o.shippingStatus}" style="margin-left: 10px"></small>
         </p>
         <p><a th:href="@{/updateOrder/{oId}/{pId}(oId=${o.id}, pId=${pId})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Changing Status</a>
-            <a th:href="@{#}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Cancel</a>
+            <a th:href="@{/deleteOrderFromProduct/{pId}/{oId}(pId=${pId}, oId=${o.id})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Cancel</a>
+            <a th:href="@{/getProduct/{pId}(pId=${pId})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Back</a>
         </p>
 
 

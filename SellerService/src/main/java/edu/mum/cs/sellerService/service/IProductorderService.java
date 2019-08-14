@@ -10,9 +10,6 @@ public interface IProductorderService {
 
     ProductOrder newProductOrder(ProductOrder productOrder);
 
-
-
-
     ProductOrder updateProductOrder(ProductOrder productOrder);
 
     List<Order> productOrders(ProductOrder productOrder);
@@ -21,4 +18,5 @@ public interface IProductorderService {
     String addProductOrder(List<ProductOrder> productOrders);
     List<ProductOrder> getProductOrderOfProduct(Long pId);
     List<ProductOrder> getProductByOrderId(Long oId);
+    void deleteOrderFromProduct(Long pId, Long oId);
 }

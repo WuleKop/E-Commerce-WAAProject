@@ -25,4 +25,8 @@ public class ProductOrderController {
         List<Order> orders = productOrders.stream().map(p->p.getOrder()).collect(Collectors.toList());
         return orders;
     }
+    @DeleteMapping("/deleteOrderFromProduct/{pId}/{oId}")
+    public void deleteOrderFromProduct(@PathVariable Long pId, @PathVariable Long oId) {
+        iProductorderService.deleteOrderFromProduct(pId, oId);
+    }
 }

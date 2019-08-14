@@ -86,6 +86,9 @@ public class ProductService {
         Order order1= restTemplate.postForObject(sellerUrl+"/addOrder", request, Order.class);
         return order1;
     }
+    public void deleteOrder(Long pId, Long oId) {
+        restTemplate.delete(sellerUrl+"/deleteOrderFromProduct/"+pId+"/"+oId );
+    }
 
 
 }
