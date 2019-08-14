@@ -35,7 +35,7 @@ public class ProductServiceController {
         model.addAttribute("images",images);
         return "seller/productDetail";
     }
-    @GetMapping("/update/{pId}")
+    @GetMapping("/updateProduct/{pId}")
     public String getUpdate(@PathVariable Long pId, Model model) {
         model.addAttribute("product", productService.findOne(pId));
         return "seller/updateProduct";
@@ -50,6 +50,16 @@ public class ProductServiceController {
     public String getReviews(@PathVariable Long pId, Model model) {
        model.addAttribute("reviews", productService.getReviews(pId));
        return "seller/productReviews";
+    }
+    @GetMapping("/getProductOrders/{pId}")
+    public String getProductOrders(@PathVariable Long pId, Model model) {
+        model.addAttribute("orders", productService.getProductOrders(pId));
+        return "seller/productOrders";
+    }
+    @GetMapping("/updateOrder/{oId}")
+    private String updateOrder(@PathVariable Long oId, Model model) {
+        model.addAttribute("order", productService.getOrderById(oId));
+        return "seller/updateOrder";
     }
 
 }

@@ -43,19 +43,19 @@ public class Product {
     @JsonIgnore
     private List<Review> reviews = new ArrayList<>();
 
-    @JsonIgnore
-    private List<Order> orders = new ArrayList<>();
-
-    public void addOrder(Order order) {
-        if(orders.add(order)) {
-            order.addProduct(this);
-        }
-    }
-    public void removeOrder (Order order) {
-        if(orders.remove(order)) {
-            order.addProduct(null);
-        }
-    }
+//    @JsonIgnore
+//    private List<Order> orders = new ArrayList<>();
+//
+//    public void addOrder(Order order) {
+//        if(orders.add(order)) {
+//            order.addProduct(this);
+//        }
+//    }
+//    public void removeOrder (Order order) {
+//        if(orders.remove(order)) {
+//            order.addProduct(null);
+//        }
+//    }
 
 
     @Override

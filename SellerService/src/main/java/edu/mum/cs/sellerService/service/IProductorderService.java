@@ -19,4 +19,5 @@ public interface IProductorderService {
 
     List<Product> orderProducts(Order order);
     String addProductOrder(List<ProductOrder> productOrders);
+    List<ProductOrder> getProductOrderOfProduct(Long pId);
 }
