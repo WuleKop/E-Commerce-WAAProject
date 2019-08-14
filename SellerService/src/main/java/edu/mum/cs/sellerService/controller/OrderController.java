@@ -5,6 +5,8 @@ import edu.mum.cs.sellerService.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class OrderController {
 
@@ -24,5 +26,9 @@ public class OrderController {
     @DeleteMapping("/deleteOrder/{oId}")
     public void deleteOrder (@PathVariable Long oId) {
         orderService.delete(oId);
+    }
+    @GetMapping("/getOrdersByAccountId/{aId}")
+    public List<Order> getOrdersByAccountId(@PathVariable Long aId) {
+        return orderService.findOrdersByAccountId(aId);
     }
 }

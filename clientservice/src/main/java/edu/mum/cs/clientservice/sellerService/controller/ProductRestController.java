@@ -9,6 +9,7 @@ import edu.mum.cs.clientservice.utility.UploadingImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -26,6 +27,10 @@ public class ProductRestController {
             return productService.createProduct(product);
         }catch (Exception e){e.printStackTrace();}
         return  null;
+    }
+    @GetMapping("/findAccountsOrder/{aId}")
+    public List<Order> findAccountsOrders(@PathVariable Long aId) {
+        return productService.getAccountsOrders(aId);
     }
 
 }

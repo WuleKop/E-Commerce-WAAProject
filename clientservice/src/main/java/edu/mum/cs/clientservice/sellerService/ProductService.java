@@ -96,5 +96,9 @@ public class ProductService {
 
     }
 
+    public List<Order> getAccountsOrders(Long id) {
+        ResponseEntity<List<Order>> allOrders = restTemplate.exchange(sellerUrl + "/getOrdersByAccountId/"+id, HttpMethod.GET, null, new ParameterizedTypeReference<List<Order>>() { });
+        return allOrders.getBody();
+    }
 
 }
