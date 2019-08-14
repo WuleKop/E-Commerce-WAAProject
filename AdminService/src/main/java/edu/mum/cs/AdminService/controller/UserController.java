@@ -116,12 +116,25 @@ public class UserController {
         return userService.findAll();
     }
     @GetMapping("/loggedSeller")
-    public User loggedSeller(@RequestParam("user") User user){
-        User loggedUserr = userService.findUserByEmail(user.getEmail());
-        if(loggedUserr.getRole().equals(Role.SELLER) && (loggedUserr.getActive()==1)){
-            return loggedUserr;
+    public User loggedSeller(String userEmail){
+        User loggedUser = userService.findUserByEmail(userEmail);
+        if(loggedUser.getRole().equals(Role.SELLER)){
+            return loggedUser;
         }
         else return null;
+    }
+
+    @GetMapping("/approve/sellers")
+    public Boolean approveSeller(User user){
+        if(user.getRole().toString().equals(Role.SELLER)){
+            if(user.getStatus().toString().equals(Status.PENDING)){
+                user.setStatus(Status.APPROVED);
+                return true;
+            }
+        }else{
+            return false;
+        }
+        return false;
     }
 
 }

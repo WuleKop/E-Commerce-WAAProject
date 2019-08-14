@@ -8,6 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/mockup.css}" href="../css/mockup.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script th:src="@{js/approve.js}" src="../js/approve.js" type="text/javascript"></script>
   </head>
   <body>
 
@@ -70,7 +71,7 @@
           <th scope="col">Email</th>
           <th scope="col">Country</th>
           <th scope="col">City</th>
-          <th scope="col">Approve</th>
+          <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -81,7 +82,7 @@
           <td th:text="${user.address.country}" />
           <td th:text="${user.address.city}" />
           <td>
-            <a href="#" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Approve</a>
+            <button class="approveBtn" style="background-color: #0ba360">Approve</button>
           </td>
         </tr>
         </tbody>
