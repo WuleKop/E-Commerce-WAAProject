@@ -28,7 +28,7 @@ public class adminController {
     @GetMapping("/admin/reviews")
     public String manageReviews(Model model) {
         model.addAttribute("all", adminService.AllUsers());
-        return "admin/allreviews";
+        return "admin/reviews";
     }
 
 //    @GetMapping("/admin/reviews")
