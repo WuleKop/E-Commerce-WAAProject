@@ -58,11 +58,11 @@
                 <div class="col-lg-9 col-md-8 col-sm-7 header-top-right-4">
                     <div class="header-top-left">
                         <ul>
-                            <li><a th:href="@{/login}">Sign In</a></li>
+                            <li><a th:href="@{/logon}">Sign In</a></li>
                             <li class="click_menu"><a href="#">My Account <i class="fa fa-angle-down"></i></a>
                                 <ul class="click_menu_show">
                                     <li><a th:href="@{/account/profile}" >My Profile</a></li>
-                                    <li><a th:href="@{/login}">Sign out</a></li>
+                                    <li><a th:href="@{/logout}">Sign out</a></li>
                                 </ul>
                             </li>
                             <li><a th:href="@{/register}">Create an Account</a></li>
@@ -87,46 +87,9 @@
 
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
-                    <div class="header-bottom-right-4-inner">
-                        <a href="#"><span class="lnr lnr-heart"></span></a>
-                    </div>
                     <div class="header-bottom-right header-bottom-right-4">
                         <div class="shop-cart shop-cart-4">
                             <a href="#"><span class="lnr lnr-cart"></span></a>
-                        </div>
-                        <div class="shop-cart-hover shop-cart-hover-4 fix">
-                            <ul>
-                                <li>
-                                    <div class="cart-img">
-                                        <a href="#"><img src="img/cart/1.jpg" alt=""/></a>
-                                    </div>
-                                    <div class="cart-content">
-                                        <h4><a href="#">1 x Faded...</a></h4>
-                                        <span><a href="#">S, Orange</a></span>
-                                        <span class="cart-price">Rs 16.84</span>
-                                    </div>
-                                    <div class="cart-del">
-                                        <i class="fa fa-times-circle"></i>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="cart-img">
-                                        <a href="#"><img src="img/cart/1.jpg" alt=""/></a>
-                                    </div>
-                                    <div class="cart-content">
-                                        <h4><a href="#">1 x Faded...</a></h4>
-                                        <span><a href="#">S, Orange</a></span>
-                                        <span class="cart-price">Rs 16.84</span>
-                                    </div>
-                                    <div class="cart-del">
-                                        <i class="fa fa-times-circle"></i>
-                                    </div>
-                                </li>
-                                <li class="total-price"><span> Total Rs 48.04 </span></li>
-                                <li class="checkout-bg">
-                                    <a href="checkout.html">checkout <i class="fa fa-angle-right"></i></a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -195,7 +158,6 @@
                                 <div class="checkbox">
                                     <span><i class="fa fa-check-square" aria-hidden="true"></i>In stock</span>
                                 </div>
-                                <span> SKU:MH03</span>
                                 <div class="product-price-star star-2">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -218,30 +180,9 @@
 
                                 </div>
                                 <br/>
-
-
                                 <br/>
-
-                                <div class="quick-add-to-cart">
-
-
-                                        <button class="btn btn-lg btn-success" type="submit"><span
-                                                class="lnr lnr-cart"></span>Add to Cart
-                                        </button>
-
-                                        <!-- <button data-toggle="modal" data-target="#myModal" class="single_add_to_cart_button hyper-page" type="button"><span class="lnr lnr-cart"></span>Bulk Order</button> -->
-
-                                </div>
                                 </form>
                                 <br/>
-
-                                <div class="quick-add-to-cart">
-
-                                    <button type="button" class="btn btn-lg btn-warning col-sm-12">
-                                            <a class="lnr lnr-cart" th:href="@{/checkout}">Buy Now</a>
-                                    </button>
-                                </div>
-
                                 <div class="action-heiper">
                                     <!--<a href="#"><span class="lnr lnr-sync"></span></a>-->
                                     <a href="#"><span class="lnr lnr-cart"></span></a>

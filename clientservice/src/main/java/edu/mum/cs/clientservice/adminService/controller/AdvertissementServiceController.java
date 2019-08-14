@@ -17,10 +17,10 @@ public class AdvertissementServiceController {
     public String uploadAdvertissement() {
         return "admin/advertUpload";
     }
-//    @GetMapping("/getSellerProducts/{sId}")
-//    public String getAllProduct(@PathVariable Long sId, Model model) {
-//        model.addAttribute("products", productService.sellerProducts(sId));
-//        return "seller/allProducts";
+//    @GetMapping("/getAdminAdvertissements/{aId}")
+//    public String getAllProduct(@PathVariable Long aId, Model model) {
+//        model.addAttribute("advertissements", advertissementService.adminAdvertissements(aId));
+//        return "admin/allAdvertissements";
 //    }
     @GetMapping("/getAd/{aId}")
     public String getAdvertissement(@PathVariable Long aId, Model model) {

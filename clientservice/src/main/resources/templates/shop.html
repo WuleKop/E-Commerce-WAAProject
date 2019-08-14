@@ -58,9 +58,8 @@
                     <div class="header-top-left">
                         <ul>
                             <li><a th:href="@{/logon}">Sign In</a></li>
-                            <li class="click_menu"><a href="#">My Account <i class="fa fa-angle-down"></i></a>
+                            <li class="click_menu"><a class="ln lnr-user" href="#" th:text="${session.user.lastName}">My Account<i class="fa fa-angle-down"></i></a>
                                 <ul class="click_menu_show">
-                                    <li><a th:href="@{/account/profile}">My Profile</a></li>
                                     <li><a th:href="@{/logout}">Sign out</a></li>
                                 </ul>
                             </li>

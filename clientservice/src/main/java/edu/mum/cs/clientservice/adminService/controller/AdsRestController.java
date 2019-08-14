@@ -6,6 +6,7 @@ import edu.mum.cs.clientservice.utility.UploadingImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -17,11 +18,13 @@ public class AdsRestController {
 
 
     @PostMapping("/testAdvertissement")
-    public Advertissement addProduct(Advertissement advertissement){
+    public Advertissement addProduct(Advertissement advertissement, HttpSession adSession){
         try {
             String res = UploadingImage.saveUploadedFiles(advertissement.getPictures());
             advertissement.setPictureUrls(res);
-           return advertissementService.createAdvertissement(advertissement);
+            Advertissement myAd = advertissementService.createAdvertissement(advertissement);
+            adSession.setAttribute("myAd",myAd);
+            return myAd;
         }catch (Exception e){e.printStackTrace();}
         return null;
     }
