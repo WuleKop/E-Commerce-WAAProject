@@ -85,9 +85,7 @@ public class UserController {
     public User publicLogin(@PathVariable("email") String emailAddress) {
         User user = userService.findUserByEmail(emailAddress);
         if (user != null) {
-            if(user.getRole().toString().equals(Role.BUYER)) {
-                return user;
-            }
+            return  user;
         }
         return null;
     }
