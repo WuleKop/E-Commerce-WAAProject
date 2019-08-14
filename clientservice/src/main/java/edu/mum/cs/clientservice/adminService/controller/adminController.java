@@ -31,10 +31,10 @@ public class adminController {
         return "admin/allreviews";
     }
 
-    @GetMapping("/admin/reviews")
-    public String getSellersProducts(Model model){
-        List<Product> productList = adminService.getSellerAccount(sId);
-        return "admin/admin_mainpanel";
-     }
+//    @GetMapping("/admin/reviews")
+//    public String getSellersProducts(Model model){
+// //       List<Product> productList = adminService.getSellerAccount(sId);
+//        return "admin/admin_mainpanel";
+//     }
 
 }

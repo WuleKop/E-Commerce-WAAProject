@@ -86,7 +86,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div th:if="${result != null}">
                         <br/>
-                        <h3  th:text="${result}" class="text-info"></h3>
+                        <h3 th:text="${result}" class="text-info"></h3>
                         <a href="/receipt" class="btn btn-sm btn-primary" target="_blank">Print Receipt</a>
                     </div>
                 </div>
@@ -147,32 +147,30 @@
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <div class="bedroom-sideber">
                     <div class="bedroom-title text-uppercase">
-                        <h4>Follow Sellers</h4>
+                        <h4>Follow Suggestions</h4>
                     </div>
                     <div class="category-area-start">
                         <div class="caregory">
                             <div class="your-order">
                                 <div class="your-order-table table-responsive">
-                                    <form>
+
                                     <table>
                                         <thead>
-                                        <tr>
-                                            <th class="product-name">Suggestions</th>
-                                            <th class="product-total"></th>
-                                        </tr>
                                         </thead>
                                         <tbody>
                                         <tr class="cart_item" th:each="seller: ${sellers}">
                                             <td class="product-name" th:text="${seller.lastName}">
-
                                             </td>
                                             <td class="product-total">
-                                                <button type="button" class="btn btn-outline-primary">Follow</button>
+                                                <a th:href="${'/getSeller/'+seller.email}">
+                                                    <button type="button" class="btn btn-outline-primary">Follow
+                                                    </button>
+                                                </a>
                                             </td>
                                         </tr>
                                         </tbody>
                                     </table>
-                                    </form>
+
                                 </div>
                             </div>
                         </div>

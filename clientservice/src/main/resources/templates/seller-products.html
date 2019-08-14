@@ -156,10 +156,16 @@
                                         <li class="list-group-item">First Name: <span th:text="${seller.name}"></span> </li>
                                         <li class="list-group-item">Last Name: <span th:text="${seller.lastName}"></span></li>
                                         <li class="list-group-item">Email :<span th:text="${seller.email}"></span></li>
-                                        <li class="list-group-item">Country :<span th:text="${seller.address.country}"></span></li>
-                                        <li class="list-group-item">State :<span th:text="${seller.address.state}"></span></li>
-                                        <li class="list-group-item">City :<span th:text="${seller.address.city}"></span></li>
-                                        <li class="list-group-item">Street :<span th:text="${seller.address.street}"></span></li>
+                                        <li class="list-group-item">Address
+                                            <ul>
+                                                <li class="list-group-item">Country :<span th:text="${seller.address.country}"></span></li>
+                                                <li class="list-group-item">State :<span th:text="${seller.address.state}"></span></li>
+                                                <li class="list-group-item">City :<span th:text="${seller.address.city}"></span></li>
+                                                <li class="list-group-item">Street :
+                                                    <p th:text="${seller.address.street}"></p></li>
+                                            </ul>
+                                        </li>
+
 
                                     </ul>
                                 </div>
