@@ -58,8 +58,9 @@
                     <div class="header-top-left">
                         <ul>
                             <li><a th:href="@{/logon}">Sign In</a></li>
-                            <li class="click_menu"><a class="ln lnr-user" href="#" >My Account<i class="fa fa-angle-down"></i></a>
+                            <li class="click_menu"><a href="#">My Account <i class="fa fa-angle-down"></i></a>
                                 <ul class="click_menu_show">
+                                    <li><a th:href="@{/account/profile}">My Profile</a></li>
                                     <li><a th:href="@{/logout}">Sign out</a></li>
                                 </ul>
                             </li>
@@ -139,16 +140,16 @@
 <div class="bedroom-all-product-area ptb-80">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> start
                 <div class="bedroom-sideber">
                     <div class="bedroom-title text-uppercase">
-                        <h4>Advertissement</h4>
+                        <h4>Advertissements</h4>
                     </div>
                     <div>
-                        <img th:src="@{/img/Maharshi-logo.jpg}" src="/img/Maharshi-logo.jpg" alt="an iamge">
+                        <img th:src="@{/img/Maharshi-logo.jpg}" src="../img/Maharshi-logo.jpg" alt="ads">
                     </div>
-                </div>
-            </div>
+
+              </div>
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                 <h3 th:if="${result != null}" th:text="${result}" class="text-info"></h3>
                 <!-- category-products-area-start -->

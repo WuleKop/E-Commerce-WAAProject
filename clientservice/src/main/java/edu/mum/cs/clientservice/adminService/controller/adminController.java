@@ -23,6 +23,11 @@ public class adminController {
     }
     @GetMapping("/admin/mainpanel/reviews")
     public String manageReviews(){
+
         return "admin/reviews";
+    }
+    @GetMapping("/admin/403")
+    public String error403() {
+        return "/admin/403";
     }
 }
