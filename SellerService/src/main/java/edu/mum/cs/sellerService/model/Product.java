@@ -39,18 +39,18 @@ public class Product {
     private String status;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
-    @ManyToMany
-    private List<Order> orders = new ArrayList<>();
-
-    public void addOrder(Order order) {
-        if(orders.add(order)) {
-            order.addProduct(this);
-        }
-    }
-    public void removeOrder (Order order) {
-        if(orders.remove(order)) {
-            order.addProduct(null);
-        }
-    }
+//    @ManyToMany
+//    private List<Order> orders = new ArrayList<>();
+//
+//    public void addOrder(Order order) {
+//        if(orders.add(order)) {
+//            order.addProduct(this);
+//        }
+//    }
+//    public void removeOrder (Order order) {
+//        if(orders.remove(order)) {
+//            order.addProduct(null);
+//        }
+//    }
 
 }
