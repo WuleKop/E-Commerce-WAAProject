@@ -3,6 +3,7 @@ package edu.mum.cs.AdminService.controller;
 import edu.mum.cs.AdminService.iservice.AddressService;
 import edu.mum.cs.AdminService.model.Address;
 import edu.mum.cs.AdminService.model.Role;
+import edu.mum.cs.AdminService.model.Status;
 import edu.mum.cs.AdminService.model.User;
 import edu.mum.cs.AdminService.iservice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,10 +85,14 @@ public class UserController {
     public User publicLogin(@PathVariable("email") String emailAddress) {
         User user = userService.findUserByEmail(emailAddress);
         if (user != null) {
-            return user;
+            if(user.getRole().toString().equals(Role.BUYER)) {
+                return user;
+            }
         }
         return null;
     }
+
+
     @GetMapping("/sellers")
     public List<User> sendUserToEveryOne() {
         try {
@@ -109,6 +114,14 @@ public class UserController {
     @GetMapping("/all")
     public List<User> allUsers(){
         return userService.findAll();
+    }
+    @GetMapping("/loggedSeller")
+    public User loggedSeller(@RequestParam("user") User user){
+        User loggedUserr = userService.findUserByEmail(user.getEmail());
+        if(loggedUserr.getRole().equals(Role.SELLER) && (loggedUserr.getActive()==1)){
+            return loggedUserr;
+        }
+        else return null;
     }
 
 }
