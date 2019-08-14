@@ -199,7 +199,7 @@
 									</div>
 								</div>
 								<p class="form-row">
-									<input type="submit" id="btn-seller" value="Create Account"/>
+									<input type="submit"  value="Create Account"/>
 
 								</p>
 
@@ -256,6 +256,7 @@
 	(function () {
 		$('#seller-form').submit(function (evt) {
 			evt.preventDefault();
+			alert("this is a fucking");
 			var data = $('#seller-form').serialize();
 			$.ajax({
 				type: 'post',
@@ -266,7 +267,7 @@
 				success: function (response) {
 					if(response != null){
 						alert("You are Successfully registered");
-						location.href="login";
+						location.href="logon";
 					}else{
 						alert("Sorry an Error Occured please try again later");
 					}

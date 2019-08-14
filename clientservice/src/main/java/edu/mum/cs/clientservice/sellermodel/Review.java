@@ -20,4 +20,5 @@ public class Review {
     private Date date;
     private String status;
     private Long  accountId;
+    private Long productId;
 }
