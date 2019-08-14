@@ -2,6 +2,7 @@ package edu.mum.cs.clientservice.adminService;
 
 
 import edu.mum.cs.clientservice.adminmodel.User;
+import edu.mum.cs.clientservice.sellermodel.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -80,13 +81,17 @@ public class AdminService {
         return  responseEntity.getBody();
 
     }
-    public List<User> allFollowers() {
-        ResponseEntity<List<User>> response = restTemplate.exchange(adminUrl + "/followingSeller", HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {
+    public List<User> allFollowers(User user) {
+
+        HttpEntity<User> request = new HttpEntity<>(user);
+
+        ResponseEntity<List<User>> response = restTemplate.exchange(adminUrl + "/followingSeller", HttpMethod.POST, request, new ParameterizedTypeReference<List<User>>() {
         });
         return  response.getBody();
     }
-    public List<User> allFollowed(){
-        ResponseEntity<List<User>> response = restTemplate.exchange(adminUrl + "/followedSeller", HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {
+    public List<User> allFollowed(User user){
+        HttpEntity<User> request = new HttpEntity<>(user);
+        ResponseEntity<List<User>> response = restTemplate.exchange(adminUrl + "/followedSeller", HttpMethod.GET, request, new ParameterizedTypeReference<List<User>>() {
         });
         return  response.getBody();
     }
