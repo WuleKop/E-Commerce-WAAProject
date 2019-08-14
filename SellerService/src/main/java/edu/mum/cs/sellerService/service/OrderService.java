@@ -5,6 +5,7 @@ import edu.mum.cs.sellerService.model.Order;
 import java.util.List;
 
 public interface OrderService {
+    Order saveOrder(Order order);
     Order save(Order order, Long pId);
     void delete(Long id, Long pId);
     List<Order> getOrderByProductId(Long pId);
