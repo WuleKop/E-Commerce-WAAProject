@@ -8,4 +8,5 @@ public interface OrderService {
     Order getOrder(Long id);
     Order saveOrder(Order order);
     void delete(Long id);
+    List<Order> findOrdersByAccountId(Long id);
   }

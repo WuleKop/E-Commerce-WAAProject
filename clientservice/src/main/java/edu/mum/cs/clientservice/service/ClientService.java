@@ -47,7 +47,10 @@ public class ClientService {
         });
         return  responseEntity.getBody();
     }
-
+//
+//    public getSeller(String email){
+//        ResponseEntity<User> responseEntity=restTemplate.exchange(adminUrl+"/loggedSeller/"+email,HttpMethod.GET,null,User)
+//    }
 
 
 

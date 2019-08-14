@@ -34,6 +34,7 @@ public class adminController {
         return "admin/reviews";
     }
 
+
     @GetMapping("/approved/{email}")
     public String approveSellers(@PathVariable("email") String email){
         User user = adminService.login(email);
@@ -41,11 +42,7 @@ public class adminController {
         adminService.approveSeller(user);
         return "redirect:/admin/home";
     }
+    
 
-//    @GetMapping("/admin/reviews")
-//    public String getSellersProducts(Model model){
-//        List<Product> productList = adminService.getSellerAccount(sId);
-//        return "admin/admin_mainpanel";
-//     }
 
 }
