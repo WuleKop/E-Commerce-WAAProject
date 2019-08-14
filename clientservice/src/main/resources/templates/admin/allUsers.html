@@ -63,8 +63,8 @@
     </nav>
     <div>
       <h4 align="center">List of All Buyers and Sellers</h4>
-      <table class="table">
-        <thead class="thead-light" align="center">
+      <table class="thead-light" align="center">
+        <thead class="thead-light" >
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Name</th>
@@ -75,7 +75,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user, iStat : ${all}" th:style="${iStat.odd}? 'font-weight: bold;'" th:alt-title="${iStat.even}? 'even' : 'odd'">
+        <tr th:each="user,iterationStatus  : ${all}">
+          <td th:text="${iterationStatus.count}">1</td>
           <td th:text="${user.id}" />
           <td th:text="${user.name}" />
           <td th:text="${user.email}" />

@@ -77,9 +77,8 @@
 
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <div class="menu-search-box scnd-fix">
-                        <form action="#">
-                            <input type="text" placeholder="Search here..."/>
-                            <button><span class="lnr lnr-magnifier"></span></button>
+                        <form th:action="@{/shop}">
+                            <button type="submit"  class="btn btn-default login-btn">Explore More Products</button>
                         </form>
                     </div>
                 </div>
@@ -91,9 +90,10 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
+
                     <div class="header-bottom-right-4-inner">
                         <a th:href="@{/account/profile}" th:if="${session.user!=null}">
-                            <span class="lnr lnr-user" th:text="${session.user.lastName}">...</span></a>
+                            <span  th:text="${session.user.lastName}">...</span></a>
                     </div>
                     <div class="header-bottom-right header-bottom-right-4">
                         <div class="shop-cart shop-cart-4">
