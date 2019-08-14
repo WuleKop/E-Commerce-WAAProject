@@ -75,12 +75,14 @@ public class BuyerController {
 
     }
 
+    @PostMapping("/productOrders")
     public String placingOrder(@RequestParam Map<String,String> map,HttpSession session,Model model,RedirectAttributes redirectAttributes){
         try {
             User user = (User) session.getAttribute("user");
             List<ProductOrder> productOrders = (List<ProductOrder>) session.getAttribute("cart");
             Order oldOrder = productOrders.get(0).getOrder();
             oldOrder.setAccountId(user.getId());
+            oldOrder.setQuantity(UtilityClass.totalQuantity(productOrders));
             Order order = productService.postOrder(oldOrder);
             for (ProductOrder productOrder : productOrders) {
                 productOrder.setOrder(order);
