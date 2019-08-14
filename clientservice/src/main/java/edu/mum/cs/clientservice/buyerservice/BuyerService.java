@@ -103,7 +103,7 @@ public class BuyerService {
     }
 
     public List<User> peristedSellers() {
-        ResponseEntity<List<User>> response = restTemplate.exchange(adminUrl + "/sellers", HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {
+        ResponseEntity<List<User>> response = restTemplate.exchange(adminUrl + "/approvedsellers", HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {
         });
         return response.getBody();
     }
