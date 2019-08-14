@@ -17,6 +17,8 @@ public class ProductOrderImpl implements IProductorderService {
 
     @Autowired
     private ProductOrderRepository productOrderRepository;
+    @Autowired
+    private ProductService productService;
 
     @Override
     public ProductOrder newProductOrder(ProductOrder productOrder) {
@@ -30,7 +32,6 @@ public class ProductOrderImpl implements IProductorderService {
 
     @Override
     public List<Order> productOrders(ProductOrder productOrder) {
-        //for()
         return new ArrayList<>();
     }
 
@@ -43,6 +44,7 @@ public class ProductOrderImpl implements IProductorderService {
     public String addProductOrder(List<ProductOrder> productOrders) {
         try {
             for (ProductOrder p : productOrders) {
+                productService.save(p.getProduct());
                 productOrderRepository.save(p);
             }
             return "Saved Successfully";

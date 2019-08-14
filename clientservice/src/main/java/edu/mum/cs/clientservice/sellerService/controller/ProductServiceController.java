@@ -35,7 +35,7 @@ public class ProductServiceController {
         model.addAttribute("images",images);
         return "seller/productDetail";
     }
-    @GetMapping("/update/{pId}")
+    @GetMapping("/updateProduct/{pId}")
     public String getUpdate(@PathVariable Long pId, Model model) {
         model.addAttribute("product", productService.findOne(pId));
         return "seller/updateProduct";

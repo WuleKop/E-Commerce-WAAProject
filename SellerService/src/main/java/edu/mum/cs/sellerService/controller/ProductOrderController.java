@@ -15,7 +15,7 @@ public class ProductOrderController {
     private IProductorderService iProductorderService;
 
     @PostMapping("/purchaseOrders")
-    public String addProductOrders(@RequestBody  List<ProductOrder> productOrders) {
+    public String addProductOrders(@RequestBody List<ProductOrder> productOrders) {
         return iProductorderService.addProductOrder(productOrders);
     }
 }

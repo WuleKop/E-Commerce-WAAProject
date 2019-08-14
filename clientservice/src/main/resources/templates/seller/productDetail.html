@@ -24,7 +24,7 @@
         </div>
 
         <p><a th:href="@{/getSellerProducts/{sId}(sId=${product.sellerId})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Back</a>
-            <a th:href="@{/update/{pId}(pId=${product.id})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Update</a>
+            <a th:href="@{/updateProduct/{pId}(pId=${product.id})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Update</a>
             <a th:href="@{/delete/{pId}(pId=${product.id})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Delete</a>
             <a th:href="@{/getReviews/{pId}(pId=${product.id})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Reviews</a>
         </p>
