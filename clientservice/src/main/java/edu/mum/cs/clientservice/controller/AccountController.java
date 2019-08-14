@@ -38,16 +38,12 @@ public class AccountController {
     }
 
 
-
     @PostMapping("/registration")
     public @ResponseBody
     User createUser(@RequestParam Map<String, String> map) {
-        System.out.println("Test");
-        System.out.println(map.get("confirm"));
-        System.out.println(map.get("password"));
         User user = new User();
         if (map.get("confirm").equals(map.get("password"))) {
-            user.setName(map.get("name"));
+            user.setName(map.get("firstName"));
             user.setLastName(map.get("lastName"));
             user.setEmail(map.get("email"));
             user.setPassword(MessageConverter.getMd5(map.get("password")));
@@ -55,14 +51,13 @@ public class AccountController {
             user.setRole(Role.BUYER);
             user.setAddress(null);
             user.setStatus(Status.APPROVED);
-            clientService.createAccount(user);
+            User savedUser = clientService.createAccount(user);
+            return savedUser;
         } else {
-            System.out.println("Unmatched Password!");
+            return null;
         }
-        return user;
+
     }
-
-
 
 
 }

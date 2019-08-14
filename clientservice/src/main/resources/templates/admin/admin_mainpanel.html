@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css">
     <link rel="stylesheet" th:href="@{/css/mockup.css}" href="../css/mockup.css">
+    <link rel="stylesheet" th:href="@{/css/adminstyle.css}" href="../css/adminstyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script th:src="@{js/approve.js}" src="../js/approve.js" type="text/javascript"></script>
@@ -29,6 +30,7 @@
           <div class="col-md-offset-4">
             <ul class="nav navbar-nav">
 <!--              <li><a th:href="@{/manage_posts}" href="manage_posts.html">Manage sellers</a></li>-->
+              <li><a th:href="@{/admin/home}">Home</a></li>
               <li><a th:href="@{/admin/users}">All Users</a></li>
 <!--              <li><a th:href="@{/post_ads.html}" href="post_ads.html">Post an Add</a></li>-->
               <li><a th:href="@{/admin/reviews}">Reviews</a></li>
@@ -63,10 +65,10 @@
     </nav>
     <div>
       <h4 align="center">List of sellers waiting for approval</h4>
-      <table class="table">
+      <table class="thead-light" align="center">
         <thead class="thead-dark">
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">ID</th>
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Country</th>

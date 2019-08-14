@@ -26,8 +26,8 @@ public class UserController {
     private AddressService addressService;
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public User createNewUser( @RequestBody  User user) {
-        System.out.println(user);
+    public User createNewUser(@RequestBody  User user) {
+        System.out.println("provided user to added in the database system"+user);
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
             return null;
