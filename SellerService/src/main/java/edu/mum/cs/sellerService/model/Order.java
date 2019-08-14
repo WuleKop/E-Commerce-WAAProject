@@ -20,9 +20,9 @@ public class Order {
     private Long id;
     private Long accountId;
     private String orderNumber;
-    @JsonIgnore
-    @ManyToMany(mappedBy = "orders")
-    private List<Product> products = new ArrayList<>();
+//    @JsonIgnore
+//    @ManyToMany(mappedBy = "orders")
+//    private List<Product> products = new ArrayList<>();
     @NotNull
     private Integer quantity;
     private Date orderDate;
@@ -30,8 +30,8 @@ public class Order {
     private Double tax;
     private ShippingStatus shippingStatus;
 
-    public void addProduct(Product product) {
-        products.add(product);
-    }
+//    public void addProduct(Product product) {
+//        products.add(product);
+//    }
 
 }

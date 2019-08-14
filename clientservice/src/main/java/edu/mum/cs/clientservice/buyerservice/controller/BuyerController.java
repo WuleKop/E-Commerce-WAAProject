@@ -49,10 +49,6 @@ public class BuyerController {
 
     @Autowired
     private ProductService productService;
-
-
-
-
     @GetMapping("/shop")
     public String getProductList(Model model){
         model.addAttribute("products",buyerService.allProducts());

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Orders</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/product.css}" href="../css/product.css" type="text/css">
+</head>
+<body>
+<div class="card" th:each="o:${orders}">
+    <div class="card-body">
+        <h5 class="card-title" th:text="'Order umber: '+ ${o.orderNumber}"></h5>
+        <p class="card-text"><small th:text="'Quantity: '+${o.quantity}" style="margin-left: 10px">Rating</small>
+        </p>
+        <p><small class="text-muted" th:text="'User: '+${o.accountId}" style="margin-left: 10px"></small>
+            <small class="text-muted" th:text="'Date: '+${o.orderDate.toString().substring(3,9)+', '+o.orderDate.toString().substring(23)}" style="margin-left: 10px"></small>
+            <small class="text-muted" th:text="'Order Status: '+${o.shippingStatus}" style="margin-left: 10px"></small>
+        </p>
+        <p><a th:href="@{#}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Changing Status</a>
+            <a th:href="@{#}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Cancel</a>
+        </p>
+
+
+    </div>
+</div>
+
+</body>
+</html>

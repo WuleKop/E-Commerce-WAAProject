@@ -15,6 +15,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -71,5 +72,20 @@ public class ProductService {
         ResponseEntity<List<Review>> allReviews = restTemplate.exchange(sellerUrl + "/getReviews/"+id, HttpMethod.GET, null, new ParameterizedTypeReference<List<Review>>() { });
         return allReviews.getBody();
     }
+    public List<Order> getProductOrders(Long pId) {
+        ResponseEntity<List<Order>> allOrders = restTemplate.exchange(sellerUrl + "/getProductOrders/"+pId, HttpMethod.GET, null, new ParameterizedTypeReference<List<Order>>() { });
+
+        return allOrders.getBody();
+    }
+    public Order getOrderById(Long id) {
+        ResponseEntity<Order> order = restTemplate.exchange(sellerUrl+"/getOrder/"+id,HttpMethod.GET,null,Order.class);
+        return  order.getBody();
+    }
+    public Order updateOrder(Order order) {
+        HttpEntity<Order> request = new HttpEntity<>(order);
+        Order order1= restTemplate.postForObject(sellerUrl+"/addOrder", request, Order.class);
+        return order1;
+    }
+
 
 }
