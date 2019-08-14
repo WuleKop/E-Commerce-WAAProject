@@ -37,6 +37,13 @@ public class UserController {
 
     }
 
+    @PostMapping("/approveSeller")
+    public String approveSeller(@RequestBody User user){
+        userService.saveUser(user);
+        System.out.println("seller is approved"+user.getStatus());
+        return "Seller approved";
+    }
+
     @PostMapping("/seller")
     public User createSellerAccount(@RequestBody  User user) {
         System.out.println(user);
@@ -99,7 +106,8 @@ public class UserController {
             List<User> allUsers = userService.findAll();
             List<User> someSellers = new ArrayList<User>();
             for (User myUser : allUsers) {
-                if (myUser.getRole().equals(Role.SELLER) && (myUser.getActive() == 1)) {
+                if (myUser.getRole().equals(Role.SELLER)) {
+                    if(myUser.getStatus().toString().equals(Status.PENDING.toString()))
                     someSellers.add(myUser);
                 }
             }
@@ -123,7 +131,7 @@ public class UserController {
     }
 
     @GetMapping("/approve/sellers")
-    public Boolean approveSeller(User user){
+    public Boolean approvedSeller(User user){
         if(user.getRole().toString().equals(Role.SELLER)){
             if(user.getStatus().toString().equals(Status.PENDING)){
                 user.setStatus(Status.APPROVED);
@@ -135,4 +143,23 @@ public class UserController {
         return false;
     }
 
+    @GetMapping("/approvedsellers")
+    public List<User> approvedSellers() {
+        try {
+            System.out.println("reaching to the admin server");
+
+            List<User> allUsers = userService.findAll();
+            List<User> someSellers = new ArrayList<User>();
+            for (User myUser : allUsers) {
+                if (myUser.getRole().equals(Role.SELLER)) {
+                    if(myUser.getStatus().toString().equals(Status.APPROVED.toString()))
+                        someSellers.add(myUser);
+                }
+            }
+            return someSellers;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
