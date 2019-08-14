@@ -9,11 +9,17 @@ import java.util.List;
 
 @RestController
 public class OrderController {
+
     @Autowired
     private OrderService orderService;
 
-    @PostMapping("/addOrder/{pId}")
-    public Order addOrder(@RequestBody Order order, @PathVariable Long pId ) {
+    @PostMapping("/addOrder")
+    public Order addOrder(@RequestBody Order order) {
+         return orderService.saveOrder(order);
+    }
+
+    @PostMapping("/addProductOrder/{pId}")
+    public Order addProductOrder(@RequestBody Order order, @PathVariable Long pId ) {
         return orderService.save(order, pId);
     }
 

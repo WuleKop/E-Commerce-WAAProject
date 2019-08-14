@@ -19,6 +19,11 @@ public class OrderServiceImpl implements OrderService {
     private ProductService productService;
 
     @Override
+    public Order saveOrder(Order order) {
+        return orderRepository.save(order);
+    }
+
+    @Override
     public Order save(Order order, Long pId) {
         Product p = productService.findById(pId);
         p.addOrder(order);

@@ -10,9 +10,12 @@
 <div class="card" th:each="r:${reviews}">
     <div class="card-body">
         <h5 class="card-title" th:text="${r.description}"></h5>
-        <p th:text="'Rating: '+${r.rating}">
+        <p class="card-text"><small th:text="'Rating: '+${r.rating}" style="margin-left: 10px">Rating</small>
         </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <p><small class="text-muted" th:text="'User: '+${r.accountId}" style="margin-left: 10px"></small>
+            <small class="text-muted" th:text="'Date: '+${r.date.toString().substring(3,9)+', '+r.date.toString().substring(23)}" style="margin-left: 10px"></small>
+        </p>
+
     </div>
 </div>
 
