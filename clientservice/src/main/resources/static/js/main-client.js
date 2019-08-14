@@ -36,9 +36,16 @@ $(document).ready(function () {
             data: data,
             contextType: 'application/json',
             success: function (response) {
-                alert('Account is registered successful!');
+                console.log(response);
+                if(response != null){
+                    alert("You are Successfully registered");
+                    location.href="logon";
+                }else{
+                    alert("Sorry an Error Occured please try again later");
+                }
             },
             error: function (errorObject) {
+                alert(errorObject);
 
             }
         });
@@ -60,24 +67,24 @@ $(document).ready(function () {
     //     });
     //
     // });
-    $('#btn-seller').click(function (evt) {
-        evt.preventDefault();
-        $.ajax({
-            type: 'post',
-            url: '',
-            data: seller_data,
-            dataType: 'json',
-            contextType: 'application/json',
-            success: function (response) {
-                alert('Account is registered successful!');
-            },
-            error: function (errorObject) {
-
-            }
-
-        });
-
-    });
+    // $('#btn-seller').click(function (evt) {
+    //     evt.preventDefault();
+    //     $.ajax({
+    //         type: 'post',
+    //         url: '',
+    //         data: seller_data,
+    //         dataType: 'json',
+    //         contextType: 'application/json',
+    //         success: function (response) {
+    //             alert('Account is registered successful!');
+    //         },
+    //         error: function (errorObject) {
+    //
+    //         }
+    //
+    //     });
+    //
+    // });
 
 
     function showAndHide(toHide, toShow) {
