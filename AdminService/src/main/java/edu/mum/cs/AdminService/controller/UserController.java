@@ -24,10 +24,6 @@ public class UserController {
     @Autowired
     private AddressService addressService;
 
-
-
-
-
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public User createNewUser( @RequestBody  User user) {
         System.out.println(user);
@@ -54,9 +50,6 @@ public class UserController {
         }
 
     }
-
-
-
 
 
     @RequestMapping(value = "/admin/adminHome", method = RequestMethod.GET)
@@ -95,4 +88,16 @@ public class UserController {
         }
         return null;
     }
+    @PostMapping("/sellers")
+    public List<User> sendUserToEveryOne(){
+        List<User> allUsers = userService.findAll();
+        List<User> someSellers = new ArrayList<User>();
+        for(User myUser : allUsers){
+            if(myUser.getRole().equals(Role.SELLER) && (myUser.getActive()==1)){
+               someSellers.add(myUser);
+            }
+        }
+        return someSellers;
+    }
+
 }
