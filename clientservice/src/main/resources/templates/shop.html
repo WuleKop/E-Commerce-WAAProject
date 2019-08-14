@@ -58,7 +58,8 @@
                     <div class="header-top-left">
                         <ul>
                             <li><a th:href="@{/logon}">Sign In</a></li>
-                            <li class="click_menu"><a class="ln lnr-user" href="#" >My Account<i class="fa fa-angle-down"></i></a>
+                            <li class="click_menu"><a class="ln lnr-user" href="#">My Account<i
+                                    class="fa fa-angle-down"></i></a>
                                 <ul class="click_menu_show">
                                     <li><a th:href="@{/logout}">Sign out</a></li>
                                 </ul>
@@ -83,16 +84,20 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-
+                    <div th:if="${result != null}">
+                        <br/>
+                        <h3  th:text="${result}" class="text-info"></h3>
+                        <a href="/receipt" class="btn btn-sm btn-primary" target="_blank">Print Receipt</a>
+                    </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
                     <div class="header-bottom-right-4-inner">
                         <a th:href="@{/account/profile}" th:if="${session.user!=null}">
-                            <span class="lnr lnr-user"   th:text="${session.user.lastName}">...</span></a>
+                            <span class="lnr lnr-user" th:text="${session.user.lastName}">...</span></a>
                     </div>
                     <div class="header-bottom-right header-bottom-right-4">
                         <div class="shop-cart shop-cart-4">
-                            <a href="#"><span class="lnr lnr-cart" > </span></a>
+                            <a href="#"><span class="lnr lnr-cart"> </span></a>
                         </div>
                         <div class="shop-cart-hover shop-cart-hover-4 fix">
                             <ul>
@@ -142,28 +147,44 @@
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <div class="bedroom-sideber">
                     <div class="bedroom-title text-uppercase">
-                        <h4>Advertissement</h4>
+                        <h4>Follow Sellers</h4>
                     </div>
-                    <div>
-                        <img th:src="@{/img/Maharshi-logo.jpg}" src="/img/Maharshi-logo.jpg" alt="an iamge">
+                    <div class="category-area-start">
+                        <div class="caregory">
+                            <div class="your-order">
+                                <div class="your-order-table table-responsive">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th class="product-name">Suggestions</th>
+                                            <th class="product-total"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr class="cart_item" th:each="seller: ${sellers}">
+                                            <td class="product-name" th:text="${seller.lastName}">
+
+                                            </td>
+                                            <td class="product-total">
+                                                <button type="button" class="btn btn-outline-primary">Follow</button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                <h3 th:if="${result != null}" th:text="${result}" class="text-info"></h3>
+
                 <!-- category-products-area-start -->
                 <div class="caregory-products-area">
                     <div class="row">
-                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                            <ul class="tab_menu">
-                                <li class="active"><a href="#viewed" data-toggle="tab"><i class="fa fa-th"></i></a></li>
-                                <!--<li><a href="#random " data-toggle="tab"><i class="fa fa-list"></i></a></li>-->
-                            </ul>
-                        </div>
                         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
                             <div class="product-option">
                                 <div class="porduct-option-left floatleft">
-                                    <span> Items 1-16 of 17</span>
                                 </div>
                                 <div class="product-option-right floatright">
                                     <div class="sort-by">
@@ -197,7 +218,8 @@
                                     <div class="single-new-product mt-40 category-new-product">
                                         <div class="product-img">
                                             <a th:href="${'shop/'+product.id}">
-                                                <img th:src="@{'/images/'+${@utilityClass.choosenOne(product.pictureUrls)}}" class="first_img" alt=""/>
+                                                <img th:src="@{'/images/'+${@utilityClass.choosenOne(product.pictureUrls)}}"
+                                                     class="first_img" alt=""/>
 
                                             </a>
                                             <div class="new-product-action">

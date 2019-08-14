@@ -8,14 +8,35 @@ import edu.mum.cs.clientservice.sellermodel.Order;
 import edu.mum.cs.clientservice.sellermodel.Product;
 import edu.mum.cs.clientservice.sellermodel.ProductOrder;
 import edu.mum.cs.clientservice.sellermodel.ShippingStatus;
+import edu.mum.cs.clientservice.utility.ReportGenerating;
 import edu.mum.cs.clientservice.utility.UtilityClass;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import java.util.*;
@@ -26,15 +47,14 @@ public class BuyerController {
     @Autowired
     private BuyerService buyerService;
 
+
+
     @Autowired
     private ProductService productService;
-
-
-
-
     @GetMapping("/shop")
     public String getProductList(Model model){
         model.addAttribute("products",buyerService.allProducts());
+        model.addAttribute("sellers",buyerService.peristedSellers());
         return "shop";
     }
 
@@ -60,7 +80,12 @@ public class BuyerController {
                 order = new Order();
                 order.setOrderNumber(UUID.randomUUID().toString().split("-")[0]);
             }
+
             Product product = productService.findOne(Long.parseLong(map.get("productId")));
+            if(product.getStockQuantity() < Integer.parseInt(map.get("quantity"))){
+                redirectAttributes.addFlashAttribute("Error" ,"Sorry ,no enough products in the stock");
+                return "redirect:/shop/"+map.get("productId");
+            }
             productOrders = buyerService.addProductOrder(product, order, Integer.parseInt(map.get("quantity")), productOrders);
             session.setAttribute("cart", productOrders);
             model.addAttribute("cart", productOrders);
@@ -91,7 +116,7 @@ public class BuyerController {
 
             String result = productService.peristedProductorder(productOrders);
             redirectAttributes.addFlashAttribute("result","Order is successfully placed,please print the receipt info");
-            session.removeAttribute("cart");
+
             return  "redirect:/shop";
         }catch (Exception e){
             e.printStackTrace();
@@ -99,6 +124,24 @@ public class BuyerController {
             return  "redirect:/checkout";
         }
 
+    }
+
+    @RequestMapping(value = "/receipt", method = RequestMethod.GET, produces = "application/pdf")
+    public ResponseEntity<InputStreamResource> taskReports(HttpSession session) throws Exception {
+
+        List<ProductOrder> productOrders = (List<ProductOrder>) session.getAttribute("cart");
+        User user = (User) session.getAttribute("user");
+        ByteArrayInputStream bytes = ReportGenerating.receipt(productOrders,productOrders.get(0).getOrder(),user);
+        session.removeAttribute("cart");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        headers.add("Pragma", "no-cache");
+        headers.add("Expires", "0");
+        headers.add("Content-Disposition", "inline; filename=projectTasks.pdf");
+
+        return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(bytes));
     }
 
 

@@ -4,11 +4,14 @@ package edu.mum.cs.clientservice.service;
 import edu.mum.cs.clientservice.adminmodel.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.lang.model.element.Parameterizable;
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Service
@@ -37,6 +40,12 @@ public class ClientService {
         ResponseEntity<User> responseEntity = restTemplate.postForEntity(adminUrl+"/registration",user,User.class);
         return  responseEntity.getBody();
 
+    }
+
+    public List<User> getSellers(){
+        ResponseEntity<List<User>> responseEntity=restTemplate.exchange(adminUrl + "/sellers", HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {
+        });
+        return  responseEntity.getBody();
     }
 
 
