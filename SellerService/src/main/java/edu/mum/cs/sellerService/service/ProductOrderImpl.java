@@ -19,6 +19,8 @@ public class ProductOrderImpl implements IProductorderService {
     private ProductOrderRepository productOrderRepository;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private OrderService orderService;
 
     @Override
     public ProductOrder newProductOrder(ProductOrder productOrder) {
@@ -58,5 +60,11 @@ public class ProductOrderImpl implements IProductorderService {
     public List<ProductOrder> getProductOrderOfProduct(Long pId) {
         Product product = productService.findById(pId);
         return productOrderRepository.findAllProductOrdersOfProduct(product);
+    }
+
+    @Override
+    public List<ProductOrder> getProductByOrderId(Long oId) {
+        Order order = orderService.getOrder(oId);
+        return productOrderRepository.getProductByOrderId(order);
     }
 }

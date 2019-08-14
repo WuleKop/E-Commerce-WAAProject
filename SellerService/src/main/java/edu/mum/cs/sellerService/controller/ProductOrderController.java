@@ -1,6 +1,7 @@
 package edu.mum.cs.sellerService.controller;
 
 import edu.mum.cs.sellerService.model.Order;
+import edu.mum.cs.sellerService.model.Product;
 import edu.mum.cs.sellerService.model.ProductOrder;
 import edu.mum.cs.sellerService.service.IProductorderService;
 import org.springframework.beans.factory.annotation.Autowired;

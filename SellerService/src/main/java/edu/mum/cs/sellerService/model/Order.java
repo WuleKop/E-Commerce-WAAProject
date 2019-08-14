@@ -3,6 +3,7 @@ package edu.mum.cs.sellerService.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -25,6 +26,8 @@ public class Order {
 //    private List<Product> products = new ArrayList<>();
     @NotNull
     private Integer quantity;
+    @DateTimeFormat(pattern = "MM-DD-YYYY")
+    @Temporal(value = TemporalType.DATE)
     private Date orderDate;
     private Long paymentId;
     private Double tax;
