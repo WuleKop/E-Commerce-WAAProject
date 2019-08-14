@@ -1,16 +1,20 @@
 package edu.mum.cs.clientservice.sellerService.controller;
 
 import edu.mum.cs.clientservice.sellerService.ProductService;
+import edu.mum.cs.clientservice.sellermodel.Order;
 import edu.mum.cs.clientservice.sellermodel.Product;
 import edu.mum.cs.clientservice.sellermodel.Review;
+import edu.mum.cs.clientservice.sellermodel.ShippingStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ProductServiceController {
@@ -54,12 +58,23 @@ public class ProductServiceController {
     @GetMapping("/getProductOrders/{pId}")
     public String getProductOrders(@PathVariable Long pId, Model model) {
         model.addAttribute("orders", productService.getProductOrders(pId));
+        model.addAttribute("pId",pId);
         return "seller/productOrders";
     }
-    @GetMapping("/updateOrder/{oId}")
-    private String updateOrder(@PathVariable Long oId, Model model) {
-        model.addAttribute("order", productService.getOrderById(oId));
+    @GetMapping("/updateOrder/{oId}/{pId}")
+    private String updateOrder(@PathVariable Long oId, @PathVariable Long pId, Model model) {
+        Order o = productService.getOrderById(oId);
+        model.addAttribute("order",o);
+        model.addAttribute("pId",pId);
         return "seller/updateOrder";
+    }
+    @PostMapping("/testUpdateOrder")
+    public String updateOrder(@RequestParam Map<String,String> map, Model model ) {
+        Order o = productService.getOrderById(Long.parseLong(map.get("oId")));
+        o.setShippingStatus(ShippingStatus.valueOf(map.get("status")));
+        productService.updateOrder(o);
+        model.addAttribute("pId", Long.parseLong(map.get("pId")));
+        return "seller/orderStatusUpdated";
     }
 
 }

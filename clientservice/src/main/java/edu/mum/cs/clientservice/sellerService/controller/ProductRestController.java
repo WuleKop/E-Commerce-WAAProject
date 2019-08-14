@@ -4,10 +4,12 @@ package edu.mum.cs.clientservice.sellerService.controller;
 import edu.mum.cs.clientservice.sellerService.ProductService;
 import edu.mum.cs.clientservice.sellermodel.Order;
 import edu.mum.cs.clientservice.sellermodel.Product;
+import edu.mum.cs.clientservice.sellermodel.ShippingStatus;
 import edu.mum.cs.clientservice.utility.UploadingImage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 public class ProductRestController {
@@ -25,8 +27,5 @@ public class ProductRestController {
         }catch (Exception e){e.printStackTrace();}
         return  null;
     }
-    @PostMapping("/testUpdateOrder")
-    public Order updateOrder(Order order) {
-        return productService.updateOrder(order);
-    }
+
 }
