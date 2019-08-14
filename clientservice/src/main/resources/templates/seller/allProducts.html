@@ -14,20 +14,19 @@
         <div class="card mb-3" >
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <img src="..." class="card-img" alt="Product">
+                    <img th:src="@{'/images/'+${@utilityClass.choosenOne(p.pictureUrls)}}" class="card-img" alt="Product" style="margin-top: 50px; margin-left: 5px">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${p.name}">Product Name</h5>
-<!--                        <p class="card-text"><small th:text="${p.description}">Product Description</small></p>-->
                         <p class="card-text"><small th:text="'Manufactured Date: '+ ${p.manufacturedDate.toString().substring(3,9)+', '+p.manufacturedDate.toString().substring(23)}">Manufactured Date</small></p>
                         <p class="card-text"><small th:text="'Quantity: '+${p.stockQuantity}">Stock Quantity</small></p>
                         <p class="card-text"><small class="text-muted" th:text="'Price: $'+${p.price}">Price</small></p>
                     </div>
                 </div>
                 <p><a th:href="@{/getProduct/{pId}(pId=${p.id})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Details</a>
-                    <a th:href="@{/update/{pId}(pId=${p.id})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Update</a>
-                    <a th:href="@{/getProduct/{pId}(pId=${p.id})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Delete</a></p>
+
+                </p>
             </div>
         </div>
     </div>
