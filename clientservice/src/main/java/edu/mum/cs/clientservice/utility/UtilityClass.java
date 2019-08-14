@@ -22,4 +22,8 @@ public class UtilityClass {
         }
         return  total;
     }
+
+    public static Integer totalQuantity(List<ProductOrder> orders){
+        return  orders.stream().mapToInt(x-> x.getQuantity()).sum();
+    }
 }
