@@ -31,14 +31,5 @@ public class adminController {
         return "admin/reviews";
     }
 
-//    @GetMapping("/admin/reviews")
-//    public String getSellersProducts(Model model){
-<<<<<<< HEAD
-// //       List<Product> productList = adminService.getSellerAccount(sId);
-=======
-//        List<Product> productList = adminService.getSellerAccount(sId);
->>>>>>> 5042203886eb3cb449e36f37d23e365d5dde0283
-//        return "admin/admin_mainpanel";
-//     }
 
 }

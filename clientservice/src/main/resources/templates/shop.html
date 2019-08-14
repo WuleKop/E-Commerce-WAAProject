@@ -58,13 +58,15 @@
                     <div class="header-top-left">
                         <ul>
                             <li><a th:href="@{/logon}">Sign In</a></li>
-                            <li class="click_menu"><a class="ln lnr-user" href="#">My Account<i
-                                    class="fa fa-angle-down"></i></a>
+                            <li class="click_menu"><a href="#" >My Account <i class="fa fa-angle-down"></i></a>
+
                                 <ul class="click_menu_show">
+                                    <li><a th:href="@{/account/profile}">My Profile</a></li>
                                     <li><a th:href="@{/logout}">Sign out</a></li>
                                 </ul>
                             </li>
-                            <li><a th:href="@{/account/register}">Create an Account</a></li>
+                            </li>
+                            <li><a th:href="@{/register}">Create an Account</a></li>
                         </ul>
                     </div>
                 </div>
@@ -93,7 +95,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
                     <div class="header-bottom-right-4-inner">
                         <a th:href="@{/account/profile}" th:if="${session.user!=null}">
-                            <span class="lnr lnr-user" th:text="${session.user.lastName}">...</span></a>
+                            <span th:text="${'Welcome '+session.user.lastName}">...</span></a>
                     </div>
                     <div class="header-bottom-right header-bottom-right-4">
                         <div class="shop-cart shop-cart-4">
@@ -140,7 +142,6 @@
     </div>
     <br>
 </header>
-
 <div class="bedroom-all-product-area ptb-80">
     <div class="container">
         <div class="row">

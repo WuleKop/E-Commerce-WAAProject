@@ -40,39 +40,47 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(@RequestParam Map<String, String> map, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
-       User user = clientService.login(map.get("email"));
-      // User user=new User();
 
-        if(user != null) {
-            if (MessageConverter.getMd5(map.get("password")).equals(user.getPassword())) { session.setAttribute("user", user);
-               if(user.getRole().toString().equals(Role.BUYER.toString())) {
-                   if (session.getAttribute("cart") == null) {
-                       return "redirect:/shop";
-                   } else {
-                       return "redirect:/checkout";
-                   }
-               }else if(user.getRole().toString().equals(Role.SELLER.toString())){
+        if (map.get("email") == null || map.get("email") == "" || map.get("password") == null || map.get("password") == "") {
+            model.addAttribute("error", "Please fill mandatory fields");
+           // return "redirect:/logon";
+            return "customer-login";
+        } else {
+            User user = clientService.login(map.get("email"));
+            // User user=new User();
 
-                   return "redirect:/getSellerProducts/"+user.getId();
-               }else{
-                   System.out.println("first");
-                   redirectAttributes.addFlashAttribute("error","Unkown user role");
-                   return "redirect:/logon";
-               }
+            if (user != null) {
+                if (MessageConverter.getMd5(map.get("password")).equals(user.getPassword())) {
+                    session.setAttribute("user", user);
+                    if (user.getRole().toString().equals(Role.BUYER.toString())) {
+                        if (session.getAttribute("cart") == null) {
+                            return "redirect:/shop";
+                        } else {
+                            return "redirect:/checkout";
+                        }
+                    } else if (user.getRole().toString().equals(Role.SELLER.toString())) {
 
+                        return "redirect:/getSellerProducts/" + user.getId();
+                    } else {
+                        System.out.println("first");
+                        redirectAttributes.addFlashAttribute("error", "Unknown user role");
+                        return "redirect:/logon";
+                    }
+
+                } else {
+                    System.out.println("third");
+                    session.invalidate();
+                    redirectAttributes.addFlashAttribute("error", "Invalid username or password");
+                    return "redirect:/logon";
+
+                }
             } else {
-                System.out.println("third");
-                session.invalidate();
-                redirectAttributes.addFlashAttribute("error","Invalid username or pasword");
+                System.out.println("fourth" + map.get("email") + " user name :");
+                redirectAttributes.addFlashAttribute("error", "Invalid username or password");
                 return "redirect:/logon";
-
             }
-        }else{
-            System.out.println("fourth"+map.get("email")+" user name :");
-            redirectAttributes.addFlashAttribute("error","Invalid username or password");
-            return  "redirect:/logon";
-        }
 
+        }
     }
 
 }
