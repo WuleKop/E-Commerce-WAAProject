@@ -43,6 +43,11 @@ public class AdminService {
 
    }
 
+   public String approveSeller(User user){
+       ResponseEntity<String> responseEntity = restTemplate.postForEntity(adminUrl+"/approveSeller",user,String.class);
+       return  responseEntity.getBody();
+   }
+
    public User createAccountForSeller(User user){
        HttpEntity<User> request = new HttpEntity<>(user);
        User user1 = restTemplate.postForObject(adminUrl+"/seller", request, User.class);
@@ -75,4 +80,15 @@ public class AdminService {
         return  responseEntity.getBody();
 
     }
+    public List<User> allFollowers() {
+        ResponseEntity<List<User>> response = restTemplate.exchange(adminUrl + "/followingSeller", HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {
+        });
+        return  response.getBody();
+    }
+    public List<User> allFollowed(){
+        ResponseEntity<List<User>> response = restTemplate.exchange(adminUrl + "/followedSeller", HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {
+        });
+        return  response.getBody();
+    }
+
 }
