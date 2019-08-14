@@ -26,10 +26,10 @@ public class AdvertissementService {
     //@Value("${buyer.client}")
     private String buyerUrl;
 
-//    public List<Advertissement> sellerProducts(Long sId) {
-//        ResponseEntity<List<Advertissement>> allProducts = restTemplate.exchange(sellerUrl + "/getSellerProducts/"+sId, HttpMethod.GET, null, new ParameterizedTypeReference<List<Advertissement>>() {
+//    public List<Advertissement> adminAdvertissements(Long aId) {
+//        ResponseEntity<List<Advertissement>> allAdvertissements = restTemplate.exchange(adminUrl + "/getAdminAdvertissements/"+aId, HttpMethod.GET, null, new ParameterizedTypeReference<List<Advertissement>>() {
 //        });
-//        return allProducts.getBody();
+//        return allAdvertissements.getBody();
 //    }
 
     public Advertissement findOne(Long id){

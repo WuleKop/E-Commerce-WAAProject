@@ -37,7 +37,9 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(@RequestParam Map<String, String> map,Model model,HttpSession session) {
-        User user = clientService.login(map.get("email"));
+       User user = clientService.login(map.get("email"));
+      // User user=new User();
+
         if(user != null) {
             if (MessageConverter.getMd5(map.get("password")).equals(user.getPassword())) {
                 session.setAttribute("user", user);
@@ -49,11 +51,13 @@ public class LoginController {
 
             } else {
                 session.invalidate();
-                return "Invalid Password";
+                model.addAttribute("error","Invalid Password");
+                return "redirect:/logon";
 
             }
         }else{
-            return  "UNknown user";
+            model.addAttribute("error","Unknown User");
+            return  "redirect:/logon";
         }
 
     }
