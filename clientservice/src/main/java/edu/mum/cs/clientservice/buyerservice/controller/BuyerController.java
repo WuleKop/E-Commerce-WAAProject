@@ -60,7 +60,12 @@ public class BuyerController {
                 order = new Order();
                 order.setOrderNumber(UUID.randomUUID().toString().split("-")[0]);
             }
+
             Product product = productService.findOne(Long.parseLong(map.get("productId")));
+            if(product.getStockQuantity() < Integer.parseInt(map.get("quantity"))){
+                redirectAttributes.addFlashAttribute("Error" ,"Sorry ,no enough products in the stock");
+                return "redirect:/shop/"+map.get("productId");
+            }
             productOrders = buyerService.addProductOrder(product, order, Integer.parseInt(map.get("quantity")), productOrders);
             session.setAttribute("cart", productOrders);
             model.addAttribute("cart", productOrders);
