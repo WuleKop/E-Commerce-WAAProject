@@ -53,6 +53,7 @@ public class BuyerController {
     public String getProductList(Model model){
         model.addAttribute("products",buyerService.allProducts());
         model.addAttribute("sellers",buyerService.peristedSellers());
+        model.addAttribute("ads",buyerService.getAllAds());
         return "shop";
     }
 
