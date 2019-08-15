@@ -72,8 +72,7 @@
                     <td th:text="${order.shippingStatus}"></td>
                     <td><a href="#" class="btn btn-primary btn-sm">print <i class="fa fa-print"></i></a></td>
                     <td>
-                        <a href="#" class="btn btn-danger btn-sm" th:if="${order.shippingStatus == 'NEW'}">cancel <i class="fa fa-ban"></i></a>
-                        <a href="#" class="btn btn-danger btn-sm" th:if="${order.shippingStatus == 'NEW'}">cancel <i class="fa fa-ban"></i></a>
+                        <a th:href="@{'/deleteOrder/'+${order.id}}" class="btn btn-danger btn-sm" th:if="${order.shippingStatus == 'NEW'}">cancel <i class="fa fa-ban"></i></a>
                     </td>
                 </tr>
 
