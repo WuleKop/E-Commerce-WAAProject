@@ -145,6 +145,7 @@ public class UserController {
         return false;
     }
 
+
     @GetMapping("/approvedsellers")
     public List<User> approvedSellers() {
         try {

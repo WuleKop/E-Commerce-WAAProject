@@ -32,11 +32,7 @@ public class adminController {
             model.addAttribute("all",adminService.AllUsers());
             return "admin/allUsers";
     }
-    @GetMapping("/admin/reviews")
-    public String manageReviews(Model model) {
-        model.addAttribute("all", adminService.AllUsers());
-        return "admin/reviews";
-    }
+
 
 
     @GetMapping("/approved/{email}")
@@ -48,14 +44,16 @@ public class adminController {
         return "redirect:/admin/home";
     }
 
-//    @GetMapping("/review/approve/{id}")
-//    public String approveReviews(@PathVariable("id") String reviewId){
-//
-//    }
+    @GetMapping("/admin/reviews")
+    public String approveReviews(Model model){
+       List<Review> reviews = adminService.UnapprovedReview();
+       model.addAttribute("reviews",reviews);
+       return "admin/reviews";
+    }
+
+
     @GetMapping("/admin/uploadads")
     public String uploadAds(){
-
-
         return "admin/advertUpload";
     }
 
