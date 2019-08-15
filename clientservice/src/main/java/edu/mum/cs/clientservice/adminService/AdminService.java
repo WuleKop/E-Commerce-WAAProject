@@ -1,7 +1,7 @@
 package edu.mum.cs.clientservice.adminService;
 
 
-import edu.mum.cs.clientservice.adminmodel.Follower;
+
 import edu.mum.cs.clientservice.adminmodel.User;
 import edu.mum.cs.clientservice.sellermodel.Product;
 import org.springframework.beans.factory.annotation.Autowired;
