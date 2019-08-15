@@ -19,6 +19,16 @@ public class ReviewServiceImpl implements ReviewService {
     private ProductService productService;
 
     @Override
+    public Review getById(Long id) {
+        return reviewRepository.findById(id).get();
+    }
+
+    @Override
+    public Review update(Review review) {
+        return reviewRepository.save(review);
+    }
+
+    @Override
     public Review save(Review review, Long pId) {
         Product p = productService.findById(pId);
         p.getReviews().add(review);

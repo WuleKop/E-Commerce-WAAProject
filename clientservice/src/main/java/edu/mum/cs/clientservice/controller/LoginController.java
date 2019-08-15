@@ -31,6 +31,11 @@ public class LoginController {
         return "customer-login";
     }
 
+    @GetMapping("/")
+    public  String welcome(){
+        return "redirect:/shop";
+    }
+
     @GetMapping("/test")
     public String test(){
         return "testcorausel";

@@ -32,6 +32,14 @@ public class ReviewController {
     public List<Review> getUnapprovedReviews() {
         return reviewService.getUnapprovedReviews();
     }
+    @PostMapping("/updateReview")
+    public Review updateReview(@RequestBody Review review) {
+        return reviewService.update(review);
+    }
+    @GetMapping("/getReviewById/{rId}")
+    public Review getReviewsById(@PathVariable Long rId) {
+        return reviewService.getById(rId);
+    }
 
 
 }
