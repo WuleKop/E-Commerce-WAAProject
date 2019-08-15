@@ -171,6 +171,24 @@ public class BuyerController {
                 .body(new InputStreamResource(bytes));
     }
 
+    @RequestMapping(value = "/orderreceipt/{orderId}", method = RequestMethod.GET, produces = "application/pdf")
+    public ResponseEntity<InputStreamResource> taskReports(@PathVariable("orderId") Long id,HttpSession session) throws Exception {
+
+        List<ProductOrder> productOrders = productService.productOrders(id);
+        User user = (User) session.getAttribute("user");
+        ByteArrayInputStream bytes = ReportGenerating.receipt(productOrders,productOrders.get(0).getOrder(),user);
+        session.removeAttribute("cart");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        headers.add("Pragma", "no-cache");
+        headers.add("Expires", "0");
+        headers.add("Content-Disposition", "inline; filename=projectTasks.pdf");
+
+        return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(bytes));
+    }
+
 
     @GetMapping("/myorders")
     public String buyerOrders(HttpSession session,Model model,RedirectAttributes redirectAttributes){
@@ -183,7 +201,7 @@ public class BuyerController {
         return "redirect:/logon";
     }
 
-    @DeleteMapping("/deleteOrder/{orderId}")
+    @GetMapping("/deleteOrder/{orderId}")
     public String deleteOrder(@PathVariable("orderId") Long id){
         productService.deleteFromOrder(id);
         return "redirect:/myorders";

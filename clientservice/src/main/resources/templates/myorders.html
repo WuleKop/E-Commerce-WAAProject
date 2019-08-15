@@ -70,9 +70,9 @@
                     <th scope="row" th:text="${order.orderNumber.toUpperCase()}"></th>
                     <td th:text="${#dates.format(order.orderDate, 'MMM dd,yyyy')}"></td>
                     <td th:text="${order.shippingStatus}"></td>
-                    <td><a href="#" class="btn btn-primary btn-sm">print <i class="fa fa-print"></i></a></td>
+                    <td><a th:href="@{'/orderreceipt/'+${order.id}}" target="_blank" class="btn btn-primary btn-sm">print <i class="fa fa-print"></i></a></td>
                     <td>
-                        <a th:href="@{'/deleteOrder/'+${order.id}}" class="btn btn-danger btn-sm" th:if="${order.shippingStatus == 'NEW'}">cancel <i class="fa fa-ban"></i></a>
+                        <a th:href="@{'/deleteOrder/'+${order.id}}" class="btn btn-danger btn-sm" th:if="${order.shippingStatus.toString().equals('New')}">cancel <i class="fa fa-ban"></i></a>
                     </td>
                 </tr>
 
