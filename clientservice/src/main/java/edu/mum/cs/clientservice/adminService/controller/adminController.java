@@ -4,6 +4,7 @@ import edu.mum.cs.clientservice.adminService.AdminService;
 import edu.mum.cs.clientservice.adminmodel.Status;
 import edu.mum.cs.clientservice.adminmodel.User;
 import edu.mum.cs.clientservice.sellermodel.Product;
+import edu.mum.cs.clientservice.utility.UtilityClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +41,7 @@ public class adminController {
         User user = adminService.login(email);
         user.setStatus(Status.APPROVED);
         adminService.approveSeller(user);
+        UtilityClass.sendingEmailApprove(user);
         return "redirect:/admin/home";
     }
 
