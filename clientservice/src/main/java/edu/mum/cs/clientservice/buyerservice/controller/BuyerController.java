@@ -1,7 +1,6 @@
 package edu.mum.cs.clientservice.buyerservice.controller;
 
 
-
 import edu.mum.cs.clientservice.adminmodel.User;
 import edu.mum.cs.clientservice.buyerservice.BuyerService;
 import edu.mum.cs.clientservice.sellerService.ProductService;
@@ -49,6 +48,7 @@ public class BuyerController {
 
     @Autowired
     private ProductService productService;
+
     @GetMapping("/shop")
     public String getProductList(Model model){
         model.addAttribute("products",buyerService.allProducts());
@@ -75,6 +75,8 @@ public class BuyerController {
         model.addAttribute("reviews",reviews);
         return "productreviews";
     }
+
+
 
     @PostMapping("/addReview")
     public String postReview(@RequestParam Map<String,String> map,HttpSession session){
@@ -166,6 +168,42 @@ public class BuyerController {
 
         return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
                 .body(new InputStreamResource(bytes));
+    }
+
+    @RequestMapping(value = "/orderreceipt/{orderId}", method = RequestMethod.GET, produces = "application/pdf")
+    public ResponseEntity<InputStreamResource> taskReports(@PathVariable("orderId") Long id,HttpSession session) throws Exception {
+
+        List<ProductOrder> productOrders = productService.productOrders(id);
+        User user = (User) session.getAttribute("user");
+        ByteArrayInputStream bytes = ReportGenerating.receipt(productOrders,productOrders.get(0).getOrder(),user);
+        session.removeAttribute("cart");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        headers.add("Pragma", "no-cache");
+        headers.add("Expires", "0");
+        headers.add("Content-Disposition", "inline; filename=projectTasks.pdf");
+
+        return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(bytes));
+    }
+
+
+    @GetMapping("/myorders")
+    public String buyerOrders(HttpSession session,Model model,RedirectAttributes redirectAttributes){
+        if(session.getAttribute("user") != null){
+            User user = (User) session.getAttribute("user");
+            model.addAttribute("orders",productService.getAccountsOrders(user.getId()));
+            return "myorders";
+        }
+        redirectAttributes.addFlashAttribute("error","you need to login to access your orders");
+        return "redirect:/logon";
+    }
+
+    @GetMapping("/deleteOrder/{orderId}")
+    public String deleteOrder(@PathVariable("orderId") Long id){
+        productService.deleteFromOrder(id);
+        return "redirect:/myorders";
     }
 
 
