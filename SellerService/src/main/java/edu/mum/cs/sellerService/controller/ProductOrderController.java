@@ -35,7 +35,7 @@ public class ProductOrderController {
         iProductorderService.deleteFromOrder(id);
     }
 
-    @GetMapping("/order/{productId}")
+    @GetMapping("/order/{orderId}")
     public List<ProductOrder> productOrdersByOrder(@PathVariable("orderId") Long id){
         return  iProductorderService.getProductByOrderId(id);
     }

@@ -26,7 +26,7 @@ public class AdsController {
     public Advertissement savingAdvertissement(@RequestBody  Advertissement advertissement){
         return  advertissementService.save(advertissement);
     }
-    @GetMapping("/getAllAdds")
+    @GetMapping("/getAllAds")
     public List<Advertissement> getAllAds() {
         return advertissementService.getAllAdvertissements();
     }

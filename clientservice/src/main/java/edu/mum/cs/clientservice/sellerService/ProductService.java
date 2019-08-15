@@ -105,4 +105,11 @@ public class ProductService {
         restTemplate.delete(sellerUrl+"/deleteFromOrder/"+id);
     }
 
+    public List<ProductOrder> productOrders(Long id){
+        System.out.println("Sent id :"+id);
+        ResponseEntity<List<ProductOrder>> responseEntity = restTemplate.exchange(sellerUrl + "/order/"+id, HttpMethod.GET, null, new ParameterizedTypeReference<List<ProductOrder>>() {
+        });
+        return responseEntity.getBody();
+    }
+
 }

@@ -1,9 +1,10 @@
 package edu.mum.cs.clientservice.adminService;
 
 
-import edu.mum.cs.clientservice.adminmodel.Follower;
+
 import edu.mum.cs.clientservice.adminmodel.User;
 import edu.mum.cs.clientservice.sellermodel.Product;
+import edu.mum.cs.clientservice.sellermodel.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -93,6 +94,14 @@ public class AdminService {
         });
         return  response.getBody();
     }
+
+    public List<Review> UnapprovedReview(Long id) {
+        ResponseEntity<List<Review>> response = restTemplate.exchange(sellerUrl + "/getUnapprovedReviews", HttpMethod.GET, null, new ParameterizedTypeReference<List<Review>>() {
+
+        });
+        return response.getBody();
+    }
+
 
 
 }

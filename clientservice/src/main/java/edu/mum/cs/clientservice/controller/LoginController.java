@@ -67,8 +67,6 @@ public class LoginController {
                     }
 
                 } else {
-                    System.out.println("third");
-                    session.invalidate();
                     redirectAttributes.addFlashAttribute("error", "Invalid username or password");
                     return "redirect:/logon";
 
