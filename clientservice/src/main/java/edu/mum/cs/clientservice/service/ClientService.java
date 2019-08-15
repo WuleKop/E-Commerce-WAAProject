@@ -1,6 +1,7 @@
 package edu.mum.cs.clientservice.service;
 
 
+import edu.mum.cs.clientservice.adminmodel.Follower;
 import edu.mum.cs.clientservice.adminmodel.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,29 +30,29 @@ public class ClientService {
     private String buyerUrl;
 
 
-    public User login(String emailAddress){
-        ResponseEntity<User> responseEntity = restTemplate.exchange(adminUrl+"/login/"+emailAddress,
-                HttpMethod.GET,null,User.class);
+    public User login(String emailAddress) {
+        ResponseEntity<User> responseEntity = restTemplate.exchange(adminUrl + "/login/" + emailAddress,
+                HttpMethod.GET, null, User.class);
         return responseEntity.getBody();
     }
 
     //account for buyer
-    public User createAccount(User user){
-        ResponseEntity<User> responseEntity = restTemplate.postForEntity(adminUrl+"/registration",user,User.class);
-        return  responseEntity.getBody();
+    public User createAccount(User user) {
+        ResponseEntity<User> responseEntity = restTemplate.postForEntity(adminUrl + "/registration", user, User.class);
+        return responseEntity.getBody();
 
     }
 
-    public List<User> getSellers(){
-        ResponseEntity<List<User>> responseEntity=restTemplate.exchange(adminUrl + "/sellers", HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {
+    public List<User> getSellers() {
+        ResponseEntity<List<User>> responseEntity = restTemplate.exchange(adminUrl + "/sellers", HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {
         });
-        return  responseEntity.getBody();
+        return responseEntity.getBody();
     }
-//
-//    public getSeller(String email){
-//        ResponseEntity<User> responseEntity=restTemplate.exchange(adminUrl+"/loggedSeller/"+email,HttpMethod.GET,null,User)
-//    }
 
+    public Follower follow(Follower follower) {
+        ResponseEntity<Follower> responseEntity = restTemplate.postForEntity(adminUrl + "/follow", follower, Follower.class);
+        return responseEntity.getBody();
+    }
 
 
 }
