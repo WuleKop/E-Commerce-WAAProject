@@ -1,6 +1,7 @@
 package edu.mum.cs.clientservice.buyerservice.controller;
 
 
+import com.sun.org.apache.regexp.internal.RE;
 import edu.mum.cs.clientservice.adminmodel.User;
 import edu.mum.cs.clientservice.buyerservice.BuyerService;
 import edu.mum.cs.clientservice.sellerService.ProductService;
@@ -73,6 +74,21 @@ public class BuyerController {
         model.addAttribute("product",product);
         model.addAttribute("reviews",reviews);
         return "productreviews";
+    }
+
+    @PostMapping("/addReview")
+    public String postReview(@RequestParam Map<String,String> map,HttpSession session){
+        Product product = productService.findOne(Long.parseLong(map.get("productId")));
+        User user = (User) session.getAttribute("user");
+        Review review = new Review();
+        review.setProductId(product.getId());
+        review.setRating(Double.parseDouble(map.get("rate")));
+        review.setStatus("NEW");
+        review.setAccountId(user.getId());
+        review.setDescription(map.get("description"));
+        review.setDate(new Date());
+        productService.addReview(review,product.getId());
+        return "redirect:/shop/"+product.getId();
     }
 
 

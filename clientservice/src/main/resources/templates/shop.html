@@ -97,41 +97,28 @@
                         <a th:href="@{/account/profile}" th:if="${session.user!=null}">
                             <span th:text="${'Welcome '+session.user.lastName}">...</span></a>
                     </div>
-                    <div class="header-bottom-right header-bottom-right-4">
+                    <div class="header-bottom-right header-bottom-right-4" th:if="${session.cart !=null}">
                         <div class="shop-cart shop-cart-4">
-                            <a href="#"><span class="lnr lnr-cart"> </span></a>
+                            <a href="#"><span class="lnr lnr-cart" > </span></a>
                         </div>
                         <div class="shop-cart-hover shop-cart-hover-4 fix">
                             <ul>
-                                <li>
+                                <li th:each="product : ${session.cart}">
                                     <div class="cart-img">
                                         <a href="#"><img src="img/cart/1.jpg" alt=""/></a>
                                     </div>
                                     <div class="cart-content">
-                                        <h4><a href="#">1 x Faded...</a></h4>
-                                        <span><a href="#">S, Orange</a></span>
-                                        <span class="cart-price">Rs 16.84</span>
+                                        <h4><a href="#"><span th:text="${product.quantity}"></span></a></h4>
+                                        <span><a href="#"><span th:text="${product.product.name}"></span></a></span>
+                                        <span class="cart-price" th:text="${product.product.price}"></span>
                                     </div>
                                     <div class="cart-del">
                                         <i class="fa fa-times-circle"></i>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="cart-img">
-                                        <a href="#"><img src="img/cart/1.jpg" alt=""/></a>
-                                    </div>
-                                    <div class="cart-content">
-                                        <h4><a href="#">1 x Faded...</a></h4>
-                                        <span><a href="#">S, Orange</a></span>
-                                        <span class="cart-price">Rs 16.84</span>
-                                    </div>
-                                    <div class="cart-del">
-                                        <i class="fa fa-times-circle"></i>
-                                    </div>
-                                </li>
-                                <li class="total-price"><span> Total Rs 48.04 </span></li>
+
                                 <li class="checkout-bg">
-                                    <a href="checkout.html">checkout <i class="fa fa-angle-right"></i></a>
+                                    <a href="/checkout" >checkout <i class="fa fa-angle-right"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -225,8 +212,8 @@
                                             </a>
                                             <div class="new-product-action">
                                                 <!-- <a href="#"><span class="lnr lnr-sync"></span></a> -->
-                                                <a href="#"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
-                                                <a href="#"><span class="lnr lnr-heart"></span></a>
+                                                <a th:href="${'shop/'+product.id}"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
+                                                <a href="#"><span class="fa fa-comments"></span></a>
                                             </div>
                                         </div>
                                         <div class="product-content text-center">
