@@ -29,4 +29,9 @@ public class ProductOrderController {
     public void deleteOrderFromProduct(@PathVariable Long pId, @PathVariable Long oId) {
         iProductorderService.deleteOrderFromProduct(pId, oId);
     }
+
+    @DeleteMapping("/deleteFromOrder/{id}")
+    public void deleteFromOrder(@PathVariable("id") Long id){
+        iProductorderService.deleteFromOrder(id);
+    }
 }
