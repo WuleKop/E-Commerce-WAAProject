@@ -18,6 +18,8 @@ public class adminController {
     @Autowired
     private AdminService adminService;
 
+
+
     @GetMapping("/admin/home")
     public String manageSellers(Model model){
         model.addAttribute("users",adminService.peristedSellers());
@@ -44,12 +46,17 @@ public class adminController {
         return "redirect:/admin/home";
     }
 
-    @GetMapping("/review/approve/{id}")
-    public String approveReviews(@PathVariable("id") String reviewId){
+//    @GetMapping("/review/approve/{id}")
+//    public String approveReviews(@PathVariable("id") String reviewId){
+//
+//    }
+    @GetMapping("/admin/uploadads")
+    public String uploadAds(){
 
 
-        return null;
+        return "admin/advertUpload";
     }
+
 
 
 
