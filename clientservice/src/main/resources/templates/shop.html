@@ -16,8 +16,9 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
     <!-- all css here -->
     <!-- bootstrap v3.3.6 css -->
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" type="text/css">
+<!--    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" type="text/css">-->
     <!-- animate css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" th:href="@{/css/animate.css}" href="../css/animate.css" type="text/css">
     <!-- jquery-ui.min css -->
     <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" href="../css/jquery-ui.min.css" type="text/css">
@@ -36,6 +37,13 @@
     <link rel="stylesheet" th:href="@{/css/style.css}" href="../css/style.css" type="text/css">
     <!-- responsive css -->
     <link rel="stylesheet" th:href="@{/css/responsive.css}" href="../css/responsive.css" type="text/css"/>
+    <style>
+        /* Make the image fully responsive */
+        .carousel-inner img {
+            width: 20%;
+            height: 20%;
+        }
+    </style>
 </head>
 <body>
 <!--[if lt IE 8]>
@@ -58,13 +66,12 @@
                     <div class="header-top-left">
                         <ul>
                             <li><a th:href="@{/logon}">Sign In</a></li>
-                            <li class="click_menu"><a href="#" >My Account <i class="fa fa-angle-down"></i></a>
+                            <li class="click_menu"><a href="#">My Account <i class="fa fa-angle-down"></i></a>
 
                                 <ul class="click_menu_show">
                                     <li><a th:href="@{/account/profile}">My Profile</a></li>
                                     <li><a th:href="@{/logout}">Sign out</a></li>
                                 </ul>
-                            </li>
                             </li>
                             <li><a href="/myorders">My orders</a></li>
                             <li><a th:href="@{/register}">Create an Account</a></li>
@@ -74,13 +81,34 @@
             </div>
         </div>
     </div>
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner" th:each="ad: ${ads}">
+
+    <!--        <div class="carousel-inner" th:each="ad: ${ads}">-->
+    <!--            <div class="carousel-item active product-img">-->
+    <!--                <img class="d-block w-100 first-img" th:src="@{'/images/'+${@utilityClass.choosenOne(ad.pictureUrls)}}" alt="">-->
+    <!--            </div>-->
+    <!--        </div>-->
+
+
+    <div id="ads" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ul class="carousel-indicators" th:each="ad, i: ${ads}">
+            <li data-target="#ads"  data-slide-to="${i.index}" class="active"></li>
+        </ul>
+        <div class="carousel-inner" th:each="ad:${ads}">
             <div class="carousel-item active">
-                <img class="d-block w-100" th:src="@{'/images/'+${@utilityClass.choosenOne(ad.pictureUrls)}}" alt="Advertissements">
+                <img th:src="@{'/images/'+${@utilityClass.choosenOne(ad.pictureUrls)}}" alt="Ads">
             </div>
         </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#ads" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#ads" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
     </div>
+
     <div class="header-bottom-area home-page-2 ptb-10">
         <div class="container">
             <div class="row">
@@ -124,7 +152,7 @@
                     </div>
                     <div class="header-bottom-right header-bottom-right-4" th:if="${session.cart !=null}">
                         <div class="shop-cart shop-cart-4">
-                            <a href="#"><span class="lnr lnr-cart" > </span></a>
+                            <a href="#"><span class="lnr lnr-cart"> </span></a>
                         </div>
                         <div class="shop-cart-hover shop-cart-hover-4 fix">
                             <ul>
@@ -143,7 +171,7 @@
                                 </li>
 
                                 <li class="checkout-bg">
-                                    <a href="/checkout" >checkout <i class="fa fa-angle-right"></i></a>
+                                    <a href="/checkout">checkout <i class="fa fa-angle-right"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -172,14 +200,14 @@
                                         </li>
 
                                     </ul>
-<!--                                    <table>-->
-<!--                                        <tr class="cart_item" th:each="seller: ${sellers}">-->
-<!--                                           <td class="product-name" th:text="${seller.lastName}">-->
-<!--                                               <a th:href="${'/getSeller/'+seller.email}"></a>-->
-<!--                                           </td>-->
+                                    <!--                                    <table>-->
+                                    <!--                                        <tr class="cart_item" th:each="seller: ${sellers}">-->
+                                    <!--                                           <td class="product-name" th:text="${seller.lastName}">-->
+                                    <!--                                               <a th:href="${'/getSeller/'+seller.email}"></a>-->
+                                    <!--                                           </td>-->
 
-<!--                                        </tr>-->
-<!--                                    </table>-->
+                                    <!--                                        </tr>-->
+                                    <!--                                    </table>-->
 
                                 </div>
 
@@ -219,7 +247,8 @@
                                             </a>
                                             <div class="new-product-action">
                                                 <!-- <a href="#"><span class="lnr lnr-sync"></span></a> -->
-                                                <a th:href="${'shop/'+product.id}"><span class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
+                                                <a th:href="${'shop/'+product.id}"><span
+                                                        class="lnr lnr-cart cart_pad"></span>Add to Cart</a>
                                                 <a href="#"><span class="fa fa-comments"></span></a>
                                             </div>
                                         </div>
@@ -318,13 +347,15 @@
 <script th:src="@{js/vendor/jquery-1.12.0.min.js}" src="../js/vendor/jquery-1.12.0.min.js"
         type="text/javascript"></script>
 <!-- bootstrap js -->
-<script th:src="@{js/bootstrap.min.js}" src="../js/bootstrap.min.js" type="text/javascript"></script>
+<!--<script th:src="@{js/bootstrap.min.js}" src="../js/bootstrap.min.js" type="text/javascript"></script>-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <!-- owl.carousel js -->
 <script th:src="@{js/owl.carousel.min.js}" src="../js/owl.carousel.min.js" type="text/javascript"></script>
 <!-- meanmenu js -->
 <script th:src="@{js/jquery.meanmenu.js}" src="../js/jquery.meanmenu.js" type="text/javascript"></script>
 <!-- jquery-ui js -->
-<script th:src="@{js/jquery-ui.min.js}" src="../js/jquery-ui.min.js" type="text/javascript"></script>
+<!--<script th:src="@{js/jquery-ui.min.js}" src="../js/jquery-ui.min.js" type="text/javascript"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- wow js -->
 <script th:src="@{js/wow.min.js}" src="../js/wow.min.js" type="text/javascript"></script>
 <!-- scrolly js -->
@@ -339,6 +370,8 @@
 <!-- plugins js -->
 <script th:src="@{js/plugins.js}" src="../js/plugins.js" type="text/javascript"></script>
 <!-- main js -->
-<script th:src="@{js/main.js}" src="../js/main.js" type="text/javascript"></script>
+<!--<script th:src="@{js/main.js}" src="../js/main.js" type="text/javascript"></script>-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 </body>
 </html>
