@@ -67,19 +67,16 @@
         <thead class="thead-light" >
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Review</th>
+            <th scope="col">Account ID</th>
+            <th scope="col">Description</th>
             <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user, iStat : ${users}" th:style="${iStat.odd}? 'font-weight: bold;'" th:alt-title="${iStat.even}? 'even' : 'odd'">
+        <tr th:each="user,iterationStatus  : ${all}">
+            <td th:text="${iterationStatus.count}">1</td>
             <td th:text="${user.id}" />
             <td th:text="${user.name}" />
-            <td th:text="${user.email}" />
-            <td th:text="${user.address.country}" />
-            <td th:text="${user.address.city}" />
             <td>
                 <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Approve</a>
             </td>
@@ -89,7 +86,7 @@
 </div>
 <br> <br> <br> <br> <br><br> <br> <br>
 <br> <br> <br> <br> <br> <br>
-<br> <br>
+<br> <br><br> <br> <br> <br>
 <footer>
     <div class="container-fluid">
         <div class="row flexer row-spacer">

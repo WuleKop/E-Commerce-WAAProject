@@ -8,6 +8,7 @@ import edu.mum.cs.clientservice.adminmodel.User;
 import edu.mum.cs.clientservice.buyerservice.BuyerService;
 import edu.mum.cs.clientservice.service.ClientService;
 import edu.mum.cs.clientservice.utility.MessageConverter;
+import edu.mum.cs.clientservice.utility.UtilityClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,6 +53,7 @@ public class AccountController {
             user.setAddress(null);
             user.setStatus(Status.APPROVED);
             User savedUser = clientService.createAccount(user);
+
             return savedUser;
         } else {
             return null;

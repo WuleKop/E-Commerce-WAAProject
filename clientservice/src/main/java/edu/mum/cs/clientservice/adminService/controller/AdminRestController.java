@@ -7,6 +7,7 @@ import edu.mum.cs.clientservice.adminmodel.Role;
 import edu.mum.cs.clientservice.adminmodel.Status;
 import edu.mum.cs.clientservice.adminmodel.User;
 import edu.mum.cs.clientservice.utility.MessageConverter;
+import edu.mum.cs.clientservice.utility.UtilityClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +43,7 @@ public class AdminRestController {
             user.setAddress(address);
             User res = adminService.createAccountForSeller(user);
 
+            UtilityClass.sendingEmailMessage(res);
            return  res;
         } else {
             return null;

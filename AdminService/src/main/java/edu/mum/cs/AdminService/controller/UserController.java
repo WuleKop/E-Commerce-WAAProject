@@ -98,6 +98,8 @@ public class UserController {
     }
 
 
+
+
     @GetMapping("/sellers")
     public List<User> sendUserToEveryOne() {
         try {
