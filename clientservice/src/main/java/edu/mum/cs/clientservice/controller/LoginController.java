@@ -31,6 +31,11 @@ public class LoginController {
         return "customer-login";
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return "testcorausel";
+    }
+
     @GetMapping("/logout")
     public String logout(Model model,HttpSession session){
         session.invalidate();

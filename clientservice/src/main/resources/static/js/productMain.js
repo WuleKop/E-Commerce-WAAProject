@@ -50,6 +50,12 @@ function ajaxSubmitForm() {
             console.log("SUCCESS : ", response);
             $("#submitButton").prop("disabled", false);
             $('#fileUploadForm')[0].reset();
+            $.ajax({
+                url : '/sendToFollowers/'+response.sellerId,
+                method : 'POST',
+                data : response.sellerId,
+
+            });
         },
         error: function(jqXHR, textStatus, errorThrown) {
 
