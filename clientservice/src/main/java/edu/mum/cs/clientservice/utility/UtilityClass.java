@@ -57,4 +57,20 @@ public class UtilityClass {
             e.printStackTrace();
         }
     }
+
+
+    public static void sendingNotification(User user){
+        String m = "Hello <strong>" + user.getName() + " " + user.getLastName()+" <br/>"
+                + "</strong>, I would like to inform you that  <strong> WE HAVE ADDED NEW INTERSTING PRODUCT ,"
+                + "</strong>  <br/> please be the first one to enjoy our new product on by clicking on the link.<br/>"
+                +"Thank you.";
+        String subject = "NEW PRODUCT UPLOADED";
+
+        try {
+            EmailSender.registrationConfirmation(user.getEmail(), subject, Template.sendingEmail(m));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

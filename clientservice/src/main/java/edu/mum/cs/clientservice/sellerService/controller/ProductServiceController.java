@@ -8,13 +8,11 @@ import edu.mum.cs.clientservice.sellermodel.Order;
 import edu.mum.cs.clientservice.sellermodel.Product;
 import edu.mum.cs.clientservice.sellermodel.Review;
 import edu.mum.cs.clientservice.sellermodel.ShippingStatus;
+import edu.mum.cs.clientservice.utility.UtilityClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -97,6 +95,15 @@ public class ProductServiceController {
         model.addAttribute("followers", adminService.allFollowed(sId));
         model.addAttribute("sId",sId);
         return "seller/sellerFollowers";
+    }
+
+    @PostMapping("/sendToFollowers/{sId}")
+    public @ResponseBody String postEmails(@PathVariable("sId") Long Id){
+        List<User> followers = adminService.allFollowed(Id);
+         for(User follower:followers){
+             UtilityClass.sendingNotification(follower);
+         }
+        return "success";
     }
 
 
