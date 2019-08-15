@@ -68,18 +68,23 @@
         <thead class="thead-light" >
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Account ID</th>
             <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Date Created</th>
             <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user,iterationStatus  : ${all}">
+        <tr th:each="review,iterationStatus  : ${reviews}">
             <td th:text="${iterationStatus.count}">1</td>
-            <td th:text="${user.id}" />
-            <td th:text="${user.name}" />
+            <td th:text="${review.description}" />
+            <td th:text="${review.status}"/>
+            <td th:text="${review.rating}"/>
+            <td th:text="${review.date}"/>
             <td>
-                <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Approve</a>
+                <a  th:href="@{/approveReview/{rId}(rId = ${review.id})}" class="approveBtn" style="color: #0ba360">Approve</a>
+
             </td>
         </tr>
         </tbody>

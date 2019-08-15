@@ -50,6 +50,10 @@ public class AdminService {
        ResponseEntity<String> responseEntity = restTemplate.postForEntity(adminUrl+"/approveSeller",user,String.class);
        return  responseEntity.getBody();
    }
+//    public String approveReview(Review review){
+//        ResponseEntity<String> responseEntity = restTemplate.postForEntity(adminUrl+"/approveReview",review,String.class);
+//        return  responseEntity.getBody();
+//    }
 
    public User createAccountForSeller(User user){
        HttpEntity<User> request = new HttpEntity<>(user);
@@ -95,11 +99,20 @@ public class AdminService {
         return  response.getBody();
     }
 
-    public List<Review> UnapprovedReview(Long id) {
+    public List<Review> UnapprovedReview() {
         ResponseEntity<List<Review>> response = restTemplate.exchange(sellerUrl + "/getUnapprovedReviews", HttpMethod.GET, null, new ParameterizedTypeReference<List<Review>>() {
-
         });
         return response.getBody();
+    }
+    public Review updateReview(Review review) {
+        ResponseEntity<Review> responseEntity = restTemplate.postForEntity(sellerUrl+"/updateReview",review,Review.class);
+        return  responseEntity.getBody();
+
+    }
+    public Review getReviewsById(Long id) {
+        ResponseEntity<Review> response = restTemplate.exchange(sellerUrl + "/getReviewById/"+id, HttpMethod.GET, null, Review.class);
+        return  response.getBody();
+
     }
 
 
