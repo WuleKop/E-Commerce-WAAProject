@@ -1,6 +1,7 @@
 package edu.mum.cs.clientservice.buyerservice;
 
 
+import edu.mum.cs.clientservice.adminmodel.Advertissement;
 import edu.mum.cs.clientservice.adminmodel.User;
 import edu.mum.cs.clientservice.buyermodel.Cart;
 import edu.mum.cs.clientservice.sellermodel.Account;
@@ -55,6 +56,12 @@ public class BuyerService {
 
     public List<Order> buyerOrders(Long id){
         ResponseEntity<List<Order>> responseEntity = restTemplate.exchange(sellerUrl + "/buyerOrders/" + id, HttpMethod.GET, null, new ParameterizedTypeReference<List<Order>>() {
+        });
+        return  responseEntity.getBody();
+    }
+
+    public List<Advertissement> getAllAds(){
+        ResponseEntity<List<Advertissement>> responseEntity=restTemplate.exchange(adminUrl + "/getAllAds", HttpMethod.GET, null, new ParameterizedTypeReference<List<Advertissement>>() {
         });
         return  responseEntity.getBody();
     }
