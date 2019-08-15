@@ -19,4 +19,6 @@ public interface IProductorderService {
     List<ProductOrder> getProductOrderOfProduct(Long pId);
     List<ProductOrder> getProductByOrderId(Long oId);
     void deleteOrderFromProduct(Long pId, Long oId);
+
+    void deleteFromOrder(Long id);
 }

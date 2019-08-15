@@ -49,6 +49,7 @@ public class BuyerController {
 
     @Autowired
     private ProductService productService;
+
     @GetMapping("/shop")
     public String getProductList(Model model){
         model.addAttribute("products",buyerService.allProducts());
@@ -75,6 +76,8 @@ public class BuyerController {
         model.addAttribute("reviews",reviews);
         return "productreviews";
     }
+
+
 
     @PostMapping("/addReview")
     public String postReview(@RequestParam Map<String,String> map,HttpSession session){
@@ -166,6 +169,24 @@ public class BuyerController {
 
         return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
                 .body(new InputStreamResource(bytes));
+    }
+
+
+    @GetMapping("/myorders")
+    public String buyerOrders(HttpSession session,Model model,RedirectAttributes redirectAttributes){
+        if(session.getAttribute("user") != null){
+            User user = (User) session.getAttribute("user");
+            model.addAttribute("orders",productService.getAccountsOrders(user.getId()));
+            return "myorders";
+        }
+        redirectAttributes.addFlashAttribute("error","you need to login to access your orders");
+        return "redirect:/logon";
+    }
+
+    @DeleteMapping("/deleteOrder/{orderId}")
+    public String deleteOrder(@PathVariable("orderId") Long id){
+        productService.deleteFromOrder(id);
+        return "redirect:/myorders";
     }
 
 

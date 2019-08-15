@@ -19,4 +19,9 @@ public interface ProductOrderRepository extends JpaRepository<ProductOrder,Long>
     @Modifying
     @Query("delete from ProductOrder po where po.product = ?1 and po.order = ?2")
     void deleteOrderFromProduct(Product p, Order o);
+
+    @Modifying
+    @Query("delete from ProductOrder po where po.order = ?1")
+    void deleteFromOrder( Order o);
+
 }

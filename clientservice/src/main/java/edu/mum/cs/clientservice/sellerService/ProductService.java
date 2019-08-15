@@ -101,4 +101,8 @@ public class ProductService {
         return allOrders.getBody();
     }
 
+    public void deleteFromOrder(Long id){
+        restTemplate.delete(sellerUrl+"/deleteFromOrder/"+id);
+    }
+
 }

@@ -39,8 +39,22 @@ public class UtilityClass {
             EmailSender.registrationConfirmation(user.getEmail(), subject, Template.sendingEmail(m));
 
         } catch (Exception e) {
-            // try {
+            e.printStackTrace();
+        }
+    }
 
+    public static void sendingEmailApprove(User user){
+        String m = "Hello <strong>" + user.getName() + " " + user.getLastName()+" <br/>"
+                + "</strong>, we would like to inform you that <strong> your account has been APPROVED ,"
+                + "</strong>  <br/> starting from now you can start post your product to our system.<br/>"
+                +"Thank you.";
+        String subject = "Message from Maharishi University ecommerce System";
+
+        try {
+            EmailSender.registrationConfirmation(user.getEmail(), subject, Template.sendingEmail(m));
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

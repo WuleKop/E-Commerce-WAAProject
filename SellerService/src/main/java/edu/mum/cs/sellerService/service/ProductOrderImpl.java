@@ -76,4 +76,11 @@ public class ProductOrderImpl implements IProductorderService {
         p.setStockQuantity(p.getStockQuantity()+o.getQuantity());
         productService.save(p);
     }
+
+    @Override
+    public void deleteFromOrder(Long id) {
+        Order order = orderService.getOrder(id);
+        productOrderRepository.deleteFromOrder(order);
+        orderService.delete(id);
+    }
 }
