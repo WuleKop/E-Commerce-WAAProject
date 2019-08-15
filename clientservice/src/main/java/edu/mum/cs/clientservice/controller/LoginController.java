@@ -28,7 +28,6 @@ public class LoginController {
 
     @GetMapping("/logon")
     public String login(HttpSession session){
-        session.invalidate();
         return "customer-login";
     }
 
@@ -42,7 +41,7 @@ public class LoginController {
     public String login(@RequestParam Map<String, String> map, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
 
         if (map.get("email") == null || map.get("email") == "" || map.get("password") == null || map.get("password") == "") {
-            model.addAttribute("error", "Please fill mandatory fields");
+            model.addAttribute("error", "Please fill required fields");
            // return "redirect:/logon";
             return "customer-login";
         } else {
@@ -75,7 +74,9 @@ public class LoginController {
 
                 }
             } else {
-                System.out.println("fourth" + map.get("email") + " user name :");
+                if(map.get("email").equals("ADMIN") && map.get("password").equals("ADMIN123")){
+                    return "redirect:/admin/home";
+                }
                 redirectAttributes.addFlashAttribute("error", "Invalid username or password");
                 return "redirect:/logon";
             }

@@ -9,7 +9,7 @@ public interface FollowerService {
 
     Follower saveFollower(Follower follower);
 
-    public List<Follower> sellerFollowers(User user);
+     List<Follower> sellerFollowers(User user);
 
-    public List<Follower> buyerFollowing(User user);
+     List<Follower> buyerFollowing(User user);
 }

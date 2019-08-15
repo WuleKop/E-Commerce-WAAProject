@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -17,6 +18,7 @@ import java.util.List;
 public class FollowerServiceImpl implements FollowerService {
     @Autowired
     private FollowerRepository followerRepository;
+
     @Override
     public Follower saveFollower(Follower follower) {
         return followerRepository.save(follower);

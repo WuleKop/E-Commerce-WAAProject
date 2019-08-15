@@ -42,7 +42,7 @@ public class EmailSender {
         // creating a new e-mail message (MimeMessage)
         Message msg = new MimeMessage(session);
 
-        msg.setFrom(new InternetAddress(mailFrom, "PMS"));
+        msg.setFrom(new InternetAddress(mailFrom, "MUM ECOMMERCE"));
 
         if (!toAddress.isEmpty() || toAddress != null) {
 

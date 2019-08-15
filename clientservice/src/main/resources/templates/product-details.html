@@ -210,21 +210,21 @@
                                     </tr>
 
 
-                                    <tr class="cart_item" th:each="review : ${reviews}">
+                                    <tr class="cart_item" th:each="review : ${reviews}" style="border-bottom: 1px solid #d8d8d8;">
                                         <td class="pull-left" style="border-bottom: 1px solid #d8d8d8;">
                                             <span th:text="${review.description}"></span>
 
                                         </td>
                                         <td style="border-bottom: 1px solid #d8d8d8;">
-                                            <span> <strong class="product-quantity">5<span></span></strong> </span>
+                                            <span> <strong class="product-quantity" th:text="${review.rating}"><span></span></strong> </span>
                                         </td>
 
                                     </tr>
 
                                 </table>
-                                <button class="btn btn-sm btn-success" type="button" style="margin-top: 2%;"><span
+                                <a th:href="@{'/shop/'+${product.id}+'/reviews'}" class="btn btn-sm btn-success" type="button" style="margin-top: 2%;"><span
                                         class="fa fa-comments" id="adding"></span>Add review
-                                </button>
+                                </a>
 
                             </div>
                         </div>
@@ -242,7 +242,7 @@
                                         <div class="tab-pane active" >
                                             <div class="product-info-tab-content">
                                                 <p>No review added yet to this product.....</p><br/>
-                                                <a th:href="@{}" class="btn-info btn-sm">Add review<i class="fa fa-star"></i></a>
+                                                <a th:href="@{'/shop/'+${product.id}+'/reviews'}" class="btn-info btn-sm">Add review<i class="fa fa-star"></i></a>
                                             </div>
                                         </div>
                                     </div>
