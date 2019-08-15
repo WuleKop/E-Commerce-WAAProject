@@ -83,7 +83,7 @@
             <td th:text="${review.rating}"/>
             <td th:text="${review.date}"/>
             <td>
-                <a  th:href="@{#}" class="approveBtn" style="color: #0ba360">Approve</a>
+                <a  th:href="@{/approveReview/{rId}(rId = ${review.id})}" class="approveBtn" style="color: #0ba360">Approve</a>
 
             </td>
         </tr>

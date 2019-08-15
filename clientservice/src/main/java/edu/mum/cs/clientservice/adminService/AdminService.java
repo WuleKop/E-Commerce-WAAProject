@@ -104,6 +104,16 @@ public class AdminService {
         });
         return response.getBody();
     }
+    public Review updateReview(Review review) {
+        ResponseEntity<Review> responseEntity = restTemplate.postForEntity(sellerUrl+"/updateReview",review,Review.class);
+        return  responseEntity.getBody();
+
+    }
+    public Review getReviewsById(Long id) {
+        ResponseEntity<Review> response = restTemplate.exchange(sellerUrl + "/getReviewById/"+id, HttpMethod.GET, null, Review.class);
+        return  response.getBody();
+
+    }
 
 
 

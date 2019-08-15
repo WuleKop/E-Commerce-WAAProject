@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -45,17 +46,24 @@ public class adminController {
     }
 
     @GetMapping("/admin/reviews")
-    public String approveReviews(Model model){
-       List<Review> reviews = adminService.UnapprovedReview();
-       model.addAttribute("reviews",reviews);
-       return "admin/reviews";
+    public String approveReviews(Model model) {
+        List<Review> reviews = adminService.UnapprovedReview();
+        model.addAttribute("reviews", reviews);
+        return "admin/reviews";
     }
-
+    @GetMapping("/approveReview/{rId}")
+    public String approveReview(@PathVariable Long rId) {
+        Review r =adminService.getReviewsById(rId);
+        r.setStatus("APPROVED");
+        adminService.updateReview(r);
+        return "redirect:/admin/reviews";
+    }
 
     @GetMapping("/admin/uploadads")
     public String uploadAds(){
         return "admin/advertUpload";
     }
+
 
 
 
