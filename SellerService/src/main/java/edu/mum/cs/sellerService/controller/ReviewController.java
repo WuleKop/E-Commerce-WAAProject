@@ -28,6 +28,10 @@ public class ReviewController {
     public void deleteReview (@PathVariable Long id, @PathVariable Long pId) {
         reviewService.delete(id, pId);
     }
+    @GetMapping("/getUnapprovedReviews")
+    public List<Review> getUnapprovedReviews() {
+        return reviewService.getUnapprovedReviews();
+    }
 
 
 }

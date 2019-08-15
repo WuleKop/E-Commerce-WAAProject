@@ -1,5 +1,8 @@
 package edu.mum.cs.clientservice.sellerService.controller;
 
+import edu.mum.cs.clientservice.adminService.AdminService;
+import edu.mum.cs.clientservice.adminmodel.Follower;
+import edu.mum.cs.clientservice.adminmodel.User;
 import edu.mum.cs.clientservice.sellerService.ProductService;
 import edu.mum.cs.clientservice.sellermodel.Order;
 import edu.mum.cs.clientservice.sellermodel.Product;
@@ -22,6 +25,9 @@ public class ProductServiceController {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    private AdminService adminService;
+
     @GetMapping("/uploadProduct")
     public String uploadProduct() {
         return "seller/productUpload";
@@ -29,6 +35,7 @@ public class ProductServiceController {
     @GetMapping("/getSellerProducts/{sId}")
     public String getAllProduct(@PathVariable Long sId, Model model) {
         model.addAttribute("products", productService.sellerProducts(sId));
+        model.addAttribute("sId",sId);
         return "seller/allProducts";
     }
     @GetMapping("/getProduct/{pId}")
@@ -84,6 +91,12 @@ public class ProductServiceController {
     @PostMapping("/addReview/{pId}")
     public void addReview(Review review, @PathVariable Long pId) {
         productService.addReview(review, pId);
+    }
+    @GetMapping("/getSellerFollowers/{sId}")
+    public String getSellerFollowers(@PathVariable Long sId, Model model) {
+        model.addAttribute("followers", adminService.allFollowed(sId));
+        model.addAttribute("sId",sId);
+        return "seller/sellerFollowers";
     }
 
 
