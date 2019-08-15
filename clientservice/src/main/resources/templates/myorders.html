@@ -1,0 +1,85 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Product Details</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" th:href="@{/img/favicon.png}"/>
+    <!-- Place favicon.ico in the root directory -->
+    <!-- google-font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <!-- all css here -->
+    <!-- bootstrap v3.3.6 css -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" type="text/css">
+    <!-- animate css -->
+    <link rel="stylesheet" th:href="@{/css/animate.css}" href="../css/animate.css" type="text/css">
+    <!-- jquery-ui.min css -->
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" href="../css/jquery-ui.min.css" type="text/css">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" th:href="@{/css/meanmenu.min.css}" href="../css/meanmenu.min.css" type="text/css">
+    <!-- nivo-slider css -->
+    <link rel="stylesheet" th:href="@{/css/nivo-slider.css}" href="../css/nivo-slider.css}" type="text/css">
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.css}" href="../css/owl.carousel.css" type="text/css">
+    <!--linearicons css -->
+    <link rel="stylesheet" th:href="@{/css/linearicons-icon-font.min.css}" href="../css/linearicons-icon-font.min.css"
+          type="text/css">
+    <!-- font-awesome css -->
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" href="../css/font-awesome.min.css" type="text/css">
+    <!-- style css -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../css/style.css" type="text/css">
+    <!-- responsive css -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}" href="../css/responsive.css" type="text/css"/>
+    <!-- modernizr css -->
+    <script th:src="@{/js/vendor/modernizr-2.8.3.min.js}" src="../js/vendor/modernizr-2.8.3.min.js"
+            type="text/javascript"></script>
+</head>
+<body style="width: 80%;margin:auto">
+<div style="height: 20px;">
+
+</div>
+<a href="/shop" class="btn btn-info btn-sm">
+    <i class="fa  fa-hand-o-left"></i> Back
+</a>
+
+<br/>
+<br/>
+<br/>
+
+</div>
+<div class="product-info-detailed pb-80" id="new-review">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>MY ORDERS</h3>
+            <hr/>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Order number</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Print details</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order : ${orders}">
+                    <th scope="row" th:text="${order.orderNumber.toUpperCase()}"></th>
+                    <td th:text="${#dates.format(order.orderDate, 'MMM dd,yyyy')}"></td>
+                    <td th:text="${order.shippingStatus}"></td>
+                    <td><a href="#" class="btn btn-primary btn-sm">print <i class="fa fa-print"></i></a></td>
+                    <td>
+                        <a th:href="@{'/deleteOrder/'+${order.id}}" class="btn btn-danger btn-sm" th:if="${order.shippingStatus == 'NEW'}">cancel <i class="fa fa-ban"></i></a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

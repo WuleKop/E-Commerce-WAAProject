@@ -45,6 +45,7 @@ function ajaxSubmitForm() {
             product +='<p class="card-text">Manufactured Date: '+response.manufacturedDate.substring(0,10)+'</p>';
             product +='<p class="card-text">Quantity: '+response.stockQuantity+'</p>';
             product += '<p class="card-text"><small class="text-muted">Price: $'+ response.price+ '</small></p></div></div></div></div>';
+            product+='<p><a href="/getSellerProducts/'+response.sellerId+'" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Back</a></p>';
             $("#result").prepend(product);
             console.log("SUCCESS : ", response);
             $("#submitButton").prop("disabled", false);
