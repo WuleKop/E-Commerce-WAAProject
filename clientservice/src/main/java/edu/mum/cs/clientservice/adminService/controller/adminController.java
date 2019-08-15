@@ -42,7 +42,7 @@ public class adminController {
         adminService.approveSeller(user);
         return "redirect:/admin/home";
     }
-    
+
 
 
 }
