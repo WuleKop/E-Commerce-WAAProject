@@ -1,5 +1,6 @@
 package edu.mum.cs.clientservice.sellerService.controller;
 
+import edu.mum.cs.clientservice.adminService.AdminService;
 import edu.mum.cs.clientservice.sellerService.ProductService;
 import edu.mum.cs.clientservice.sellermodel.Order;
 import edu.mum.cs.clientservice.sellermodel.Product;
@@ -21,6 +22,9 @@ public class ProductServiceController {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    private AdminService adminService;
 
     @GetMapping("/uploadProduct")
     public String uploadProduct() {
