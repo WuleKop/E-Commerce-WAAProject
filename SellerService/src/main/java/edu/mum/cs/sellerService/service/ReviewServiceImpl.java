@@ -36,4 +36,9 @@ public class ReviewServiceImpl implements ReviewService {
     public List<Review> getReviewByProductId(Long pId) {
         return productService.findById(pId).getReviews();
     }
+
+    @Override
+    public List<Review> getUnapprovedReviews() {
+        return reviewRepository.getUnapprovedReviews();
+    }
 }
