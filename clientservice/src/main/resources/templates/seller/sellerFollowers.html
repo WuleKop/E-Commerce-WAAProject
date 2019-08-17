@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Followers</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/product.css}" href="../css/product.css" type="text/css">
+</head>
+<body>
+<div class="card" th:each="f:${followers}">
+    <div class="card-body">
+        <h5 class="card-title" th:text="'Name: '+${f.name}+' '+${f.lastName}"></h5>
+        <p class="card-text"><small th:text="'Email: '+${f.email}" style="margin-left: 10px"></small>
+        </p>
+    </div>
+</div>
+<br>
+<p><a th:href="@{/getSellerProducts/{sId}(sId=${sId})}" class="btn btn-outline-info btn-sm" style="margin-left: 10px">Back</a>
+
+</p>
+
+</body>
+</html>

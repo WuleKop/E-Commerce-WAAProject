@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Product</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/productUpdate.js}"></script>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+       <form method="POST" id="fileUploadForm" th:object="${product}">
+        <div class="form-row">
+            <div class="col-md-1 mb-1">
+                <label for="Id">ID: </label> <input type="text" th:field="*{id}" id="Id" class="form-control">
+            </div>
+            <div class="col-md-3 mb-2">
+                <label for="name">Product Name: </label> <input type="text" th:field="*{name}" id="name" class="form-control" />
+            </div>
+            <div class="col-md-1 mb-1">
+                <label for="sellerId">Seller ID: </label> <input type="text" th:field="*{sellerId}" id="sellerId" class="form-control" >
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-5 mb-2">
+                <label for="description" >Description: </label> <textarea  th:field="*{description}" id="description" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-2 mb-1">
+                <label for="manufacturedDate">Manufactured Date: </label> <input type="text" th:field="*{manufacturedDate}" placeholder="MM-DD-YYYY" id="manufacturedDate" class="form-control"></p>
+            </div>
+
+            <div class="col-md-2 mb-1">
+                <label for="stockQuantity">Stock Quantity: </label> <input type="text" th:field="*{stockQuantity}" id="stockQuantity" class="form-control">
+            </div>
+            <div class="col-md-1 mb-1">
+                <label for="price">Price: </label> <input type="text" th:field="*{price}" id="price" class="form-control">
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="col-md-5 mb-2">
+                <label for="pictures">Product Pictures: </label> <input type="file" th:field="*{pictures}" multiple id="pictures" />
+            </div>
+        </div>
+        <p><input type="submit" value="Submit" id="submitButton" class="btn btn-secondary"/></p>
+    </form>
+</div>
+
+<div class="container">
+    <div id="upload">
+    </div>
+</div>
+
+</body>
+</html>

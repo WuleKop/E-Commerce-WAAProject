@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add an Add</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container ">
+    <h2>Create a new ad</h2>
+    <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+        <div class="form-row">
+            <div class="col-md-5 mb-2">
+                <label for="name">Ad Name </label> <input type="text" name="name" id="name" class="form-control" />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-5 mb-2">
+                <label for="description" >Description: </label> <textarea name="description" id="description" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-2 mb-1">
+                <label for="dateCreated">Date Created: </label> <input type="text" name="dateCreated" placeholder="MM-DD-YYYY" id="dateCreated" class="form-control"></p>
+            </div>
+
+<!--            <div class="col-md-2 mb-1">-->
+<!--                <label for="stockQuantity">Stock Quantity: </label> <input type="text" name="stockQuantity" id="stockQuantity" class="form-control">-->
+<!--            </div>-->
+<!--            <div class="col-md-1 mb-1">-->
+<!--                <label for="price">Price: </label> <input type="text" name="price" id="price" class="form-control">-->
+<!--            </div>-->
+        </div>
+
+
+        <div class="form-row">
+            <div class="col-md-5 mb-2">
+                <label for="pictures">Add Pictures: </label> <input type="file" name="pictures" multiple id="pictures" />
+            </div>
+        </div>
+        <p><input type="submit" value="Submit" id="submitButton" class="btn btn-secondary"/></p>
+    </form>
+</div>
+
+<div class="container">
+    <h2>Uploaded Add Picture: </h2>
+    <div id="result">
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+package edu.mum.cs.clientservice.adminService.controller;
+
+import edu.mum.cs.clientservice.adminService.AdminService;
+import edu.mum.cs.clientservice.adminmodel.Status;
+import edu.mum.cs.clientservice.adminmodel.User;
+import edu.mum.cs.clientservice.sellermodel.Product;
+import edu.mum.cs.clientservice.utility.UtilityClass;
+import edu.mum.cs.clientservice.sellermodel.Review;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
+
+@Controller
+public class adminController {
+    @Autowired
+    private AdminService adminService;
+
+
+
+    @GetMapping("/admin/home")
+    public String manageSellers(Model model){
+        model.addAttribute("users",adminService.peristedSellers());
+        return "admin/admin_mainpanel";
+
+    }
+     @GetMapping("/admin/users")
+    public String manageUsers(Model model){
+            model.addAttribute("all",adminService.AllUsers());
+            return "admin/allUsers";
+    }
+
+
+
+    @GetMapping("/approved/{email}")
+    public String approveSellers(@PathVariable("email") String email){
+        User user = adminService.login(email);
+        user.setStatus(Status.APPROVED);
+        adminService.approveSeller(user);
+        UtilityClass.sendingEmailApprove(user);
+        return "redirect:/admin/home";
+    }
+
+    @GetMapping("/admin/reviews")
+    public String approveReviews(Model model) {
+        List<Review> reviews = adminService.UnapprovedReview();
+        model.addAttribute("reviews", reviews);
+        return "admin/reviews";
+    }
+    @GetMapping("/approveReview/{rId}")
+    public String approveReview(@PathVariable Long rId) {
+        Review r =adminService.getReviewsById(rId);
+        r.setStatus("APPROVED");
+        adminService.updateReview(r);
+        return "redirect:/admin/reviews";
+    }
+
+    @GetMapping("/admin/uploadads")
+    public String uploadAds(){
+        return "admin/advertUpload";
+    }
+
+
+
+
+
+
+}

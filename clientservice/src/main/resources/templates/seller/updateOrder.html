@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Product</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container" style="margin-top: 50px">
+    <form th:action="@{/testUpdateOrder}"  method="post" id="fileUploadForm">
+        <div class="form-row">
+            <div class="col-md-1 mb-1">
+                <input type="hidden" th:value="${order.id}" name="oId"/>
+                <input type="hidden" th:value="${pId}" name="pId"/>
+                <select name="status">
+                    <option th:each="stat : ${T(edu.mum.cs.clientservice.sellermodel.ShippingStatus).values()}"
+                            th:value="${stat}" th:text="${stat}"></option>
+                </select>
+            </div>
+        </div>
+
+        <p><input type="submit" value="Submit" id="submitButton" class="btn btn-secondary"/></p>
+    </form>
+</div>
+
+</body>
+</html>

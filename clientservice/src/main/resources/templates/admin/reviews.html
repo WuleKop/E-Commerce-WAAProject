@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/mockup.css}" href="../css/mockup.css">
+    <link rel="stylesheet" th:href="@{/css/adminstyle.css}" href="../css/adminstyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default poptext">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNav">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+            <!-- Navigation options on the left (site related) -->
+            <div class="col-md-offset-4">
+                <ul class="nav navbar-nav">
+                    <li><a th:href="@{/admin/home}">Home</a></li>
+                    <li><a th:href="@{/admin/users}">All Users</a></li>
+                    <!--              <li><a th:href="@{/post_ads.html}" href="post_ads.html">Post an Add</a></li>-->
+                    <li><a th:href="@{/admin/reviews}">Reviews</a></li>
+                    <li><a th:href="@{/admin/uploadads}">Upload Ads</a></li>
+                </ul>
+            </div>
+
+            <!-- Navigation options on the right (user related) -->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#Upgrade">Upgrade</a></li>
+                <li><a href="#Alerts"><i class="material-icons">notifications</i></a></li>
+                <li><a href="#Help"><i class="material-icons">help</i></a></li>
+
+                <li class="dropdown">
+                    <a
+                            href="#UserMenu"
+                            class="dropdown-toggle"
+                            data-toggle="dropdown"
+                            role="button"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                    >
+                        <i class="material-icons user-icon">person</i>
+                    </a>
+                    <ul class="dropdown-menu">
+                    </ul>
+                </li> <!-- dropdown -->
+
+            </ul> <!-- navbar-right -->
+
+        </div> <!-- #mainNav -->
+    </div>
+</nav>
+<div>
+    <h4 align="center">List of reviews waiting for approval</h4>
+    <table class="thead-light" align="center">
+        <thead class="thead-light" >
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Date Created</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="review,iterationStatus  : ${reviews}">
+            <td th:text="${iterationStatus.count}">1</td>
+            <td th:text="${review.description}" />
+            <td th:text="${review.status}"/>
+            <td th:text="${review.rating}"/>
+            <td th:text="${review.date}"/>
+            <td>
+                <a  th:href="@{/approveReview/{rId}(rId = ${review.id})}" class="approveBtn" style="color: #0ba360">Approve</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br> <br> <br> <br> <br><br> <br> <br>
+<br> <br> <br> <br> <br> <br>
+<br> <br><br> <br> <br> <br>
+<footer>
+    <div class="container-fluid">
+        <div class="row flexer row-spacer">
+        </div>
+        <div class="row flexer">
+            <div class="center-block">
+                <span class="copyright"></span>
+                <span class="brand-text">Fancy Admin Panel </span>&nbsp;2019
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

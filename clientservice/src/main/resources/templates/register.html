@@ -1,0 +1,276 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Registration</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="icon" href="img/favicon.png"/>
+	<!-- Place favicon.ico in the root directory -->
+	<!-- google-font -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+	<!-- all css here -->
+	<!-- bootstrap v3.3.6 css -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" type="text/css">
+	<!-- animate css -->
+	<link rel="stylesheet" th:href="@{/css/animate.css}" href="../css/animate.css" type="text/css">
+	<!-- jquery-ui.min css -->
+	<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" href="../css/jquery-ui.min.css" type="text/css">
+	<!-- meanmenu css -->
+	<link rel="stylesheet" th:href="@{/css/meanmenu.min.css}" href="../css/meanmenu.min.css" type="text/css">
+	<!-- nivo-slider css -->
+	<link rel="stylesheet" th:href="@{/css/nivo-slider.css}" href="../css/nivo-slider.css}" type="text/css">
+	<!-- owl.carousel css -->
+	<link rel="stylesheet" th:href="@{/css/owl.carousel.css}" href="../css/owl.carousel.css" type="text/css">
+	<!--linearicons css -->
+	<link rel="stylesheet" th:href="@{/css/linearicons-icon-font.min.css}" href="../css/linearicons-icon-font.min.css"
+		  type="text/css">
+	<!-- font-awesome css -->
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" href="../css/font-awesome.min.css" type="text/css">
+	<!-- style css -->
+	<link rel="stylesheet" th:href="@{/css/style.css}" href="../css/style.css" type="text/css">
+	<!-- responsive css -->
+	<link rel="stylesheet" th:href="@{/css/responsive.css}" href="../css/responsive.css" type="text/css"/>
+</head>
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+	your browser</a> to improve your experience.</p>
+<![endif]-->
+<header>
+	<div class="header-top-area ptb-10 hidden-xs header-top-area-4">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-4 col-sm-5">
+					<div class="header-top-right header-top-left-4">
+						<p></p>
+					</div>
+				</div>
+				<div class="col-lg-9 col-md-8 col-sm-7 header-top-right-4">
+
+					<div class="header-top-left">
+						<ul>
+							<li><a th:href="@{/logon}">Sign In</a></li>
+
+							<li class="click_menu"><a href="#">My Account <i class="fa fa-angle-down"></i></a>
+
+								<ul class="click_menu_show">
+									<li><a th:href="@{/account/profile}">My Profile</a></li>
+									<li><a th:href="@{/logout}">Sign out</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+<div class="contact-area ptb-40">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mar_b-30">
+				<div class="contuct-info text-center">
+					<h1 class="entry-title">Create your Account </h1>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-8 col-sm-12 col-lg-offset-1 col-xs-12">
+			</div>
+		</div>
+	</div>
+</div>
+<div class="entry-header-area ptb-40">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+			</div>
+		</div>
+	</div>
+</div>
+<div class="coupon-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="coupon-accordion">
+					<h3>Register here if you are a Customer <span id="showlogin">Click here to register</span></h3>
+					<div id="checkout-login" class="coupon-content">
+						<div class="coupon-info">
+							<!--<p class="coupon-text">Quisque gravida turpis sit amet nulla posuere lacinia. Cras sed est sit amet ipsum luctus.</p>-->
+							<form id="buyer-form" action="#">
+								<div class="form-group login-page">
+									<label >First Name <span>*</span></label>
+									<input type="text" class="form-control" id="firstName" name="firstName">
+								</div>
+								<div class="form-group login-page">
+									<label >Last Name <span>*</span></label>
+									<input type="text" class="form-control" id="lastName" name="lastName">
+								</div>
+								<div class="form-group login-page">
+									<label >Email <span>*</span></label>
+									<input type="text" class="form-control" id="email" name="email">
+								</div>
+								<div class="form-group login-page">
+									<label >Password <span>*</span></label>
+									<input type="Password" class="form-control" id="password" name="password">
+								</div>
+								<div class="form-group login-page">
+									<label>Confirm Password <span>*</span></label>
+									<input type="Password" class="form-control" id="confirmPassword2" name="confirm">
+								</div>
+								<button type="submit" id="btn-buyer" class="btn btn-default login-btn">Create an Account</button>
+							</form>
+						</div>
+					</div>
+					<h3>Register here if you are a seller <span id="showcoupon">Click here to register</span></h3>
+					<div id="checkout_coupon" class="coupon-checkout-content">
+								<div class="coupon-info">
+									<form id="seller-form">
+								<div class="col-md-6">
+									<div class="checkout-form-list">
+										<label>First Name <span class="required">*</span></label>
+										<input type="text" placeholder="" name="firstName"/>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="checkout-form-list">
+										<label>Last Name <span class="required">*</span></label>
+										<input type="text" placeholder="" name="lastName"/>
+									</div>
+								</div>
+
+
+								<div class="col-md-12">
+									<div class="country-select" >
+										<label>Country <span class="required">*</span></label>
+										<select name="country">
+											<option value="United States">United States</option>
+											<option value="Canada">Canada</option>
+											<option value="Algeria">Algeria</option>
+											<option value="Afghanistan">Afghanistan</option>
+											<option value="Ghana">Ghana</option>
+											<option value="Albania">Albania</option>
+											<option value="Bahrain">Bahrain</option>
+											<option value="Colombia" >Colombia</option>
+											<option value="Dominican Republic">Dominican Republic</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="checkout-form-list">
+										<label>Address <span class="required">*</span></label>
+										<input type="text" placeholder="Street address" name="street"/>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="checkout-form-list">
+										<input type="text" placeholder="Apartment, suite, unit etc. (optional)"/>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="checkout-form-list">
+										<label>Town / City <span class="required" >*</span></label>
+										<input type="text" placeholder="Town / City" name="city"/>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="checkout-form-list">
+										<label>State / County <span class="required">*</span></label>
+										<input type="text" placeholder="" name="state"/>
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="checkout-form-list">
+									<label >Email <span>*</span></label>
+									<input type="text" class="form-control" name="email">
+									</div>
+
+								</div>
+								<div class="col-md-6">
+									<div class="checkout-form-list">
+									<label >Password <span>*</span></label>
+									<input type="Password" class="form-control" name="password">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="checkout-form-list">
+									<label>Confirm Password <span>*</span></label>
+									<input type="Password" class="form-control" name="confirm">
+									</div>
+								</div>
+								<p class="form-row">
+									<input type="submit"  value="Create Account"/>
+
+								</p>
+
+							</form>
+						</div>
+					</div>
+					<!-- ACCORDION END -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script th:src="@{js/vendor/jquery-1.12.0.min.js}" src="../js/vendor/jquery-1.12.0.min.js" type="text/javascript"></script>
+<!-- bootstrap js -->
+<script th:src="@{js/bootstrap.min.js}" src="../js/bootstrap.min.js" type="text/javascript"></script>
+<!-- owl.carousel js -->
+<script th:src="@{js/owl.carousel.min.js}" src="../js/owl.carousel.min.js" type="text/javascript"></script>
+<!-- meanmenu js -->
+<script th:src="@{js/jquery.meanmenu.js}" src="../js/jquery.meanmenu.js" type="text/javascript"></script>
+<!-- jquery-ui js -->
+<script th:src="@{js/jquery-ui.min.js}" src="../js/jquery-ui.min.js" type="text/javascript"></script>
+<!-- wow js -->
+<script th:src="@{js/wow.min.js}" src="../js/wow.min.js" type="text/javascript"></script>
+<!-- scrolly js -->
+<script th:src="@{js/jquery.scrolly.js}" src="../js/jquery.scrolly.js" type="text/javascript"></script>
+<!-- magnific-popup js -->
+<script th:src="@{js/jquery.magnific-popup.min.js}" src="../js/jquery.magnific-popup.min.js" type="text/javascript"></script>
+<!--  countdown js -->
+<script th:src="@{js/jquery.countdown.min.js}" src="../js/jquery.countdown.min.js" type="text/javascript"></script>
+<!-- nivo.slider js -->
+<script th:src="@{js/jquery.nivo.slider.js}" src="../js/jquery.nivo.slider.js" type="text/javascript"></script>
+<!-- plugins js -->
+<script th:src="@{js/plugins.js}" src="../js/plugins.js" type="text/javascript"></script>
+<!-- main js -->
+<script th:src="@{js/main.js}" src="../js/main.js" type="text/javascript"></script>
+<script th:src="@{js/main-client.js}" src="../js/main-client.js" type="text/javascript"></script>
+
+<script>
+	(function () {
+		$('#seller-form').submit(function (evt) {
+			evt.preventDefault();
+			var data = $('#seller-form').serialize();
+			$.ajax({
+				type: 'post',
+				url: '/createAccountSeller',
+				data: data,
+				dataType: 'json',
+				contextType: 'application/json',
+				success: function (response) {
+					if(response != null){
+						alert("You are Successfully registered");
+
+						location.href="logon";
+					}else{
+						alert("Sorry an Error Occured please try again later");
+					}
+				},
+				error: function (errorObject) {
+					alert(errorObject);
+					console.log(errorObject);
+				}
+
+			});
+
+		});
+	})();
+
+	</script>
+</body>
+</html>

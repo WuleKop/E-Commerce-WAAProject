@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reviews</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/product.css}" href="../css/product.css" type="text/css">
+   </head>
+<body>
+<div class="card" th:each="r:${reviews}">
+    <div class="card-body">
+        <h5 class="card-title" th:text="${r.description}"></h5>
+        <p class="card-text"><small th:text="'Rating: '+${r.rating}" style="margin-left: 10px">Rating</small>
+        </p>
+        <p><small class="text-muted" th:text="'User: '+${r.accountId}" style="margin-left: 10px"></small>
+            <small class="text-muted" th:text="'Date: '+${r.date.toString().substring(3,9)+', '+r.date.toString().substring(23)}" style="margin-left: 10px"></small>
+        </p>
+
+    </div>
+</div>
+
+</body>
+</html>
